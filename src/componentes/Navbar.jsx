@@ -2,6 +2,7 @@
 import React from 'react';
 import { Menubar } from 'primereact/menubar';
 import "primereact/resources/themes/lara-light-indigo/theme.css";
+import '../style/navbar.css'
 
 export default function Navbar () {
   const items = [

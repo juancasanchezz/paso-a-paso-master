@@ -10,8 +10,8 @@ const ListaRutas = () => {
       try {
         // Simulación de datos iniciales
         const data = [
-          { id: 1, nombre: 'Ruta 1', ubicacion: 'Ubicación 1', kilometros: 10, descripcion: 'Descripción de la Ruta 1' },
-          { id: 2, nombre: 'Ruta 2', ubicacion: 'Ubicación 2', kilometros: 15, descripcion: 'Descripción de la Ruta 3' },
+          { id: 1, nombre: 'Ruta 1', ubicacion: 'Ubicación 1', kilometros: 10, descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque pulvinar faucibus velit ut auctor. Duis ut pretium justo. Nam sed risus ornare, congue orci in, venenatis dolor. Proin sed cursus lectus. Morbi elit neque, mattis sed nunc eget, hendrerit porttitor ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam venenatis, magna luctus viverra vestibulum, ipsum tellus pulvinar enim, vitae varius ante nisl at tellus.' },
+          { id: 2, nombre: 'Ruta 2', ubicacion: 'Ubicación 2', kilometros: 15, descripcion: 'Descripción de la Ruta 2' },
           // ... más rutas
         ];
 
@@ -31,11 +31,11 @@ const ListaRutas = () => {
   };
 
   return (
-    <div>
+    <div className='rutas'>
       <h2>Lista de Rutas</h2>
-      <ul>
+      <ul className='lista-rutas'>
         {rutas.map((ruta) => (
-          <li key={ruta.id} className={rutaExpandida === ruta.id ? 'expandida' : ''}>
+          <li id='listado-rutas' key={ruta.id} className={rutaExpandida === ruta.id ? 'expandida' : ''}>
             <div className="ruta-cabecera" onClick={() => manejarExpansion(ruta.id)}>
               <strong>{ruta.nombre}</strong>
               <p>{ruta.ubicacion}</p>
