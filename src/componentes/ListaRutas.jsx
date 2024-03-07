@@ -11,7 +11,7 @@ const ListaRutas = () => {
         // Simulación de datos iniciales
         const data = [
           { id: 1, nombre: 'Ruta 1', ubicacion: 'Ubicación 1', kilometros: 10, descripcion: 'Descripción de la Ruta 1' },
-          { id: 2, nombre: 'Ruta 2', ubicacion: 'Ubicación 2', kilometros: 15, descripcion: 'Descripción de la Ruta 2' },
+          { id: 2, nombre: 'Ruta 2', ubicacion: 'Ubicación 2', kilometros: 15, descripcion: 'Descripción de la Ruta 3' },
           // ... más rutas
         ];
 
