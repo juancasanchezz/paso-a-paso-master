@@ -1,0 +1,55 @@
+/* Estilo para la lista de rutas */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* Estilo para cada elemento de ruta */
+li {
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+  padding: 10px;
+  transition: background-color 0.3s ease;
+}
+
+/* Estilo para la cabecera de la ruta */
+.ruta-cabecera {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Estilo para el contenido expandido de la ruta */
+.ruta-detalle {
+  margin-top: 10px;
+}
+
+/* Estilo para el nombre de la ruta */
+strong {
+  font-size: 18px;
+}
+
+/* Estilo para la descripción de la ruta */
+p {
+  margin: 0;
+  font-size: 14px;
+}
+
+/* Estilo para la ubicación y kilómetros */
+.ruta-cabecera p {
+  font-size: 14px;
+  color: #666;
+}
+
+/* Estilo para el contenido expandido de la ruta */
+.ruta-detalle p {
+  font-size: 16px;
+}
+
+/* Estilo para resaltar la ruta seleccionada */
+.expandida {
+  background-color: #f9f9f9;
+}
+
+/* Añade más estilos según sea necesario */
