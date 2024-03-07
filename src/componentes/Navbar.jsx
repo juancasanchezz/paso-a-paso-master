@@ -4,30 +4,26 @@ import { Menubar } from 'primereact/menubar';
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import style from '../style/navbar.module.css'
 
+/* const ListadoRutas = lazy(
+  async () => 
+  await import('./ListaRutas')
+) */
+
 export default function Navbar () {
   const items = [
     {
-      label: 'Archivo',
+      label: 'Rutas',
       icon: 'pi pi-fw pi-file',
       items: [
         {
-          label: 'Nuevo',
+          label: 'Nueva',
           icon: 'pi pi-fw pi-plus',
-          items: [
-            {
-              label: 'Marcador',
-              icon: 'pi pi-fw pi-bookmark'
-            },
-            {
-              label: 'Video',
-              icon: 'pi pi-fw pi-video'
-            },
-
-          ]
+         
         },
         {
-          label: 'Borrar',
-          icon: 'pi pi-fw pi-trash'
+          label: 'Listado',
+          icon: 'pi pi-fw pi-trash',
+          to: '/ListadoRutas'
         },
         {
           separator: true
@@ -161,7 +157,7 @@ export default function Navbar () {
   return (
     <div className="card">
       <Menubar className= {style.menu} model={items} />
-      
+      <Route exact path='' />
     </div>
   )
 }

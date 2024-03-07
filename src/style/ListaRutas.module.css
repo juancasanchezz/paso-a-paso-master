@@ -1,5 +1,5 @@
 .listaRutasExpandida {
-  transition: background-color 0.3s ease;
+  transition: 1.5s ease-out;
 }
 
 .listaRutasItem {
@@ -7,19 +7,23 @@
   margin: 2rem;
   margin-bottom: 10px;
   padding: 10px;
-  transition: background-color 0.7s ease;
+  transition: background-color 1.3s ease-out;
   display: flex;
   flex-direction: column;
+
 }
 
 .listaRutasItem.expandida {
   background-color: #f9f9f9;
   padding: 1rem;
+  transition: 5s ease-out;
+
 }
 
 /* ListaRutas.module.css */
 .rutas {
   padding: 20px;
+
 }
 
 .listaRutas {
@@ -31,7 +35,7 @@
   align-items:baseline;
   justify-content: space-around;
   background-color: rgba(255, 255, 255, 0.8);
-  transition: background-color 0.3s ease;
+  transition: background-color 1.3s ease-out;
 }
 
 /* Estilo para cada elemento de ruta */
@@ -40,12 +44,13 @@
   margin: 2rem;
   margin-bottom: 10px;
   padding: 10px;
-  transition: background-color 0.7s ease;
+  transition: background-color 1.3s ease-out;
 }
 
 /* Estilo para resaltar la ruta seleccionada */
 .listaRutas li.expandida {
   background-color: rgba(0, 0, 0, 0.7);
+  transition: background-color 1.3s ease-out;
 }
 
 /* Estilo para la cabecera de la ruta */
@@ -54,11 +59,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
 }
 
 /* Estilo para el contenido expandido de la ruta */
 .rutaDetalle {
   margin-top: 10px;
+  transition: 1.5s ease-out;
+
 }
 
 
@@ -70,6 +78,8 @@ p {
 
 .listaRutas li.expandida .rutaCabecera p {
   color: #ddd;
+  transition: 1.5s ease-out;
+
 }
 
 /* Estilo para la ubicación y kilómetros */
@@ -77,6 +87,4 @@ p {
   font-size: 14px;
   color: #000;
 }
-
-/* Estilo para el contenido expandido de la ruta */
 
