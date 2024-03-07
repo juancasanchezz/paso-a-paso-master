@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import '../style/ListaRutas.css'
+import style from '../style/ListaRutas.module.css';
+import Modal from './Modal'; // Asegúrate de importar el componente Modal
 
 const ListaRutas = () => {
   const [rutas, setRutas] = useState([]);
+  const [rutaExpandida, setRutaExpandida] = useState(null);
+  const [modalAbierto, setModalAbierto] = useState(false);
 
   useEffect(() => {
-    // Simulación de datos iniciales o carga desde el backend
     const obtenerRutasDesdeBackend = async () => {
       try {
-        // Simulación de datos iniciales
         const data = [
           { id: 1, nombre: 'Ruta 1', ubicacion: 'Ubicación 1', kilometros: 10, descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque pulvinar faucibus velit ut auctor. Duis ut pretium justo. Nam sed risus ornare, congue orci in, venenatis dolor. Proin sed cursus lectus. Morbi elit neque, mattis sed nunc eget, hendrerit porttitor ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam venenatis, magna luctus viverra vestibulum, ipsum tellus pulvinar enim, vitae varius ante nisl at tellus.' },
-          { id: 2, nombre: 'Ruta 2', ubicacion: 'Ubicación 2', kilometros: 15, descripcion: 'Descripción de la Ruta 2' },
+          { id: 2, nombre: 'Ruta 2', ubicacion: 'Ubicación 2', kilometros: 15, descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque pulvinar faucibus velit ut auctor. Duis ut pretium justo. Nam sed risus ornare, congue orci in, venenatis dolor. Proin sed cursus lectus. Morbi elit neque, mattis sed nunc eget, hendrerit porttitor ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam venenatis, magna luctus viverra vestibulum, ipsum tellus pulvinar enim, vitae varius ante nisl at tellus.' },
+          { id: 3, nombre: 'Ruta 3', ubicacion: 'Ubicación 2', kilometros: 15, descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque pulvinar faucibus velit ut auctor. Duis ut pretium justo. Nam sed risus ornare, congue orci in, venenatis dolor. Proin sed cursus lectus. Morbi elit neque, mattis sed nunc eget, hendrerit porttitor ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam venenatis, magna luctus viverra vestibulum, ipsum tellus pulvinar enim, vitae varius ante nisl at tellus.' },
+          { id: 4, nombre: 'Ruta 4', ubicacion: 'Ubicación 2', kilometros: 15, descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque pulvinar faucibus velit ut auctor. Duis ut pretium justo. Nam sed risus ornare, congue orci in, venenatis dolor. Proin sed cursus lectus. Morbi elit neque, mattis sed nunc eget, hendrerit porttitor ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam venenatis, magna luctus viverra vestibulum, ipsum tellus pulvinar enim, vitae varius ante nisl at tellus.' },
           // ... más rutas
         ];
 
@@ -24,34 +27,34 @@ const ListaRutas = () => {
     obtenerRutasDesdeBackend();
   }, []);
 
-  const [rutaExpandida, setRutaExpandida] = useState(null);
-
   const manejarExpansion = (id) => {
     setRutaExpandida((prevId) => (prevId === id ? null : id));
+    setModalAbierto(true);
   };
 
+
   return (
-    <div className='rutas'>
+    <div className={`rutas ${rutaExpandida !== null ? style.listaRutasExpandida : ''}`}>
       <h2>Lista de Rutas</h2>
-      <ul className='lista-rutas'>
+      <ul className={`${style.listaRutas} ${rutaExpandida !== null ? style.listaRutasExpandida : ''}`}>
         {rutas.map((ruta) => (
-          <li id='listado-rutas' key={ruta.id} className={rutaExpandida === ruta.id ? 'expandida' : ''}>
-            <div className="ruta-cabecera" onClick={() => manejarExpansion(ruta.id)}>
-              <strong>{ruta.nombre}</strong>
-              <p>{ruta.ubicacion}</p>
-              <p>{`${ruta.kilometros} km`}</p>
+          <li style={{width: "30%"}} key={ruta.id} className={`${style.listaRutasItem} ${rutaExpandida === ruta.id ? style.expandida : ''}`}>
+            <div className={style.rutaCabecera} onClick={() => manejarExpansion(ruta.id)}>
+            <p style={{fontSize: "18px"}}><b>{ruta.nombre}</b></p>
+            <p>{ruta.ubicacion}</p>
+            <p>{`${ruta.kilometros} km`}</p>
             </div>
-            {rutaExpandida === ruta.id && (
-              <div className="ruta-detalle">
-                <p>{ruta.descripcion}</p>
-                {/* Agrega más detalles según sea necesario */}
-              </div>
+            {rutaExpandida === ruta.id && modalAbierto && (
+              <Modal cerrarModal={() => setModalAbierto(false)}>
+                {/* Contenido para mostrar en la tarjeta una vez expandida */}
+                <p style={{paddingTop: "2rem", color: "#ddd"}}>{ruta.descripcion}</p>
+              </Modal>
             )}
           </li>
         ))}
       </ul>
     </div>
   );
-};
+          }
 
 export default ListaRutas;

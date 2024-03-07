@@ -2,7 +2,7 @@
 import React from 'react';
 import { Menubar } from 'primereact/menubar';
 import "primereact/resources/themes/lara-light-indigo/theme.css";
-import '../style/navbar.css'
+import style from '../style/navbar.module.css'
 
 export default function Navbar () {
   const items = [
@@ -132,17 +132,17 @@ export default function Navbar () {
       icon: 'pi pi-fw pi-power-off'
     }
   ];
-  const css = `
+  /* const css = `
     .menu {
-      height: 150px;
+      height: 250px;
       display: flex;
       justify-content: center;
       padding: 0px;
-       /* Ajusta el padding general de la barra de navegación según tus necesidades */
+       /* Ajusta el padding general de la barra de navegación según tus necesidades 
     }
     
     .menu > * {
-      margin-right: 4px; /* Agrega espacio entre las opciones seleccionadas */
+      margin-right: 4px; /* Agrega espacio entre las opciones seleccionadas 
       gap: 2rem;
       padding: 0px;
     }
@@ -157,11 +157,11 @@ export default function Navbar () {
       color: black;
       padding: 10px
     }
-  `;
+  `; */
   return (
     <div className="card">
-      <Menubar className='menu' model={items} />
-      <style>{css}</style>
+      <Menubar className= {style.menu} model={items} />
+      
     </div>
   )
 }
