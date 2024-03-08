@@ -157,7 +157,6 @@ export default function Navbar () {
   return (
     <div className="card">
       <Menubar className= {style.menu} model={items} />
-      <Route exact path='' />
     </div>
   )
 }

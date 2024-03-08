@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import style from "../style/ListaRutas.module.css";
+import style from "../style/listaRutas.module.css";
 import Modal from "./Modal"; // Asegúrate de importar el componente Modal
 
 const ListaRutas = () => {
@@ -74,23 +74,27 @@ const ListaRutas = () => {
     obtenerRutasDesdeBackend();
   }, []);
 
+  useEffect(() => {
+    if(rutasVisibles <= 2 ){
+      setHaExpandido(false)
+    } else {
+      setHaExpandido(true)
+    }
+  }, [rutasVisibles])
+
   const manejarExpansion = (id) => {
     setRutaExpandida((prevId) => (prevId === id ? null : id));
     setModalAbierto(true);
   };
-  console.log(rutasVisibles);
+  // console.log(rutasVisibles);
 
   /* Funcion para mostrar las rutas de dos en dos */
   const cargarMasRutas = () => {
     setRutasVisibles((prev) => prev + 2);
+    
   };
   const cargarMenosRutas = () => {
     setRutasVisibles((prev) => prev - 2);
-    if (rutasVisibles == 2) {
-      console.log(rutasVisibles);
-      setHaExpandido(false);
-    }
-    setHaExpandido(true);
   };
 
   return (
@@ -100,17 +104,26 @@ const ListaRutas = () => {
         rutaExpandida !== null ? style.listaRutasExpandida : ""
       }`}
     >
+      <div style={{
+        width: "100%",
+        display: "flex",
+        justifyContent: "center",
+        textAlign: "center"
+      }}>
       <p
         style={{
-          textAlign: "center",
-          textDecoration: "underline",
+          width: "200px",
+          textDecoration: "none",
           fontSize: "30px",
           marginTop: "10px",
           color: "black",
+          borderRadius: "5px ",
+          background: "linear-gradient(#556B2F, #fff) border-box"     
         }}
       >
         Lista de Rutas
       </p>
+      </div>
       <ul className={`${style.listaRutas} ${style.listaRutasExpandida}`}>
         {rutas.slice(0, rutasVisibles).map((ruta) => (
           <li
@@ -133,7 +146,7 @@ const ListaRutas = () => {
             {rutaExpandida === ruta.id && modalAbierto && (
               <Modal cerrarModal={() => setModalAbierto(false)}>
                 {/* Contenido para mostrar en la tarjeta una vez expandida */}
-                <p style={{ paddingTop: "2rem", color: "#ddd" }}>
+                <p style={{ paddingTop: "2rem", color: "#fff" }}>
                   {ruta.descripcion}
                 </p>
               </Modal>
@@ -144,8 +157,8 @@ const ListaRutas = () => {
       
     </div>
     <div style={{
-      alignItems: "center",
-      justifyContent: "space-around"
+      justifyContent: "center",
+      display: "flex"
     }}>
     {rutasVisibles < rutas.length  && (
         <button
@@ -153,8 +166,7 @@ const ListaRutas = () => {
             padding: "0.4rem",
             borderRadius: "5px",
             border: "0.2px solid #000",
-            background: "linear-gradient(#71828d, #fff) border-box",
-            justifyContent: "space-around",
+            background: "linear-gradient(#556B2F, #fff) border-box",
             marginLeft: "10px",
             fontSize: "11px",
           }}
@@ -170,9 +182,8 @@ const ListaRutas = () => {
             padding: "0.4rem",
             borderRadius: "5px",
             border: "0.2px solid #000",
-            background: "linear-gradient(#71828d, #fff)",
+            background: "linear-gradient(#556B2F, #fff)",
             marginLeft: "10px",
-            justifyContent: "space-around",
             fontSize: "11px"
           }}
           className="btnRutas"

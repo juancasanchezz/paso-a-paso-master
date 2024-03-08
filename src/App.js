@@ -10,7 +10,7 @@ function App () {
       <div className='navbar'>
         <Navbar />
       </div>
-      {/* <ListaRutas /> */}
+      <ListaRutas />
       <FormularioRutas />
     </div>
   );

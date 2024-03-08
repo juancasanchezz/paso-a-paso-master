@@ -1,6 +1,6 @@
 // Modal.js
 import React from 'react';
-import '../style/Modal.module.css';
+import '../style/modal.module.css';
 
 const Modal = ({ children, cerrarModal }) => {
   return (
