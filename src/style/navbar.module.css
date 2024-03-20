@@ -2,14 +2,17 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: black;
   width: 100%;
+  font-family: 'Poppins';
+  background-color: rgba(234, 234, 231);
 }
 .menu {
   height: 100px;
   display: flex;
   justify-content: center;
   padding: 0px;
+  font-family: 'Poppins';
+  background-color: rgba(234, 234, 231);
    /* Ajusta el padding general de la barra de navegación según tus necesidades */
 }
 

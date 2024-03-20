@@ -1,15 +1,23 @@
 
-import React from 'react';
+import { React, lazy } from 'react';
 import { Menubar } from 'primereact/menubar';
 import "primereact/resources/themes/lara-light-indigo/theme.css";
-import style from '../style/navbar.module.css'
+import style from '../style/navbar.module.css';
 
-/* const ListadoRutas = lazy(
-  async () => 
-  await import('./ListaRutas')
-) */
+const ListadoRutas = lazy(
+  async () =>
+    await import('./ListaRutas')
+)
+const NuevasRutas = lazy(
+  async () =>
+    await import('./FormularioNuevaRuta')
+)
+const PerfilUsuario = lazy(
+  async () =>
+    await import('./ProfilePage')
+)
 
-export default function Navbar () {
+export default function Navbar (/* { navigate } */) {
   const items = [
     {
       label: 'Rutas',
@@ -18,12 +26,15 @@ export default function Navbar () {
         {
           label: 'Nueva',
           icon: 'pi pi-fw pi-plus',
-         
+          to: '/NuevasRutas'
+
+
         },
         {
           label: 'Listado',
           icon: 'pi pi-fw pi-trash',
-          to: '/ListadoRutas'
+          to: '/ListaRutas'
+
         },
         {
           separator: true
@@ -62,9 +73,9 @@ export default function Navbar () {
       icon: 'pi pi-fw pi-user',
       items: [
         {
-          label: 'Nuevo',
+          label: 'Perfil',
           icon: 'pi pi-fw pi-user-plus',
-
+          to: '/PerfilUsuario'
         },
         {
           label: 'Borrar',
@@ -156,7 +167,8 @@ export default function Navbar () {
   `; */
   return (
     <div className="card">
-      <Menubar className= {style.menu} model={items} />
+      <Menubar className={style.menu} model={items} />
+
     </div>
-  )
+  );
 }
