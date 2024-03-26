@@ -1,4 +1,4 @@
-
+/* 
 import { React, lazy } from 'react';
 import { Menubar } from 'primereact/menubar';
 import "primereact/resources/themes/lara-light-indigo/theme.css";
@@ -17,9 +17,9 @@ const PerfilUsuario = lazy(
     await import('./ProfilePage')
 )
 
-export default function Navbar (/* { navigate } */) {
-  const items = [
-    {
+export default function Navbar (/* { navigate } ) {
+  const menu = [
+    { 
       label: 'Rutas',
       icon: 'pi pi-fw pi-file',
       items: [
@@ -139,7 +139,7 @@ export default function Navbar (/* { navigate } */) {
       icon: 'pi pi-fw pi-power-off'
     }
   ];
-  /* const css = `
+   const css = `
     .menu {
       height: 250px;
       display: flex;
@@ -164,7 +164,7 @@ export default function Navbar (/* { navigate } */) {
       color: black;
       padding: 10px
     }
-  `; */
+  `; 
   return (
     <div className="card">
       <Menubar className={style.menu} model={items} />
@@ -172,3 +172,4 @@ export default function Navbar (/* { navigate } */) {
     </div>
   );
 }
+*/ 

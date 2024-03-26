@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import UserProfile from './UserProfile';
 import Photo from '../img/dsc_6103.jpg';
 
-const ProfilePage = () => {
+const ProfilePage = ({
+  rutasGuardadas,
+  setRutasGuardadas }) => {
 
   /*   const [usuario, setUsuario] = useState({}) */
 
@@ -17,7 +19,7 @@ const ProfilePage = () => {
 
   return (
     <div style={{ marginBottom: '20px' }}>
-      <UserProfile user={user} />
+      <UserProfile user={user} rutasGuardadas={rutasGuardadas} setRutasGuardadas={setRutasGuardadas} />
     </div>
   );
 };

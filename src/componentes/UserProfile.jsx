@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { GiBootPrints } from "react-icons/gi";
 import { FiBookmark } from "react-icons/fi";
 
-const UserProfile = (user) => {
+const UserProfile = (user, {
+  rutasGuardadas,
+  setRutasGuardadas }) => {
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');

@@ -46,6 +46,7 @@ const FormularioNuevaRuta = () => {
       display: 'flex',
       flexDirection: 'column',
       width: '100%',
+      height: '300px',
       gap: '10px'
     }}>
       <div>
@@ -53,20 +54,22 @@ const FormularioNuevaRuta = () => {
           textAlign: 'center',
           fontSize: "27px",
           marginTop: "10px",
-          color: "black"
+          color: "black",
+          textDecoration: 'underline 3px rgba(85, 107, 47, 0.7)',
+          textUnderlineOffset: '7px',
         }} >Añadir nueva ruta</p>
         <div style={{
           display: 'flex',
           flexDirection: 'row',
           justifyContent: 'space-around',
           width: '100%',
-          padding: '20px'
+          padding: '15px'
         }}>
           <div style={{
             display: 'flex',
-            gap: '10px'
+            gap: '6px'
           }}>
-            <label>
+            <label style={{}}>
               Nombre de la Ruta:
             </label>
             <input
@@ -135,7 +138,7 @@ const FormularioNuevaRuta = () => {
             <label>
               Fotos:
             </label>
-            <input type="file" multiple onChange={handleFileChange} />
+            <input style={{ border: ' 1px solid black' }} type="file" multiple onChange={handleFileChange} />
 
           </div>
         </div>

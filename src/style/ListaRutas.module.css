@@ -8,7 +8,7 @@
 }
 
 .listaRutasItem {
-  border: 1px solid #ddd;
+  border: 0px solid #ddd;
   margin: 2rem;
   margin-bottom: 10px;
   padding: 10px;
@@ -20,7 +20,7 @@
 .listaRutasItem.expandida {
   background-color: #f9f9f9;
   padding: 1rem;
-  transition: all 5s ease-out;
+  transition: all 3s ease-out;
 }
 
 /* ListaRutas.module.css */
@@ -43,7 +43,7 @@
 
 /* Estilo para cada elemento de ruta */
 .listaRutas li {
-  border: 1px solid #4a5454;
+  border: 0px solid #4a5454;
   border-radius: 10px;
   margin: 2rem;
   margin-bottom: 10px;

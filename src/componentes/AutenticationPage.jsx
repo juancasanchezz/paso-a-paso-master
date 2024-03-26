@@ -49,8 +49,26 @@ const AuthenticationPage = () => {
     }
   };
 
+  const css = `.enlaceRegistro:hover{
+    color: rgb(77, 77, 237);
+  }
+  .btnReg {
+   background-color: #28a745
+  }
+  .btnReg:hover{
+  background-color: #28703a;
+  }
+
+  .btnIni {
+    background-color: #007bff;
+  }
+  .btnIni:hover{
+    background-color: #30659d;
+  }
+  `;
+
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', marginTop: '50px', background: '#fff' }}>
+    <div style={{ display: 'flex', justifyContent: 'center', marginTop: '50px', background: 'rgb(234, 234, 231)' }}>
       <div style={{ border: '1px solid #ccc', borderRadius: '5px', padding: '20px', width: '300px' }}>
         {!showRegisterForm ? (
           <>
@@ -63,8 +81,8 @@ const AuthenticationPage = () => {
               <label htmlFor="newPassword" style={{ border: '0px' }}>Nueva Contraseña:</label>
               <input type="password" id="newPassword" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} style={{ width: '100%', padding: '8px', marginBottom: '10px', marginTop: '20px' }} />
             </div>
-            <button style={{ width: '100%', padding: '10px', backgroundColor: '#28a745', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }} onClick={handleRegister}>Registrarse</button>
-            <p style={{ textAlign: 'center', marginTop: '10px', cursor: 'pointer' }} onClick={toggleForm}>¿Ya tienes una cuenta? Inicia sesión aquí</p>
+            <button style={{ width: '100%', padding: '10px', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }} className='btnReg' onClick={handleRegister} >Registrarse</button>
+            <p style={{ textAlign: 'center', marginTop: '10px', cursor: 'pointer' }} className='enlaceRegistro' onClick={toggleForm}>¿Ya tienes una cuenta? Inicia sesión aquí</p>
 
           </>
         ) : (
@@ -78,11 +96,12 @@ const AuthenticationPage = () => {
               <label htmlFor="password" style={{ border: '0px' }}>Contraseña:</label>
               <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} style={{ width: '100%', padding: '8px', marginBottom: '10px', marginTop: '20px' }} />
             </div>
-            <button style={{ width: '100%', padding: '10px', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }} onClick={handleLogin}>Iniciar Sesión</button>
-            <p style={{ textAlign: 'center', marginTop: '10px', cursor: 'pointer' }} onClick={toggleForm}>¿No tienes cuenta? Regístrate aquí</p>
+            <button style={{ width: '100%', padding: '10px', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }} onClick={handleLogin} className='btnIni'>Iniciar Sesión</button>
+            <p style={{ textAlign: 'center', marginTop: '10px', cursor: 'pointer' }} className='enlaceRegistro' onClick={toggleForm}>¿No tienes cuenta? Regístrate aquí</p>
           </>
         )}
       </div>
+      <style>{css}</style>
     </div>
   );
 };
