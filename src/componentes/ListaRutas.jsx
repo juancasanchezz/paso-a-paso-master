@@ -125,7 +125,7 @@ const ListaRutas = ({ rutasVisibles,
       // Activar la animación
       setAnimacionGuardar(true);
     }
-    // Desactivar la animación después de un tiempo (por ejemplo, 500ms)
+    // Desactivar la animación después de un tiempo
     setTimeout(() => {
       setAnimacionGuardar(false);
     }, 300);
@@ -189,21 +189,53 @@ const ListaRutas = ({ rutasVisibles,
                 <p style={{ fontSize: "18px" }}>
                   <b>{ruta.nombre}</b>
                 </p>
-                <p>{ruta.ubicacion}</p>
-                <p>{`${ruta.kilometros} km`}</p>
+                <p style={{ fontSize: "18px" }}>{ruta.ubicacion}</p>
+                <p style={{ fontSize: "18px" }}>{`${ruta.kilometros} km`}</p>
               </div>
 
               {rutaExpandida === ruta.id && modalAbierto && (
                 <>
-                  <Modal cerrarModal={() => setModalAbierto(false)} style={{ transition: 'all 3s ease-out' }}>
+                  <Modal
+                    cerrarModal={() => setModalAbierto(false)}
+                    style={{
+                      transition: 'all 3s ease-out'
+                    }}
+                  >
                     {/* Contenido para mostrar en la tarjeta una vez expandida */}
-                    <p style={{ paddingTop: "2rem", color: "#fff" }}>
+                    <p
+                      style={{
+                        paddingTop: "2rem",
+                        color: "#837c7c"
+                      }}
+                    >
                       {ruta.descripcion}
                     </p>
-                    <div style={{ display: 'flex', justifyContent: 'space-around', padding: '5px', transition: 'all 3s ease-out' }}>
-                      <FiBookmark onClick={() => guardarRuta(rutas.find(ruta => ruta.id === rutaExpandida))} style={{ width: '127.7px', height: '26px', cursor: 'pointer', transform: animacionGuardar ? 'scale(1.2)' : 'scale(1)', color: 'white' }} />
+                    <div
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'space-around',
+                        padding: '5px',
+                        transition: 'all 3s ease-out',
+                        marginTop: '20px'
+                      }}>
+                      <FiBookmark
+                        onClick={() => guardarRuta(rutas.find(ruta => ruta.id === rutaExpandida))}
+                        style={{
+                          width: '127.7px',
+                          height: '26px',
+                          cursor: 'pointer',
+                          transform: animacionGuardar ? 'scale(1.2)' : 'scale(1)', color:
+                            '#837c7c'
+                        }} />
                       {/* Botón para mostrar las rutas guardadas */}
-                      <GiBootPrints style={{ width: '127.7px', height: '26px', color: 'white', transform: animacionMostrar ? 'scale(1.2)' : 'scale(1)' }} onClick={mostrarRutasGuardadas} />
+                      <GiBootPrints
+                        style={{
+                          width: '127.7px',
+                          height: '26px',
+                          color: '#837c7c',
+                          transform: animacionMostrar ? 'scale(1.2)' : 'scale(1)'
+                        }}
+                        onClick={mostrarRutasGuardadas} />
                     </div>
                   </Modal>
                 </>

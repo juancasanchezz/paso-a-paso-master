@@ -1,10 +1,18 @@
-/* 
+
 import { React, lazy } from 'react';
 import { Menubar } from 'primereact/menubar';
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import style from '../style/navbar.module.css';
+import {
+  Switch
+  , Route, Routes, Router
+} from "react-router-dom";
+import FormularioNuevaRuta from "./FormularioNuevaRuta";
+import ListaRutas from "./ListaRutas";
+import ProfilePage from './ProfilePage';
 
-const ListadoRutas = lazy(
+
+/* const ListadoRutas = lazy(
   async () =>
     await import('./ListaRutas')
 )
@@ -15,11 +23,11 @@ const NuevasRutas = lazy(
 const PerfilUsuario = lazy(
   async () =>
     await import('./ProfilePage')
-)
+) */
 
-export default function Navbar (/* { navigate } ) {
+export default function Navbar () {
   const menu = [
-    { 
+    {
       label: 'Rutas',
       icon: 'pi pi-fw pi-file',
       items: [
@@ -139,7 +147,7 @@ export default function Navbar (/* { navigate } ) {
       icon: 'pi pi-fw pi-power-off'
     }
   ];
-   const css = `
+  const css = `
     .menu {
       height: 250px;
       display: flex;
@@ -164,12 +172,17 @@ export default function Navbar (/* { navigate } ) {
       color: black;
       padding: 10px
     }
-  `; 
+  `;
   return (
     <div className="card">
-      <Menubar className={style.menu} model={items} />
+      <Menubar className={style.menu} model={menu} />
+
+      <Routes>
+        <Route exact path="/ListaRutas" component={ListaRutas} />
+        <Route exact path="/NuevasRutas" component={FormularioNuevaRuta} />
+        <Route exact path="/PerfilUsuario" component={ProfilePage} />
+      </Routes>
 
     </div>
   );
 }
-*/ 

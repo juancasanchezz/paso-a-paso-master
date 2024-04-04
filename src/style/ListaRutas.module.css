@@ -53,6 +53,10 @@
   transition: background-color 1.3s ease-out;
 }
 
+.listaRutas li:hover {
+  background-color: rgba(85, 107, 47, 0.7);
+}
+
 /* Estilo para resaltar la ruta seleccionada */
 .listaRutas li.expandida {
   background-color: rgba(85, 107, 47, 0.7);

@@ -1,5 +1,5 @@
 import { React, useState, lazy } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navbar from "./componentes/Navbar";
 import FormularioNuevaRuta from "./componentes/FormularioNuevaRuta";
 import ListaRutas from "./componentes/ListaRutas";
@@ -7,8 +7,7 @@ import AuthenticationPage from './componentes/AutenticationPage';
 import "./App.css";
 import UserProfile from './componentes/UserProfile';
 import ProfilePage from './componentes/ProfilePage';
-
-/* const ListadoRutas = lazy(
+const ListadoRutas = lazy(
   async () =>
     await import('./componentes/ListaRutas')
 )
@@ -19,7 +18,7 @@ const NuevasRutas = lazy(
 const PerfilUsuario = lazy(
   async () =>
     await import('./componentes/ProfilePage')
-) */
+)
 
 
 function App () {
@@ -37,153 +36,7 @@ function App () {
     setSelectedOption(option);
   };
 
-  const menu = [
-    {
-      items: [
-        {
 
-          label: 'Rutas',
-          icon: 'pi pi-fw pi-file',
-          items: [
-            {
-              label: 'Nueva',
-              icon: 'pi pi-fw pi-plus',
-              to: '/NuevasRutas'
-
-
-            },
-            {
-              label: 'Listado',
-              icon: 'pi pi-fw pi-trash',
-              to: '/ListaRutas'
-
-            },
-            {
-              separator: true
-            },
-            {
-              label: 'Exportar',
-              icon: 'pi pi-fw pi-external-link'
-            }
-          ]
-        }
-
-      ]
-    },
-    {
-      items: [
-        {
-
-          label: 'Editar',
-          icon: 'pi pi-fw pi-pencil',
-          items: [
-            {
-              label: 'Izquierda',
-              icon: 'pi pi-fw pi-align-left'
-            },
-            {
-              label: 'Derecha',
-              icon: 'pi pi-fw pi-align-right'
-            },
-            {
-              label: 'Centro',
-              icon: 'pi pi-fw pi-align-center'
-            },
-            {
-              label: 'Justificar',
-              icon: 'pi pi-fw pi-align-justify'
-            },
-
-          ]
-        }
-      ]
-    },
-    {
-      items: [
-        {
-
-          label: 'Usuarios',
-          icon: 'pi pi-fw pi-user',
-          items: [
-            {
-              label: 'Perfil',
-              icon: 'pi pi-fw pi-user-plus',
-              to: '/PerfilUsuario'
-            },
-            {
-              label: 'Borrar',
-              icon: 'pi pi-fw pi-user-minus',
-
-            },
-            {
-              label: 'Buscar',
-              icon: 'pi pi-fw pi-users',
-              items: [
-                {
-                  label: 'Filtrar',
-                  icon: 'pi pi-fw pi-filter',
-                  items: [
-                    {
-                      label: 'Print',
-                      icon: 'pi pi-fw pi-print'
-                    }
-                  ]
-                },
-                {
-                  icon: 'pi pi-fw pi-bars',
-                  label: 'Lista'
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      items: [
-        {
-
-          label: 'Eventos',
-          icon: 'pi pi-fw pi-calendar',
-          items: [
-            {
-              label: 'Editar',
-              icon: 'pi pi-fw pi-pencil',
-              items: [
-                {
-                  label: 'Guardar',
-                  icon: 'pi pi-fw pi-calendar-plus'
-                },
-                {
-                  label: 'Borrar',
-                  icon: 'pi pi-fw pi-calendar-minus'
-                }
-              ]
-            },
-            {
-              label: 'Archivo',
-              icon: 'pi pi-fw pi-calendar-times',
-              items: [
-                {
-                  label: 'Eliminar',
-                  icon: 'pi pi-fw pi-calendar-minus'
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      items: [
-        {
-
-          label: 'Abandonar',
-          icon: 'pi pi-fw pi-power-off'
-        }
-      ]
-    }
-  ];
 
   return (
     <>
@@ -198,44 +51,50 @@ function App () {
           href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
           rel="stylesheet"
         ></link>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin="" />
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+          crossorigin=""></script>
       </head>
       <div className='app'>
-        <>
-          <Router>
-            <Switch>
-              <Route exact path='/ListadoRutas' component={ListaRutas} />
-            </Switch>
-          </Router>
-        </>
-        {/* {/* <Router>
-          {!isLoggedIn ? (
+
+        {/* <Router>
+          <Routes>
+            <Route exact path='/ListadoRutas' component={ListaRutas} />
+          </Routes>
+        </Router> */}
+
+        <Router>
+          {/*  {!isLoggedIn ? (
             <Routes>
               <Route path="/" element={<AuthenticationPage onLogin={handleLogin} />} />
             </Routes>
-          ) : (
-            <div>
-              <Navbar />
-              <hr />
-              <ProfilePage />
+          ) : ( */}
+          <div>
+            <Navbar />
+            <div id="map" style={{ height: '180px' }}></div>
 
-              <Routes>
-                <Route exact path="/ListadoRutas" element={<ListaRutas />} />
-                <Route exact path="/NuevasRutas" element={<FormularioNuevaRuta />} />
-                <Route exact path="/PerfilUsuario" element={<ProfilePage />} />
-              </Routes>
-            </div>
-          )}
+
+            {/* <Routes>
+              <Route exact path="/ListadoRutas" component={ListaRutas} />
+              <Route exact path="/NuevasRutas" component={FormularioNuevaRuta} />
+              <Route exact path="/PerfilUsuario" component={ProfilePage} />
+            </Routes> */}
+          </div>
+          {/* )} */}
         </Router>
-        <div style={{
+        {/* <div style={{
           minHeight: '200px'
-        }}></div> 
+        }}></div> */}
         <ListaRutas rutasGuardadas={rutasGuardadas} setRutasGuardadas={setRutasGuardadas} rutasVisibles={rutasVisibles} setRutasVisibles={setRutasVisibles} />
         <ProfilePage rutasGuardadas={rutasGuardadas} setRutasGuardadas={setRutasGuardadas} />
         <FormularioNuevaRuta />
         <AuthenticationPage />
         <div style={{
           minHeight: '200px'
-        }}></div> */}
+        }}></div>
       </div>
 
 
