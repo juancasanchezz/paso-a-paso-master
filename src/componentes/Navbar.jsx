@@ -1,12 +1,10 @@
 
 import { React, lazy } from 'react';
+import { Link } from 'react-router-dom';
 import { Menubar } from 'primereact/menubar';
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import style from '../style/navbar.module.css';
-import {
-  Switch
-  , Route, Routes, Router
-} from "react-router-dom";
+
 import FormularioNuevaRuta from "./FormularioNuevaRuta";
 import ListaRutas from "./ListaRutas";
 import ProfilePage from './ProfilePage';
@@ -34,14 +32,14 @@ export default function Navbar () {
         {
           label: 'Nueva',
           icon: 'pi pi-fw pi-plus',
-          to: '/NuevasRutas'
+          to: '/nueva'
 
 
         },
         {
           label: 'Listado',
           icon: 'pi pi-fw pi-trash',
-          to: '/ListaRutas'
+          to: '/listado'
 
         },
         {
@@ -175,14 +173,19 @@ export default function Navbar () {
   `;
   return (
     <div className="card">
-      <Menubar className={style.menu} model={menu} />
-
-      <Routes>
-        <Route exact path="/ListaRutas" component={ListaRutas} />
-        <Route exact path="/NuevasRutas" component={FormularioNuevaRuta} />
-        <Route exact path="/PerfilUsuario" component={ProfilePage} />
-      </Routes>
-
+      <Menubar model={menu.map(item => {
+        if (item.items) {
+          return {
+            ...item, items: item.items.map(subItem => {
+              if (subItem.to) {
+                return { ...subItem, url: subItem.to };
+              }
+              return subItem;
+            })
+          };
+        }
+        return item;
+      })} />
     </div>
   );
 }

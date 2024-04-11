@@ -1,6 +1,43 @@
 .app {
   font-family: 'Poppins';
-  background-color: rgb(234, 234, 231);
+  background-color: #ddd;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  font-family: 'Poppins';
+  background-color: rgba(234, 234, 231);
+}
+
+.menu {
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  padding: 0px;
+  font-family: 'Poppins';
+  background-color: rgba(234, 234, 231);
+  /* Ajusta el padding general de la barra de navegación según tus necesidades */
+}
+
+.menu>* {
+  margin-right: 4px;
+  /* Agrega espacio entre las opciones seleccionadas */
+  gap: 2rem;
+  padding: 0px;
+}
+
+label {
+  font-size: 18px;
+  align-items: center;
+  border: solid 3px;
+}
+
+.p-menuitem-text {
+  color: black;
+  padding: 10px
 }
 
 /* .navbar {

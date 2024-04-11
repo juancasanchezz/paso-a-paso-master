@@ -3,10 +3,11 @@ import style from '../style/nuevaRuta.module.css'
 
 const FormularioNuevaRuta = () => {
   const [ruta, setRuta] = useState({
-    nombre: "",
+    titulo: "",
     descripcion: "",
     ubicacion: "",
-    kilometros: "",
+    distancia: "",
+    dificultad: "",
     fotos: [],
   });
 
@@ -32,23 +33,27 @@ const FormularioNuevaRuta = () => {
     console.log(ruta);
     // Después de enviar los datos, podrías limpiar el formulario
     setRuta({
-      nombre: "",
+      titulo: "",
       descripcion: "",
       ubicacion: "",
-      kilometros: "",
+      distancia: "",
+      dificultad: "",
       fotos: [],
     });
   };
 
   return (
 
-    <form onSubmit={handleSubmit} className='form' style={{
-      display: 'flex',
-      flexDirection: 'column',
-      width: '100%',
-      height: '300px',
-      gap: '10px'
-    }}>
+    <form onSubmit={handleSubmit}
+      action='insertarRuta.php'
+      className='form'
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        width: '100%',
+        height: '300px',
+        gap: '10px'
+      }}>
       <div>
         <p style={{
           textAlign: 'center',
@@ -73,9 +78,10 @@ const FormularioNuevaRuta = () => {
               Nombre de la Ruta:
             </label>
             <input
+              id='titulo'
               type="text"
-              name="nombre"
-              value={ruta.nombre}
+              name="titulo"
+              value={ruta.titulo}
               onChange={handleChange}
             />
 
@@ -88,6 +94,7 @@ const FormularioNuevaRuta = () => {
               Descripción:
             </label>
             <textarea
+              id='descripcion'
               name="descripcion"
               value={ruta.descripcion}
               onChange={handleChange}
@@ -102,6 +109,7 @@ const FormularioNuevaRuta = () => {
               Ubicación:
             </label>
             <input
+              id='ubicacion'
               type="text"
               name="ubicacion"
               value={ruta.ubicacion}
@@ -124,9 +132,26 @@ const FormularioNuevaRuta = () => {
               Kilómetros:
             </label>
             <input
+              id='distancia'
               type="text"
-              name="kilometros"
-              value={ruta.kilometros}
+              name="distancia"
+              value={ruta.distancia}
+              onChange={handleChange}
+            />
+
+          </div>
+          <div style={{
+            display: 'flex',
+            gap: '10px'
+          }}>
+            <label>
+              Dificultad:
+            </label>
+            <input
+              id='dificultad'
+              type="text"
+              name="dificultad"
+              value={ruta.dificultad}
               onChange={handleChange}
             />
 

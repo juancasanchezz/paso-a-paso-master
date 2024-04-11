@@ -1,13 +1,15 @@
 import { React, useState, lazy } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Navbar from "./componentes/Navbar";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Menubar } from 'primereact/menubar';
 import FormularioNuevaRuta from "./componentes/FormularioNuevaRuta";
 import ListaRutas from "./componentes/ListaRutas";
 import AuthenticationPage from './componentes/AutenticationPage';
 import "./App.css";
+import "./style/navbar.module.css"
 import UserProfile from './componentes/UserProfile';
 import ProfilePage from './componentes/ProfilePage';
-const ListadoRutas = lazy(
+import Navbar from './componentes/Navbar';
+/* const ListadoRutas = lazy(
   async () =>
     await import('./componentes/ListaRutas')
 )
@@ -18,7 +20,7 @@ const NuevasRutas = lazy(
 const PerfilUsuario = lazy(
   async () =>
     await import('./componentes/ProfilePage')
-)
+) */
 
 
 function App () {
@@ -27,6 +29,13 @@ function App () {
   const [selectedOption, setSelectedOption] = useState('');
   const [rutasVisibles, setRutasVisibles] = useState(2);
   const [rutasGuardadas, setRutasGuardadas] = useState([]);
+
+  /* var map = L.map('map').setView([51.505, -0.09], 13);
+
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  }).addTo(map); */
 
   const handleLogin = () => {
     setIsLoggedIn(true);
@@ -38,8 +47,9 @@ function App () {
 
 
 
+
   return (
-    <>
+    <div className='App'>
       <head className='app'>
         <link rel="preconnect" href="https://fonts.googleapis.com"></link>
         <link
@@ -58,47 +68,17 @@ function App () {
           integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
           crossorigin=""></script>
       </head>
-      <div className='app'>
+      < Router >
+        <Navbar />
+        <Switch>
+          <Route exact path="/rutas/nueva" component={FormularioNuevaRuta} />
+          <Route exact path="/rutas/listado" component={ListaRutas} />
+          <Route exact path="/usuarios/perfil" component={ProfilePage} />
+          <Route exact path="/usuarios/login" component={AuthenticationPage} />
 
-        {/* <Router>
-          <Routes>
-            <Route exact path='/ListadoRutas' component={ListaRutas} />
-          </Routes>
-        </Router> */}
-
-        <Router>
-          {/*  {!isLoggedIn ? (
-            <Routes>
-              <Route path="/" element={<AuthenticationPage onLogin={handleLogin} />} />
-            </Routes>
-          ) : ( */}
-          <div>
-            <Navbar />
-            <div id="map" style={{ height: '180px' }}></div>
-
-
-            {/* <Routes>
-              <Route exact path="/ListadoRutas" component={ListaRutas} />
-              <Route exact path="/NuevasRutas" component={FormularioNuevaRuta} />
-              <Route exact path="/PerfilUsuario" component={ProfilePage} />
-            </Routes> */}
-          </div>
-          {/* )} */}
-        </Router>
-        {/* <div style={{
-          minHeight: '200px'
-        }}></div> */}
-        <ListaRutas rutasGuardadas={rutasGuardadas} setRutasGuardadas={setRutasGuardadas} rutasVisibles={rutasVisibles} setRutasVisibles={setRutasVisibles} />
-        <ProfilePage rutasGuardadas={rutasGuardadas} setRutasGuardadas={setRutasGuardadas} />
-        <FormularioNuevaRuta />
-        <AuthenticationPage />
-        <div style={{
-          minHeight: '200px'
-        }}></div>
-      </div>
-
-
-    </>
+        </Switch>
+      </Router >
+    </div>
   );
 }
 

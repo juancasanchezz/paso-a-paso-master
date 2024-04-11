@@ -22,8 +22,9 @@ const Modal = ({ children, cerrarModal }) => {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      border: '1px red solid',
-      backgroundColor: "rgba(0, 0, 0, 0.5)"
+      border: '0px red solid',
+      backgroundColor: "rgba(0, 0, 0, 0.5)",
+      backdropFilter: 'blur(5px)',
     }}
       onClick={handleOverlayClick}
     >
@@ -35,6 +36,7 @@ const Modal = ({ children, cerrarModal }) => {
         padding: '20px',
         position: 'relative',
         boxShadow: '0px 0px 300px 0px rgba(0, 0, 0, 0.5)',
+
         transition: 'opacity 0.3s ease, transform 0.3s ease'
       }}>
         <button className="closeButton" onClick={cerrarModal} style={{
