@@ -1,5 +1,4 @@
 import React from "react";
-import "../style/modal.module.css";
 
 const Modal = ({ children, cerrarModal }) => {
 

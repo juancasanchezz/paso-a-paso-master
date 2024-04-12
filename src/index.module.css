@@ -1,0 +1,248 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: rgba(234, 234, 231, 0.8);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.App {
+  font-family: 'Poppins';
+  background-color: rgba(234, 234, 231, 0.8);
+}
+
+/* Estilos para pagina de registro */
+
+.enlaceRegistro:hover {
+  color: rgb(77, 77, 237);
+}
+
+.btnReg:hover {
+  background: #163a1f;
+}
+
+.btnIni:hover {
+  background: #214e7e;
+}
+
+/* Estilos para NuevaRuta */
+.form {
+  display: flex;
+  flex-direction: row;
+}
+
+label {
+  padding: 10px;
+  border-radius: 10px;
+  border: 0px solid black;
+  background-color: rgb(217, 235, 240);
+}
+
+input,
+textarea {
+  padding: 6px;
+  border-radius: 10px;
+  border: 0px solid black;
+}
+
+button:hover {
+  background-color: rgb(217, 235, 240);
+}
+
+/* Estilos para el Navbar */
+
+.navbarCard {
+  width: 100%;
+  font-family: 'Poppins';
+  background-color: rgba(234, 234, 231);
+}
+
+.menu {
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  font-family: 'Poppins';
+  background-color: rgba(234, 234, 231);
+  /* Ajusta el padding general de la barra de navegación según tus necesidades */
+}
+
+.menu>* {
+  margin-right: 4px;
+  /* Agrega espacio entre las opciones seleccionadas */
+  gap: 2rem;
+  padding: 0px;
+}
+
+label {
+  font-size: 15px;
+  align-items: center;
+  border: solid 3px;
+}
+
+.p-menuitem-text {
+  color: black;
+  padding: 10px
+}
+
+/* Estilo para el Modal de Rutas */
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  position: relative;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: #333;
+}
+
+/* COLORES PARA LA WEB
+  
+  Verde Bosque:
+Hex: #2E8B57
+RGB: 46, 139, 87
+
+Azul Cielo:
+Hex: #87CEEB
+RGB: 135, 206, 235
+
+Marrón Tierra:
+Hex: #8B4513
+RGB: 139, 69, 19
+
+Verde Oliva:
+Hex: #556B2F
+RGB: 85, 107, 47
+
+Amarillo Sol:
+Hex: #FFD700
+RGB: 255, 215, 0
+  
+  */
+
+/* Estilos para ListaRutas */
+
+.indexRutas {
+  font-family: 'Poppins';
+  background-color: rgb(234, 234, 231);
+}
+
+.listaRutasExpandida {
+  transition: all 1.5s ease-out;
+}
+
+.listaRutasItem {
+  border: 0px solid #ddd;
+  margin: 2rem;
+  margin-bottom: 10px;
+  padding: 10px;
+  transition: 1.3s ease-out;
+  display: flex;
+  flex-direction: column;
+}
+
+.listaRutasItem.expandida {
+  background-color: #f9f9f9;
+  padding: 1rem;
+  transition: all 3s ease-out;
+}
+
+/* ListaRutas.module.css */
+.rutas {
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.listaRutas {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  list-style-type: none;
+  padding: 2;
+  align-items: baseline;
+  justify-content: space-around;
+  background-color: rgba(234, 234, 231, 0.8);
+  transition: background-color 1.3s ease-out;
+}
+
+/* Estilo para cada elemento de ruta */
+.listaRutas li {
+  border: 0px solid #4a5454;
+  border-radius: 10px;
+  margin: 2rem;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: rgba(135, 206, 235, 0.15);
+  /* background: linear-gradient(#87ceeb, #fff) border-box; */
+  transition: background-color 1.3s ease-out;
+}
+
+.listaRutas li:hover {
+  background-color: rgba(85, 107, 47, 0.7);
+}
+
+/* Estilo para resaltar la ruta seleccionada */
+.listaRutas li.expandida {
+  background-color: rgba(85, 107, 47, 0.7);
+  transition: background-color 1.3s ease-out;
+}
+
+/* Estilo para la cabecera de la ruta */
+.rutaCabecera {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Estilo para el contenido expandido de la ruta */
+.rutaDetalle {
+  margin-top: 10px;
+  transition: 1.5s ease-out;
+}
+
+/* Estilo para la descripción de la ruta */
+p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.listaRutas li.expandida .rutaCabecera p {
+  color: #ddd;
+  transition: 1.5s ease-out;
+}
+
+/* Estilo para la ubicación y kilómetros */
+.rutaCabecera p {
+  font-size: 14px;
+  color: #000;
+}

@@ -1,13 +1,9 @@
 
-import { React, lazy } from 'react';
-import { Link } from 'react-router-dom';
+import { React } from 'react';
 import { Menubar } from 'primereact/menubar';
 import "primereact/resources/themes/lara-light-indigo/theme.css";
-import style from '../style/navbar.module.css';
+import '../index.module.css'
 
-import FormularioNuevaRuta from "./FormularioNuevaRuta";
-import ListaRutas from "./ListaRutas";
-import ProfilePage from './ProfilePage';
 
 
 /* const ListadoRutas = lazy(
@@ -32,14 +28,14 @@ export default function Navbar () {
         {
           label: 'Nueva',
           icon: 'pi pi-fw pi-plus',
-          to: '/nueva'
+          to: '/rutas/nueva'
 
 
         },
         {
           label: 'Listado',
           icon: 'pi pi-fw pi-trash',
-          to: '/listado'
+          to: '/rutas/listado'
 
         },
         {
@@ -81,7 +77,7 @@ export default function Navbar () {
         {
           label: 'Perfil',
           icon: 'pi pi-fw pi-user-plus',
-          to: '/PerfilUsuario'
+          to: '/usuarios/perfil'
         },
         {
           label: 'Borrar',
@@ -145,34 +141,9 @@ export default function Navbar () {
       icon: 'pi pi-fw pi-power-off'
     }
   ];
-  const css = `
-    .menu {
-      height: 250px;
-      display: flex;
-      justify-content: center;
-      padding: 0px;
-       /* Ajusta el padding general de la barra de navegación según tus necesidades 
-    }
-    
-    .menu > * {
-      margin-right: 4px; /* Agrega espacio entre las opciones seleccionadas 
-      gap: 2rem;
-      padding: 0px;
-    }
-    
-    label {
-      font-size: 18px;
-      align-items: center;
-      border: solid 3px;
-    }
-    
-    .p-menuitem-text {
-      color: black;
-      padding: 10px
-    }
-  `;
+
   return (
-    <div className="card">
+    <div className="navbarCard">
       <Menubar model={menu.map(item => {
         if (item.items) {
           return {
@@ -186,6 +157,7 @@ export default function Navbar () {
         }
         return item;
       })} />
+      {/* <style>{css}</style> */}
     </div>
   );
 }

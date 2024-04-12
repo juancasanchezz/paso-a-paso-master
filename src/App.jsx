@@ -1,12 +1,8 @@
-import { React, useState, lazy } from "react";
+import { React, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { Menubar } from 'primereact/menubar';
 import FormularioNuevaRuta from "./componentes/FormularioNuevaRuta";
 import ListaRutas from "./componentes/ListaRutas";
 import AuthenticationPage from './componentes/AutenticationPage';
-import "./App.css";
-import "./style/navbar.module.css"
-import UserProfile from './componentes/UserProfile';
 import ProfilePage from './componentes/ProfilePage';
 import Navbar from './componentes/Navbar';
 /* const ListadoRutas = lazy(

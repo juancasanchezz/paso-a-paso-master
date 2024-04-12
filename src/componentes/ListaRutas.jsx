@@ -1,22 +1,19 @@
 import React, { useState, useEffect } from "react";
-import style from "../style/listaRutas.module.css";
 import Modal from "./Modal"; // Asegúrate de importar el componente Modal
+import style from '../index.module.css'
 
 import { GiBootPrints } from "react-icons/gi";
 import { FiBookmark } from "react-icons/fi";
 
 
 
-const ListaRutas = ({ rutasVisibles,
-  setRutasVisibles,
-  rutasGuardadas,
-  setRutasGuardadas }) => {
+const ListaRutas = () => {
   const [rutas, setRutas] = useState([]);
   const [rutaExpandida, setRutaExpandida] = useState(null);
   const [modalAbierto, setModalAbierto] = useState(false);
-
+  const [rutasVisibles, setRutasVisibles] = useState(2);
   const [haExpandido, setHaExpandido] = useState(false);
-
+  const [rutasGuardadas, setRutasGuardadas] = useState([]);
   const [animacionGuardar, setAnimacionGuardar] = useState(false);
   const [animacionMostrar, setAnimacionMostrar] = useState(false);
 

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import style from '../style/nuevaRuta.module.css'
 
 const FormularioNuevaRuta = () => {
   const [ruta, setRuta] = useState({
