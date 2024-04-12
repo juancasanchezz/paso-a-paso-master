@@ -33,17 +33,61 @@ code {
 }
 
 /* Estilos para NuevaRuta */
-.form {
+
+.nuevaRutaComponent {
+  width: 100%;
+  height: 100%;
   display: flex;
-  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
 }
 
-label {
-  padding: 10px;
-  border-radius: 10px;
-  border: 0px solid black;
-  background-color: rgb(217, 235, 240);
+.formularioNuevaRutaCard {
+
+  width: 60%;
+  height: 70vh;
+  border: 0px solid #000;
+  border-radius: 13px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+  padding: 20px;
 }
+
+.tituloFormulario {
+  padding: 30px;
+  text-align: center;
+  font-size: 27px;
+  margin-top: 4px;
+  color: black;
+  text-decoration: underline 3px rgba(85, 107, 47, 0.7);
+  text-underline-offset: 7px
+}
+
+.filaFormulario {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+  padding: 15px;
+  gap: 50px;
+  margin-top: 10px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  gap: 10px;
+  padding: 10px;
+
+  label {
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgb(217, 235, 240);
+  }
+}
+
 
 input,
 textarea {
@@ -61,7 +105,9 @@ button:hover {
 .navbarCard {
   width: 100%;
   font-family: 'Poppins';
-  background-color: rgba(234, 234, 231);
+  background-color: rgba(234, 234, 231, 0.8);
+  display: flex;
+  justify-content: center;
 }
 
 .menu {
@@ -70,7 +116,7 @@ button:hover {
   justify-content: center;
   padding: 10px;
   font-family: 'Poppins';
-  background-color: rgba(234, 234, 231);
+  background-color: rgba(234, 234, 231, 0.8);
   /* Ajusta el padding general de la barra de navegación según tus necesidades */
 }
 
@@ -79,17 +125,22 @@ button:hover {
   /* Agrega espacio entre las opciones seleccionadas */
   gap: 2rem;
   padding: 0px;
+
+  label {
+    font-size: 15px;
+    align-items: center;
+    border: solid 3px;
+  }
 }
 
-label {
-  font-size: 15px;
-  align-items: center;
-  border: solid 3px;
-}
 
 .p-menuitem-text {
   color: black;
   padding: 10px
+}
+
+.p-menubar.p-component {
+  background-color: rgba(234, 234, 231, 0.8);
 }
 
 /* Estilo para el Modal de Rutas */
@@ -153,7 +204,8 @@ RGB: 255, 215, 0
 
 .indexRutas {
   font-family: 'Poppins';
-  background-color: rgb(234, 234, 231);
+  background-color: rgb(234, 234, 231, 0.8);
+  margin-top: 30px;
 }
 
 .listaRutasExpandida {
@@ -192,6 +244,22 @@ RGB: 255, 215, 0
   justify-content: space-around;
   background-color: rgba(234, 234, 231, 0.8);
   transition: background-color 1.3s ease-out;
+}
+
+/* Media queries para pantallas pequeñas */
+@media only screen and (max-width: 600px) {
+  /* Estilos para pantallas pequeñas */
+
+  .menu {
+    /* Ajusta estilos para la barra de navegación en pantallas pequeñas */
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .listaRutasItem {
+    /* Ajusta estilos para los elementos de la lista de rutas en pantallas pequeñas */
+    padding: 5px;
+  }
 }
 
 /* Estilo para cada elemento de ruta */
@@ -245,4 +313,12 @@ p {
 .rutaCabecera p {
   font-size: 14px;
   color: #000;
+}
+
+/* Estilos para el componente del Perfil */
+
+.profileCard {
+  margin-bottom: 20px;
+  background-color: rgba(234, 234, 231, 0.8);
+  ;
 }

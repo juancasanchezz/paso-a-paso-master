@@ -2,7 +2,7 @@
 import { React } from 'react';
 import { Menubar } from 'primereact/menubar';
 import "primereact/resources/themes/lara-light-indigo/theme.css";
-import '../index.module.css'
+import styles from '../index.module.css'
 
 
 
@@ -142,8 +142,14 @@ export default function Navbar () {
     }
   ];
 
+  const css = `
+  .p-menubar.p-component {
+    background-color: rgba(234, 234, 231, 0);
+  }
+  `
+
   return (
-    <div className="navbarCard">
+    <div className={styles.navbarCard}>
       <Menubar model={menu.map(item => {
         if (item.items) {
           return {
@@ -157,7 +163,7 @@ export default function Navbar () {
         }
         return item;
       })} />
-      {/* <style>{css}</style> */}
+      <style>{css}</style>
     </div>
   );
 }

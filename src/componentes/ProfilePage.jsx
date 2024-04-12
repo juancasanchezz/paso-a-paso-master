@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import UserProfile from './UserProfile';
 import Photo from '../img/dsc_6103.jpg';
+import styles from '../index.module.css'
 
 const ProfilePage = ({
   rutasGuardadas,
@@ -18,7 +19,7 @@ const ProfilePage = ({
   /* setUsuario(user); */
 
   return (
-    <div style={{ marginBottom: '20px' }}>
+    <div className={styles.profileCard}>
       <UserProfile user={user} rutasGuardadas={rutasGuardadas} setRutasGuardadas={setRutasGuardadas} />
     </div>
   );

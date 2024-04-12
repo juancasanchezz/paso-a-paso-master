@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Modal from "./Modal"; // Asegúrate de importar el componente Modal
-import style from '../index.module.css'
+import styles from '../index.module.css'
 
 import { GiBootPrints } from "react-icons/gi";
 import { FiBookmark } from "react-icons/fi";
@@ -139,9 +139,9 @@ const ListaRutas = () => {
   };
 
   return (
-    <div className="indexRutas">
+    <div className={styles.indexRutas}>
       <div
-        className={`rutas ${rutaExpandida !== null ? style.listaRutasExpandida : ""
+        className={`rutas ${rutaExpandida !== null ? styles.listaRutasExpandida : ""
           }`}
       >
         <div
@@ -168,7 +168,7 @@ const ListaRutas = () => {
             Lista de Rutas
           </p>
         </div>
-        <ul className={`${style.listaRutas} ${style.listaRutasExpandida}`}>
+        <ul className={`${styles.listaRutas} ${styles.listaRutasExpandida}`}>
           {rutas.slice(0, rutasVisibles).map((ruta) => (
             <li
               style={{
@@ -176,11 +176,11 @@ const ListaRutas = () => {
                 boxShadow: '0 6px 10px rgba(0, 0, 0, 0.1)',
               }}
               key={ruta.id}
-              className={`${style.listaRutasItem} ${rutaExpandida === ruta.id ? style.expandida : ""
+              className={`${styles.listaRutasItem} ${rutaExpandida === ruta.id ? styles.expandida : ""
                 }`}
             >
               <div
-                className={style.rutaCabecera}
+                className={styles.rutaCabecera}
                 onClick={() => manejarExpansion(ruta.id)}
               >
                 <p style={{ fontSize: "18px" }}>
