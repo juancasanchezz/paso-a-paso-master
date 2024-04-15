@@ -6,6 +6,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: rgba(234, 234, 231, 0.8);
+  background-image: url('./img/img-pagina-ppal.jpg');
+  /* Reemplaza 'ruta_de_la_imagen.jpg' con la ruta de tu imagen */
+  background-size: cover;
+  /* Ajusta el tamaño de la imagen para que cubra todo el fondo */
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
 }
 
 code {
@@ -44,12 +51,12 @@ code {
 }
 
 .formularioNuevaRutaCard {
-
+  background-color: rgba(234, 234, 231, 0.7);
   width: 60%;
   height: 70vh;
   border: 0px solid #000;
   border-radius: 13px;
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.8);
   padding: 20px;
 }
 
@@ -206,6 +213,7 @@ RGB: 255, 215, 0
   font-family: 'Poppins';
   background-color: rgb(234, 234, 231, 0.8);
   margin-top: 30px;
+  height: 100%;
 }
 
 .listaRutasExpandida {
@@ -223,7 +231,7 @@ RGB: 255, 215, 0
 }
 
 .listaRutasItem.expandida {
-  background-color: #f9f9f9;
+  background-color: rgb(234, 234, 231, 0.8);
   padding: 1rem;
   transition: all 3s ease-out;
 }
@@ -232,6 +240,8 @@ RGB: 255, 215, 0
 .rutas {
   padding: 20px;
   margin-top: 20px;
+  height: 100%;
+  background-color: rgb(234, 234, 231, 0.8);
 }
 
 .listaRutas {
@@ -242,7 +252,7 @@ RGB: 255, 215, 0
   padding: 2;
   align-items: baseline;
   justify-content: space-around;
-  background-color: rgba(234, 234, 231, 0.8);
+  background-color: rgba(234, 234, 231, 0.3);
   transition: background-color 1.3s ease-out;
 }
 
@@ -269,7 +279,7 @@ RGB: 255, 215, 0
   margin: 2rem;
   margin-bottom: 10px;
   padding: 10px;
-  background-color: rgba(135, 206, 235, 0.15);
+  background-color: rgb(234, 234, 231, 0.8);
   /* background: linear-gradient(#87ceeb, #fff) border-box; */
   transition: background-color 1.3s ease-out;
 }
@@ -319,6 +329,43 @@ p {
 
 .profileCard {
   margin-bottom: 20px;
-  background-color: rgba(234, 234, 231, 0.8);
-  ;
+  margin-top: 40px;
+}
+
+/* Estilos para el Login y el Register */
+
+.autenticationCard {
+  display: flex;
+  justify-content: center;
+  margin-top: 150px;
+
+  h2 {
+    text-decoration: underline 3px rgba(85, 107, 47, 0.7);
+    text-underline-offset: 7px;
+  }
+}
+
+.registerCard {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  width: 30vw;
+  height: 60vh;
+  background-color: rgb(234, 234, 231, 0.8);
+}
+
+.divLabel {
+  margin-bottom: 10px;
+  padding: 10px;
+
+  label {
+    border: 0px;
+  }
+
+  input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+  }
 }

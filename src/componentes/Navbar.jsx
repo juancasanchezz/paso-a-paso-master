@@ -19,7 +19,7 @@ const PerfilUsuario = lazy(
     await import('./ProfilePage')
 ) */
 
-export default function Navbar () {
+export default function Navbar ({ isLoggedIn }) {
   const menu = [
     {
       label: 'Rutas',
@@ -149,21 +149,25 @@ export default function Navbar () {
   `
 
   return (
-    <div className={styles.navbarCard}>
-      <Menubar model={menu.map(item => {
-        if (item.items) {
-          return {
-            ...item, items: item.items.map(subItem => {
-              if (subItem.to) {
-                return { ...subItem, url: subItem.to };
-              }
-              return subItem;
-            })
-          };
-        }
-        return item;
-      })} />
-      <style>{css}</style>
-    </div>
+    <>
+      {isLoggedIn && (
+        <div className={styles.navbarCard}>
+          <Menubar model={menu.map(item => {
+            if (item.items) {
+              return {
+                ...item, items: item.items.map(subItem => {
+                  if (subItem.to) {
+                    return { ...subItem, url: subItem.to };
+                  }
+                  return subItem;
+                })
+              };
+            }
+            return item;
+          })} />
+          <style>{css}</style>
+        </div>
+      )}
+    </>
   );
 }

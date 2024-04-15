@@ -12,21 +12,7 @@ const UserProfile = (user, {
   const [avatar, setAvatar] = useState('');
 
 
-  const handleNameChange = (event) => {
-    setName(event.target.value);
-  };
 
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
-  };
-
-  const handleAvatarChange = (event) => {
-    setAvatar(event.target.value);
-  };
-
-  const handleBioChange = (event) => {
-    setBio(event.target.value);
-  };
 
 
   const profileStyle = {
@@ -36,8 +22,8 @@ const UserProfile = (user, {
     maxWidth: '600px',
     margin: '0 auto',
     marginTop: '20px',
-    backgroundColor: '#fff',
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+    backgroundColor: 'rgba(234, 234, 231, 0.8)',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.4)',
   };
 
   const headerStyle = {
@@ -84,6 +70,21 @@ const UserProfile = (user, {
 
   const handleEditProfile = async (event) => {
     // Lógica para editar el perfil
+    const handleNameChange = (event) => {
+      setName(event.target.value);
+    };
+
+    const handleEmailChange = (event) => {
+      setEmail(event.target.value);
+    };
+
+    const handleAvatarChange = (event) => {
+      setAvatar(event.target.value);
+    };
+
+    const handleBioChange = (event) => {
+      setBio(event.target.value);
+    };
     event.preventDefault();
 
     // Envía los datos editados al servidor

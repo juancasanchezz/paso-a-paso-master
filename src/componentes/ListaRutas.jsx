@@ -150,6 +150,7 @@ const ListaRutas = () => {
             display: "flex",
             justifyContent: "center",
             textAlign: "center",
+            backgroundColor: 'rgb(234, 234, 231, 0.3)'
           }}
         >
           <p

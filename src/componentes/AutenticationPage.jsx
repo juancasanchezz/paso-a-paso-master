@@ -1,34 +1,40 @@
 import React, { useState } from 'react';
+import { comprobarLogin } from '../backend/users/users'
+import styles from '../index.module.css'
+import { useHistory } from 'react-router-dom';
 
-const AuthenticationPage = () => {
+const AuthenticationPage = ({ onLogin }) => {
   const [showRegisterForm, setShowRegisterForm] = useState(false);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [newUsername, setNewUsername] = useState('');
   const [newPassword, setNewPassword] = useState('');
+  const history = useHistory();
 
   const toggleForm = () => {
     setShowRegisterForm(!showRegisterForm);
   };
 
   const handleLogin = async () => {
-    // Aquí debes realizar una solicitud HTTP al backend para iniciar sesión
-    // Enviar los datos de 'username' y 'password' al backend
     try {
-      const response = await fetch('http://tu-backend.com/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ username, password })
+      const response = await comprobarLogin({
+        nombre: username,  // Utiliza el nombre de usuario ingresado en el campo de entrada
+        password: password, // Utiliza la contraseña ingresada en el campo de entrada
       });
+
       const data = await response.json();
-      // Aquí puedes manejar la respuesta del backend, como establecer un token de sesión
-      console.log(data);
+
+      if (response.ok) {
+        // Aquí puedes manejar la respuesta del backend
+        // Por ejemplo, podrías establecer el estado de autenticación en verdadero y redirigir al usuario a la página principal
+      } else {
+        console.error('Inicio de sesión fallido:', data.message);
+      }
     } catch (error) {
       console.error('Error al iniciar sesión:', error);
     }
   };
+
 
   const handleRegister = async () => {
     // Aquí debes realizar una solicitud HTTP al backend para registrar un nuevo usuario
@@ -68,18 +74,18 @@ const AuthenticationPage = () => {
   `;
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', marginTop: '50px', background: 'rgb(234, 234, 231)' }}>
-      <div style={{ border: '1px solid #ccc', borderRadius: '5px', padding: '20px', width: '300px' }}>
+    <div className={styles.autenticationCard}>
+      <div className={styles.registerCard}>
         {!showRegisterForm ? (
           <>
-            <h2 style={{ textDecoration: 'underline 3px rgba(85, 107, 47, 0.7)', textUnderlineOffset: '7px' }}>Registrarse</h2>
-            <div style={{ marginBottom: '10px', padding: '10px' }}>
-              <label htmlFor="newUsername" style={{ border: '0px' }}>Nuevo Usuario:</label>
-              <input type="text" id="newUsername" value={newUsername} onChange={(e) => setNewUsername(e.target.value)} style={{ width: '100%', padding: '8px', marginBottom: '10px', marginTop: '20px' }} />
+            <h2 >Registrarse</h2>
+            <div className={styles.divLabel}>
+              <label htmlFor="newUsername">Nuevo Usuario:</label>
+              <input type="text" id="newUsername" value={newUsername} onChange={(e) => setNewUsername(e.target.value)} />
             </div>
-            <div style={{ marginBottom: '10px', padding: '10px' }}>
-              <label htmlFor="newPassword" style={{ border: '0px' }}>Nueva Contraseña:</label>
-              <input type="password" id="newPassword" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} style={{ width: '100%', padding: '8px', marginBottom: '10px', marginTop: '20px' }} />
+            <div className={styles.divLabel}>
+              <label htmlFor="newPassword">Nueva Contraseña:</label>
+              <input type="password" id="newPassword" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
             </div>
             <button style={{ width: '100%', padding: '10px', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }} className='btnReg' onClick={handleRegister} >Registrarse</button>
             <p style={{ textAlign: 'center', marginTop: '10px', cursor: 'pointer' }} className='enlaceRegistro' onClick={toggleForm}>¿Ya tienes una cuenta? Inicia sesión aquí</p>
@@ -87,14 +93,14 @@ const AuthenticationPage = () => {
           </>
         ) : (
           <>
-            <h2 style={{ textDecoration: 'underline 3px rgba(85, 107, 47, 0.7)', textUnderlineOffset: '7px' }}>Iniciar Sesión</h2>
-            <div style={{ marginBottom: '10px', padding: '10px', gap: '2rem' }}>
-              <label htmlFor="username" style={{ border: '0px' }}>Usuario:</label>
-              <input type="text" id="username" value={username} onChange={(e) => setUsername(e.target.value)} style={{ width: '100%', padding: '8px', marginBottom: '10px', marginTop: '20px' }} />
+            <h2 >Iniciar Sesión</h2>
+            <div className={styles.divLabel}>
+              <label htmlFor="username" >Usuario:</label>
+              <input type="text" id="username" value={username} onChange={(e) => setUsername(e.target.value)} />
             </div>
-            <div style={{ marginBottom: '10px', padding: '10px' }}>
-              <label htmlFor="password" style={{ border: '0px' }}>Contraseña:</label>
-              <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} style={{ width: '100%', padding: '8px', marginBottom: '10px', marginTop: '20px' }} />
+            <div className={styles.divLabel}>
+              <label htmlFor="password">Contraseña:</label>
+              <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
             </div>
             <button style={{ width: '100%', padding: '10px', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }} onClick={handleLogin} className='btnIni'>Iniciar Sesión</button>
             <p style={{ textAlign: 'center', marginTop: '10px', cursor: 'pointer' }} className='enlaceRegistro' onClick={toggleForm}>¿No tienes cuenta? Regístrate aquí</p>

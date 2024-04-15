@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import FormularioNuevaRuta from "./componentes/FormularioNuevaRuta";
 import ListaRutas from "./componentes/ListaRutas";
 import AuthenticationPage from './componentes/AutenticationPage';
@@ -22,9 +22,7 @@ const PerfilUsuario = lazy(
 function App () {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [selectedOption, setSelectedOption] = useState('');
-  const [rutasVisibles, setRutasVisibles] = useState(2);
-  const [rutasGuardadas, setRutasGuardadas] = useState([]);
+
 
   /* var map = L.map('map').setView([51.505, -0.09], 13);
 
@@ -33,13 +31,7 @@ function App () {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
   }).addTo(map); */
 
-  const handleLogin = () => {
-    setIsLoggedIn(true);
-  };
 
-  const handleNavbarOption = (option) => {
-    setSelectedOption(option);
-  };
 
 
 
@@ -64,16 +56,27 @@ function App () {
           integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
           crossorigin=""></script>
       </head>
-      < Router >
-        <Navbar />
+      <Router>
+        {/* Mostrar el Navbar solo si el usuario ha iniciado sesión */}
+        {isLoggedIn && <Navbar />}
         <Switch>
-          <Route exact path="/rutas/nueva" component={FormularioNuevaRuta} />
-          <Route exact path="/rutas/listado" component={ListaRutas} />
-          <Route exact path="/usuarios/perfil" component={ProfilePage} />
-          <Route exact path="/usuarios/login" component={AuthenticationPage} />
-
+          {/* Ruta para la página de autenticación */}
+          <Route exact path="/usuarios/login">
+            {/* Pasar la función para actualizar el estado de autenticación al componente de autenticación */}
+            <AuthenticationPage onLogin={() => setIsLoggedIn(true)} />
+          </Route>
+          {/* Rutas protegidas que solo se muestran si el usuario ha iniciado sesión */}
+          {isLoggedIn && (
+            <>
+              <Route exact path="/rutas/nueva" component={FormularioNuevaRuta} />
+              <Route exact path="/rutas/listado" component={ListaRutas} />
+              <Route exact path="/usuarios/perfil" component={ProfilePage} />
+            </>
+          )}
+          {/* Redirigir al usuario a la página de autenticación si intenta acceder a otras rutas sin iniciar sesión */}
+          {!isLoggedIn && <Route render={() => <Redirect to="/usuarios/login" />} />}
         </Switch>
-      </Router >
+      </Router>
     </div>
   );
 }
