@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect, Link } from 'react-router-dom';
 import FormularioNuevaRuta from "./componentes/FormularioNuevaRuta";
 import ListaRutas from "./componentes/ListaRutas";
 import AuthenticationPage from './componentes/AutenticationPage';
@@ -18,10 +18,32 @@ const PerfilUsuario = lazy(
     await import('./componentes/ProfilePage')
 ) */
 
+function HomePage () {
+  return (
+    <div className='App'>
+      <Navbar />
+    </div>
+  );
+}
+
+// Componente de ruta privada para rutas protegidas
+const PrivateRoute = ({ component: Component, isLoggedIn, ...rest }) => (
+  <Route
+    {...rest}
+    render={(props) =>
+      isLoggedIn ? (
+        <Component {...props} />
+      ) : (
+        <Redirect to="/" />
+      )
+    }
+  />
+);
+
 
 function App () {
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setLoggedIn] = useState(true);
 
 
   /* var map = L.map('map').setView([51.505, -0.09], 13);
@@ -60,21 +82,15 @@ function App () {
         {/* Mostrar el Navbar solo si el usuario ha iniciado sesión */}
         {isLoggedIn && <Navbar />}
         <Switch>
-          {/* Ruta para la página de autenticación */}
-          <Route exact path="/usuarios/login">
-            {/* Pasar la función para actualizar el estado de autenticación al componente de autenticación */}
-            <AuthenticationPage onLogin={() => setIsLoggedIn(true)} />
-          </Route>
-          {/* Rutas protegidas que solo se muestran si el usuario ha iniciado sesión */}
-          {isLoggedIn && (
-            <>
-              <Route exact path="/rutas/nueva" component={FormularioNuevaRuta} />
-              <Route exact path="/rutas/listado" component={ListaRutas} />
-              <Route exact path="/usuarios/perfil" component={ProfilePage} />
-            </>
-          )}
-          {/* Redirigir al usuario a la página de autenticación si intenta acceder a otras rutas sin iniciar sesión */}
-          {!isLoggedIn && <Route render={() => <Redirect to="/usuarios/login" />} />}
+          {/* Ruta para la página de inicio de sesión */}
+          <Route exact path="/login" component={() => <AuthenticationPage onLogin={() => setLoggedIn(true)} />} />
+          {/* Ruta para la página principal */}
+          {/* <Navbar /> */}
+          <Route exact path='/home' component={HomePage} />
+          {/* Rutas protegidas */}
+          <Route exact path="/rutas/nueva" component={FormularioNuevaRuta} />
+          <Route exact path="/rutas/listado" component={ListaRutas} />
+          <Route exact path="/usuarios/perfil" component={ProfilePage} />
         </Switch>
       </Router>
     </div>

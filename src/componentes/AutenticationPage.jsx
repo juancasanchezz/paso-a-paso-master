@@ -21,12 +21,17 @@ const AuthenticationPage = ({ onLogin }) => {
         nombre: username,  // Utiliza el nombre de usuario ingresado en el campo de entrada
         password: password, // Utiliza la contraseña ingresada en el campo de entrada
       });
+      console.log('Response:', response)
 
-      const data = await response.json();
 
-      if (response.ok) {
-        // Aquí puedes manejar la respuesta del backend
-        // Por ejemplo, podrías establecer el estado de autenticación en verdadero y redirigir al usuario a la página principal
+      const data = response.data;
+      console.log(data)
+      if (response.statusText === 'OK') {
+        console.log("Estoy dentro")
+        // Llama a la función proporcionada desde el padre para actualizar el estado de autenticación
+        onLogin();
+        // Redirigir al usuario a la página principal u otra página según sea necesario
+        history.push('/home');
       } else {
         console.error('Inicio de sesión fallido:', data.message);
       }
@@ -95,8 +100,8 @@ const AuthenticationPage = ({ onLogin }) => {
           <>
             <h2 >Iniciar Sesión</h2>
             <div className={styles.divLabel}>
-              <label htmlFor="username" >Usuario:</label>
-              <input type="text" id="username" value={username} onChange={(e) => setUsername(e.target.value)} />
+              <label htmlFor="nombre" >Usuario:</label>
+              <input type="text" id="nombre" value={username} onChange={(e) => setUsername(e.target.value)} />
             </div>
             <div className={styles.divLabel}>
               <label htmlFor="password">Contraseña:</label>
