@@ -69,6 +69,30 @@ const ListaRutas = () => {
             descripcion:
               "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque pulvinar faucibus velit ut auctor. Duis ut pretium justo. Nam sed risus ornare, congue orci in, venenatis dolor. Proin sed cursus lectus. Morbi elit neque, mattis sed nunc eget, hendrerit porttitor ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam venenatis, magna luctus viverra vestibulum, ipsum tellus pulvinar enim, vitae varius ante nisl at tellus.",
           },
+          {
+            id: 7,
+            nombre: "Ruta 6",
+            ubicacion: "Ubicación 2",
+            kilometros: 15,
+            descripcion:
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque pulvinar faucibus velit ut auctor. Duis ut pretium justo. Nam sed risus ornare, congue orci in, venenatis dolor. Proin sed cursus lectus. Morbi elit neque, mattis sed nunc eget, hendrerit porttitor ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam venenatis, magna luctus viverra vestibulum, ipsum tellus pulvinar enim, vitae varius ante nisl at tellus.",
+          },
+          {
+            id: 8,
+            nombre: "Ruta 6",
+            ubicacion: "Ubicación 2",
+            kilometros: 15,
+            descripcion:
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque pulvinar faucibus velit ut auctor. Duis ut pretium justo. Nam sed risus ornare, congue orci in, venenatis dolor. Proin sed cursus lectus. Morbi elit neque, mattis sed nunc eget, hendrerit porttitor ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam venenatis, magna luctus viverra vestibulum, ipsum tellus pulvinar enim, vitae varius ante nisl at tellus.",
+          },
+          {
+            id: 9,
+            nombre: "Ruta 6",
+            ubicacion: "Ubicación 2",
+            kilometros: 15,
+            descripcion:
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque pulvinar faucibus velit ut auctor. Duis ut pretium justo. Nam sed risus ornare, congue orci in, venenatis dolor. Proin sed cursus lectus. Morbi elit neque, mattis sed nunc eget, hendrerit porttitor ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam venenatis, magna luctus viverra vestibulum, ipsum tellus pulvinar enim, vitae varius ante nisl at tellus.",
+          },
           // ... más rutas
         ];
 
@@ -150,7 +174,6 @@ const ListaRutas = () => {
             display: "flex",
             justifyContent: "center",
             textAlign: "center",
-            backgroundColor: 'rgb(234, 234, 231, 0.3)'
           }}
         >
           <p

@@ -211,8 +211,7 @@ RGB: 255, 215, 0
 
 .indexRutas {
   font-family: 'Poppins';
-  background-color: rgb(234, 234, 231, 0.8);
-  margin-top: 30px;
+  margin-top: 60px;
   height: 100%;
 }
 
@@ -231,7 +230,6 @@ RGB: 255, 215, 0
 }
 
 .listaRutasItem.expandida {
-  background-color: rgb(234, 234, 231, 0.8);
   padding: 1rem;
   transition: all 3s ease-out;
 }
@@ -252,7 +250,6 @@ RGB: 255, 215, 0
   padding: 2;
   align-items: baseline;
   justify-content: space-around;
-  background-color: rgba(234, 234, 231, 0.3);
   transition: background-color 1.3s ease-out;
 }
 
@@ -285,12 +282,16 @@ RGB: 255, 215, 0
 }
 
 .listaRutas li:hover {
-  background-color: rgba(85, 107, 47, 0.7);
+  background-color: rgb(251, 251, 251);
+
+  li {
+
+    color: #fff;
+  }
 }
 
 /* Estilo para resaltar la ruta seleccionada */
 .listaRutas li.expandida {
-  background-color: rgba(85, 107, 47, 0.7);
   transition: background-color 1.3s ease-out;
 }
 
@@ -315,7 +316,6 @@ p {
 }
 
 .listaRutas li.expandida .rutaCabecera p {
-  color: #ddd;
   transition: 1.5s ease-out;
 }
 

@@ -83,10 +83,10 @@ function App () {
         {isLoggedIn && <Navbar />}
         <Switch>
           {/* Ruta para la página de inicio de sesión */}
-          <Route exact path="/login" component={() => <AuthenticationPage onLogin={() => setLoggedIn(true)} />} />
+          <Route exact path="/" component={() => <AuthenticationPage onLogin={() => setLoggedIn(true)} />} />
           {/* Ruta para la página principal */}
           {/* <Navbar /> */}
-          <Route exact path='/home' component={HomePage} />
+          <Route exact path='/home' />
           {/* Rutas protegidas */}
           <Route exact path="/rutas/nueva" component={FormularioNuevaRuta} />
           <Route exact path="/rutas/listado" component={ListaRutas} />
