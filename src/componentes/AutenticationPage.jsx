@@ -9,6 +9,7 @@ const AuthenticationPage = ({ onLogin }) => {
   const [password, setPassword] = useState('');
   const [newUsername, setNewUsername] = useState('');
   const [newPassword, setNewPassword] = useState('');
+  const [mensajeError, setMensajeError] = useState('');
   const history = useHistory();
 
   const toggleForm = () => {
@@ -33,10 +34,11 @@ const AuthenticationPage = ({ onLogin }) => {
         // Redirigir al usuario a la página principal u otra página según sea necesario
         history.push('/home');
       } else {
-        console.error('Inicio de sesión fallido:', data.message);
+        setMensajeError('Usuario o contraseña incorrectos.')
       }
     } catch (error) {
       console.error('Error al iniciar sesión:', error);
+      setMensajeError('Usuario o contraseña incorrectos.')
     }
   };
 
@@ -109,6 +111,7 @@ const AuthenticationPage = ({ onLogin }) => {
             </div>
             <button style={{ width: '100%', padding: '10px', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }} onClick={handleLogin} className='btnIni'>Iniciar Sesión</button>
             <p style={{ textAlign: 'center', marginTop: '10px', cursor: 'pointer' }} className='enlaceRegistro' onClick={toggleForm}>¿No tienes cuenta? Regístrate aquí</p>
+            {mensajeError && <p style={{ color: 'red', textAlign: 'center', padding: '3px' }}>{mensajeError}</p>}
           </>
         )}
       </div>

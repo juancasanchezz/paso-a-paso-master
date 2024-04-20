@@ -3,6 +3,7 @@ import { React } from 'react';
 import { Menubar } from 'primereact/menubar';
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import styles from '../index.module.css'
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 
@@ -20,6 +21,7 @@ const PerfilUsuario = lazy(
 ) */
 
 export default function Navbar () {
+  const history = useHistory();
   //console.log(isLoggedIn)
 
   const menu = [
@@ -140,9 +142,15 @@ export default function Navbar () {
     },
     {
       label: 'Abandonar',
-      icon: 'pi pi-fw pi-power-off'
+      icon: 'pi pi-fw pi-power-off',
+      command: () => handleLogOut()
     }
   ];
+
+  const handleLogOut = () => {
+    history.push("/")
+  }
+
 
   const css = `
   .p-menubar.p-component {

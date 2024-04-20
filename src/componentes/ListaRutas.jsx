@@ -162,6 +162,11 @@ const ListaRutas = () => {
     console.log("Rutas guardadas:", rutasGuardadas);
   };
 
+  const cerrarModal = () => {
+    setModalAbierto(false);
+    setRutaExpandida(null)
+  }
+
   return (
     <div className={styles.indexRutas}>
       <div
@@ -217,7 +222,7 @@ const ListaRutas = () => {
               {rutaExpandida === ruta.id && modalAbierto && (
                 <>
                   <Modal
-                    cerrarModal={() => setModalAbierto(false)}
+                    cerrarModal={cerrarModal}
                     style={{
                       transition: 'all 3s ease-out'
                     }}

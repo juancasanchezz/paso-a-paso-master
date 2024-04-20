@@ -43,7 +43,7 @@ const PrivateRoute = ({ component: Component, isLoggedIn, ...rest }) => (
 
 function App () {
 
-  const [isLoggedIn, setLoggedIn] = useState(true);
+  const [isLoggedIn, setLoggedIn] = useState(false);
 
 
   /* var map = L.map('map').setView([51.505, -0.09], 13);
@@ -79,8 +79,9 @@ function App () {
           crossorigin=""></script>
       </head>
       <Router>
+        <Navbar />
         {/* Mostrar el Navbar solo si el usuario ha iniciado sesión */}
-        {isLoggedIn && <Navbar />}
+        {isLoggedIn}
         <Switch>
           {/* Ruta para la página de inicio de sesión */}
           <Route exact path="/" component={() => <AuthenticationPage onLogin={() => setLoggedIn(true)} />} />
