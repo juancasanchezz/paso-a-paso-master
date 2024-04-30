@@ -3,14 +3,16 @@ import { comprobarLogin } from '../backend/users/users'
 import styles from '../index.module.css'
 import { useHistory } from 'react-router-dom';
 
-const AuthenticationPage = ({ onLogin }) => {
+const AuthenticationPage = ({ onLogin, history }) => {
   const [showRegisterForm, setShowRegisterForm] = useState(false);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [newUsername, setNewUsername] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [mensajeError, setMensajeError] = useState('');
-  const history = useHistory();
+  const [noUser, setNoUser] = useState(false);
+  const [noPassword, setNoPassword] = useState(false);
+  const [correctPassword, setCorrectPassword] = useState(false);
 
   const toggleForm = () => {
     setShowRegisterForm(!showRegisterForm);
@@ -27,15 +29,22 @@ const AuthenticationPage = ({ onLogin }) => {
 
       const data = response.data;
       console.log(data)
+
       if (response.statusText === 'OK') {
-        console.log("Estoy dentro")
-        // Llama a la función proporcionada desde el padre para actualizar el estado de autenticación
-        onLogin();
-        // Redirigir al usuario a la página principal u otra página según sea necesario
-        history.push('/home');
+        setTimeout(() => {
+          console.log("Estoy dentro")
+          onLogin();
+          history.push('/');
+        }, 100)
       } else {
+        console.log("No debo estar aqui")
         setMensajeError('Usuario o contraseña incorrectos.')
       }
+
+      if (!noUser && !noPassword && password !== '' && data.some((item) => item.Username === username && item.Password === password)) {
+        setCorrectPassword(true);
+      }
+
     } catch (error) {
       console.error('Error al iniciar sesión:', error);
       setMensajeError('Usuario o contraseña incorrectos.')
@@ -111,7 +120,11 @@ const AuthenticationPage = ({ onLogin }) => {
             </div>
             <button style={{ width: '100%', padding: '10px', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }} onClick={handleLogin} className='btnIni'>Iniciar Sesión</button>
             <p style={{ textAlign: 'center', marginTop: '10px', cursor: 'pointer' }} className='enlaceRegistro' onClick={toggleForm}>¿No tienes cuenta? Regístrate aquí</p>
-            {mensajeError && <p style={{ color: 'red', textAlign: 'center', padding: '3px' }}>{mensajeError}</p>}
+            {mensajeError && (
+
+              <p style={{ color: 'red', textAlign: 'center', padding: '3px' }}>{mensajeError}</p>
+            )
+            }
           </>
         )}
       </div>

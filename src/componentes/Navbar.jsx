@@ -1,5 +1,4 @@
-
-import { React } from 'react';
+import React from 'react';
 import { Menubar } from 'primereact/menubar';
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import styles from '../index.module.css'
@@ -7,94 +6,44 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 
-/* const ListadoRutas = lazy(
-  async () =>
-    await import('./ListaRutas')
-)
-const NuevasRutas = lazy(
-  async () =>
-    await import('./FormularioNuevaRuta')
-)
-const PerfilUsuario = lazy(
-  async () =>
-    await import('./ProfilePage')
-) */
-
-export default function Navbar () {
+function Navbar ({ setIsLoggedIn }) {
   const history = useHistory();
   //console.log(isLoggedIn)
 
+  const handleLogOut = () => {
+    setIsLoggedIn(false);
+    history.push("/login")
+  }
+
   const menu = [
     {
-      label: 'Rutas',
-      icon: 'pi pi-fw pi-file',
+      label: 'Rutas', icon: 'pi pi-fw pi-file',
       items: [
-        {
-          label: 'Nueva',
-          icon: 'pi pi-fw pi-plus',
-          to: '/rutas/nueva'
-
-
-        },
-        {
-          label: 'Listado',
-          icon: 'pi pi-fw pi-trash',
-          to: '/rutas/listado'
-
-        },
-        {
-          separator: true
-        },
-        {
-          label: 'Exportar',
-          icon: 'pi pi-fw pi-external-link'
-        }
+        { label: 'Nueva', icon: 'pi pi-fw pi-plus', to: '/rutas/nueva' },
+        { label: 'Listado', icon: 'pi pi-fw pi-trash', to: '/rutas/listado' },
+        { separator: true },
+        { label: 'Exportar', icon: 'pi pi-fw pi-external-link' }
       ]
     },
     {
-      label: 'Editar',
-      icon: 'pi pi-fw pi-pencil',
+      label: 'Editar', icon: 'pi pi-fw pi-pencil',
       items: [
-        {
-          label: 'Izquierda',
-          icon: 'pi pi-fw pi-align-left'
-        },
-        {
-          label: 'Derecha',
-          icon: 'pi pi-fw pi-align-right'
-        },
-        {
-          label: 'Centro',
-          icon: 'pi pi-fw pi-align-center'
-        },
-        {
-          label: 'Justificar',
-          icon: 'pi pi-fw pi-align-justify'
-        },
-
+        { label: 'Izquierda', icon: 'pi pi-fw pi-align-left' },
+        { label: 'Derecha', icon: 'pi pi-fw pi-align-right' },
+        { label: 'Centro', icon: 'pi pi-fw pi-align-center' },
+        { label: 'Justificar', icon: 'pi pi-fw pi-align-justify' },
       ]
     },
     {
-      label: 'Usuarios',
-      icon: 'pi pi-fw pi-user',
+      label: 'Usuarios', icon: 'pi pi-fw pi-user',
       items: [
+        { label: 'Perfil', icon: 'pi pi-fw pi-user-plus', to: '/usuarios/perfil' },
+        { label: 'Borrar', icon: 'pi pi-fw pi-user-minus', },
         {
-          label: 'Perfil',
-          icon: 'pi pi-fw pi-user-plus',
-          to: '/usuarios/perfil'
-        },
-        {
-          label: 'Borrar',
-          icon: 'pi pi-fw pi-user-minus',
-
-        },
-        {
-          label: 'Buscar',
-          icon: 'pi pi-fw pi-users',
+          label: 'Buscar', icon: 'pi pi-fw pi-users',
           items: [
             {
-              label: 'Filtrar',
-              icon: 'pi pi-fw pi-filter',
+              label: 'Filtrar', icon: 'pi pi-fw pi-filter',
               items: [
                 {
                   label: 'Print',
@@ -102,35 +51,25 @@ export default function Navbar () {
                 }
               ]
             },
-            {
-              icon: 'pi pi-fw pi-bars',
-              label: 'Lista'
-            }
+            { icon: 'pi pi-fw pi-bars', label: 'Lista' }
           ]
         }
       ]
     },
     {
-      label: 'Eventos',
-      icon: 'pi pi-fw pi-calendar',
+      label: 'Eventos', icon: 'pi pi-fw pi-calendar',
       items: [
         {
-          label: 'Editar',
-          icon: 'pi pi-fw pi-pencil',
+          label: 'Editar', icon: 'pi pi-fw pi-pencil',
           items: [
+            { label: 'Guardar', icon: 'pi pi-fw pi-calendar-plus' },
             {
-              label: 'Guardar',
-              icon: 'pi pi-fw pi-calendar-plus'
-            },
-            {
-              label: 'Borrar',
-              icon: 'pi pi-fw pi-calendar-minus'
+              label: 'Borrar', icon: 'pi pi-fw pi-calendar-minus'
             }
           ]
         },
         {
-          label: 'Archivo',
-          icon: 'pi pi-fw pi-calendar-times',
+          label: 'Archivo', icon: 'pi pi-fw pi-calendar-times',
           items: [
             {
               label: 'Eliminar',
@@ -140,16 +79,10 @@ export default function Navbar () {
         }
       ]
     },
-    {
-      label: 'Abandonar',
-      icon: 'pi pi-fw pi-power-off',
-      command: () => handleLogOut()
-    }
+    { label: 'Abandonar', to: '/login', command: handleLogOut }
   ];
 
-  const handleLogOut = () => {
-    history.push("/")
-  }
+
 
 
   const css = `
@@ -181,3 +114,5 @@ export default function Navbar () {
 
   );
 }
+
+export default React.memo(Navbar);

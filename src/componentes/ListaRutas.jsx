@@ -209,7 +209,7 @@ const ListaRutas = () => {
                 }`}
             >
               <div
-                className={styles.rutaCabecera}
+                className={styles.rutaTarjeta}
                 onClick={() => manejarExpansion(ruta.id)}
               >
                 <p style={{ fontSize: "18px" }}>

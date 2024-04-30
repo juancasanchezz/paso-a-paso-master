@@ -1,61 +1,27 @@
-import { React, useState } from "react";
-import { BrowserRouter as Router, Switch, Route, Redirect, Link } from 'react-router-dom';
+import { React, useState, useEffect } from "react";
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import FormularioNuevaRuta from "./componentes/FormularioNuevaRuta";
 import ListaRutas from "./componentes/ListaRutas";
 import AuthenticationPage from './componentes/AutenticationPage';
 import ProfilePage from './componentes/ProfilePage';
 import Navbar from './componentes/Navbar';
-/* const ListadoRutas = lazy(
-  async () =>
-    await import('./componentes/ListaRutas')
-)
-const NuevasRutas = lazy(
-  async () =>
-    await import('./componentes/FormularioNuevaRuta')
-)
-const PerfilUsuario = lazy(
-  async () =>
-    await import('./componentes/ProfilePage')
-) */
-
-function HomePage () {
-  return (
-    <div className='App'>
-      <Navbar />
-    </div>
-  );
-}
-
-// Componente de ruta privada para rutas protegidas
-const PrivateRoute = ({ component: Component, isLoggedIn, ...rest }) => (
-  <Route
-    {...rest}
-    render={(props) =>
-      isLoggedIn ? (
-        <Component {...props} />
-      ) : (
-        <Redirect to="/" />
-      )
-    }
-  />
-);
-
-
-function App () {
-
-  const [isLoggedIn, setLoggedIn] = useState(false);
-
-
-  /* var map = L.map('map').setView([51.505, -0.09], 13);
-
-  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-  }).addTo(map); */
 
 
 
+const App = () => {
 
+  const [isLoggedIn, setIsLoggedIn] = useState(() => {
+    // Recuperar el valor de isLoggedIn de sessionStorage, si está presente
+    const storedIsLoggedIn = sessionStorage.getItem('isLoggedIn');
+    return storedIsLoggedIn ? JSON.parse(storedIsLoggedIn) : false;
+  });
+
+
+
+  useEffect(() => {
+    // Guardar el valor de isLoggedIn en sessionStorage cuando cambie
+    sessionStorage.setItem('isLoggedIn', JSON.stringify(isLoggedIn));
+  }, [isLoggedIn]);
 
 
   return (
@@ -79,23 +45,42 @@ function App () {
           crossorigin=""></script>
       </head>
       <Router>
-        <Navbar />
-        {/* Mostrar el Navbar solo si el usuario ha iniciado sesión */}
-        {isLoggedIn}
         <Switch>
-          {/* Ruta para la página de inicio de sesión */}
-          <Route exact path="/" component={() => <AuthenticationPage onLogin={() => setLoggedIn(true)} />} />
-          {/* Ruta para la página principal */}
-          {/* <Navbar /> */}
-          <Route exact path='/home' />
-          {/* Rutas protegidas */}
-          <Route exact path="/rutas/nueva" component={FormularioNuevaRuta} />
-          <Route exact path="/rutas/listado" component={ListaRutas} />
-          <Route exact path="/usuarios/perfil" component={ProfilePage} />
+          <Route path="/login" render={(props) => <AuthenticationPage onLogin={() => setIsLoggedIn(true)} history={props.history} />} />
+          <ProtectedRoute path="/" isLoggedIn={isLoggedIn}>
+            <Navbar setIsLoggedIn={setIsLoggedIn} />
+            <Switch>
+              <Route exact path="/home" component={() => <AuthenticationPage onLogin={() => setIsLoggedIn(true)} />} />
+              <Route exact path='/home' />
+              <Route exact path="/rutas/nueva" component={FormularioNuevaRuta} />
+              <Route exact path="/rutas/listado" component={ListaRutas} />
+              <Route exact path="/usuarios/perfil" component={ProfilePage} />
+            </Switch>
+          </ProtectedRoute>
         </Switch>
       </Router>
     </div>
   );
-}
+};
+
+const ProtectedRoute = ({ children, isLoggedIn, ...rest }) => {
+  return (
+    <Route
+      {...rest}
+      render={({ location }) =>
+        isLoggedIn ? (
+          children
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/login",
+              state: { from: location }
+            }}
+          />
+        )
+      }
+    />
+  );
+};
 
 export default App;
