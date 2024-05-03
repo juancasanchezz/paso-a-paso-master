@@ -69,23 +69,27 @@ const UserProfile = (user, {
   };
 
   const handleEditProfile = async (event) => {
-    // Lógica para editar el perfil
-    const handleNameChange = (event) => {
-      setName(event.target.value);
-    };
-
-    const handleEmailChange = (event) => {
-      setEmail(event.target.value);
-    };
-
-    const handleAvatarChange = (event) => {
-      setAvatar(event.target.value);
-    };
-
-    const handleBioChange = (event) => {
-      setBio(event.target.value);
-    };
     event.preventDefault();
+
+    // Validar campos del formulario
+    if (!name || !email) {
+      console.error('Los campos nombre y correo son obligatorios');
+      return;
+    }
+
+    // Validar formato de email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      console.error('El correo electrónico no tiene un formato válido');
+      return;
+    }
+
+    // Validar contraseña
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+    if (!passwordRegex.test(password)) {
+      console.error('La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número');
+      return;
+    }
 
     // Envía los datos editados al servidor
     try {
@@ -104,16 +108,17 @@ const UserProfile = (user, {
         setAvatar(avatar)
         setBio(bio)
         // Mostrar un mensaje de éxito o redirigir a otra página
-        console.log("Los datosa han sido actualizados correctamente")
+        console.log("Los datos han sido actualizados correctamente")
       } else {
         // Maneja errores de respuesta del servidor
-        console.error("Los datos ya existen.")
+        const responseData = await response.json();
+        console.error(responseData.message);
       }
     } catch (error) {
-      console.error("Error al actualizar los datos.")
-
+      console.error("Error al actualizar los datos:", error);
     }
   };
+
 
   useEffect(() => {
     console.log(user)

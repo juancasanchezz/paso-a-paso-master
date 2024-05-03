@@ -213,7 +213,7 @@ RGB: 255, 215, 0
 
 .indexRutas {
   font-family: 'Poppins';
-  margin-top: 60px;
+  margin-top: 30px;
   height: 50%;
 }
 
@@ -236,12 +236,20 @@ RGB: 255, 215, 0
   transition: all 3s ease-out;
 }
 
+.src_listaRutas__zEwxk .src_listaRutasExpandida__Vh8e8 {
+  width: 100%;
+}
+
 /* ListaRutas.module.css */
 .rutas {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
   padding: 20px;
   margin-top: 20px;
   height: 100%;
-  background-color: rgb(234, 234, 231, 0.8);
+
 }
 
 .listaRutas {
@@ -249,10 +257,15 @@ RGB: 255, 215, 0
   flex-direction: row;
   flex-wrap: wrap;
   list-style-type: none;
-  padding: 2;
+  padding: 2rem;
   align-items: baseline;
   justify-content: space-around;
   transition: background-color 1.3s ease-out;
+  border: 0px solid black;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 75vw;
+  background-color: rgb(234, 234, 231, 0.8);
 }
 
 .rutaTarjeta {
@@ -354,7 +367,7 @@ p {
   display: flex;
   justify-content: center;
   margin-top: 50px;
-  height: 90vh;
+  height: 100vh;
   overflow-y: hidden;
 
   h2 {
@@ -368,7 +381,7 @@ p {
   border-radius: 5px;
   padding: 20px;
   width: 30vw;
-  height: 90vh;
+  height: 92vh;
   background-color: rgb(234, 234, 231, 0.8);
 }
 
@@ -383,7 +396,7 @@ p {
 
 .divLabel {
   margin-bottom: 10px;
-  padding: 10px;
+  padding: 5px;
 
   label {
     border: 0px;

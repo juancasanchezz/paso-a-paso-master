@@ -15,6 +15,8 @@ const AuthenticationPage = ({ onLogin, history }) => {
   const [noUser, setNoUser] = useState(false);
   const [noPassword, setNoPassword] = useState(false);
   const [correctPassword, setCorrectPassword] = useState(false);
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
 
   const toggleForm = () => {
     setShowRegisterForm(!showRegisterForm);
@@ -29,7 +31,7 @@ const AuthenticationPage = ({ onLogin, history }) => {
       console.log('Response:', response)
 
 
-      const data = response.data;
+      const data = response;
       console.log(data)
 
       if (response.statusText === 'OK') {
@@ -54,24 +56,64 @@ const AuthenticationPage = ({ onLogin, history }) => {
   };
 
 
+
+  const validateEmail = (email) => {
+    const emailPattern = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
+    return emailPattern.test(email)
+  }
+
+  const validatePassword = (pss) => {
+    const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
+    return passwordPattern.test(pss);
+  }
+
+  const handleEmailChange = (e) => {
+    const email = e.target.value;
+    setNewEmail(email);
+    if (!validateEmail(email)) {
+      setEmailError('Introcuce un correo electrónico válido.');
+    } else {
+      setEmailError('')
+    }
+  }
+
+  const handlePssChange = (e) => {
+    const pss = e.target.value;
+    setNewPassword(pss);
+    if (!validatePassword(pss)) {
+      setPasswordError('La contraseña debe tener minimo 8 caracteres, una mayúscula, una minúscula y un número.')
+    } else {
+      setPasswordError('')
+    }
+  }
+
+
   const handleRegister = async () => {
     try {
 
-      const response = await comprobarRegister({
+      const userData = {
         newUsername: newUsername,
         newPassword: newPassword,
         newSurname: newSurname,
         newEmail: newEmail
-      })
-      const data = response.data;
-      console.log(data)
+      }
 
-      /* if (response.statusText === 'OK') {
+      const response = await comprobarRegister(userData);
+      if (response.statusText === 'OK') {
+        console.log(response)
+        const dat = response.config.data;
+        console.log(dat)
         // Usuario registrado exitosamente
-        console.log("Registro exitoso")
+        setTimeout(() => {
+          console.log("Registro exitoso")
+          onLogin();
+          history.push('/');
+        }, 100)
+
       } else {
+        console.log("Error: ", response.data.message)
         setMensajeError(response.data.message);
-      } */
+      }
       // Resto del código para manejar la respuesta del backend
     } catch (error) {
       console.error('Error al registrar usuario:', error);
@@ -114,11 +156,13 @@ const AuthenticationPage = ({ onLogin, history }) => {
           </div>
           <div className={styles.divLabel}>
             <label htmlFor="newEmail">Email:</label>
-            <input type="text" id="newEmail" name='newEmail' value={newEmail} onChange={(e) => setNewEmail(e.target.value)} />
+            <input type="text" id="newEmail" name='newEmail' value={newEmail} onChange={handleEmailChange} />
+            {emailError && <p style={{ color: 'red' }}>{emailError}</p>}
           </div>
           <div className={styles.divLabel}>
             <label htmlFor="newPassword">Nueva Contraseña:</label>
-            <input type="password" id="newPassword" name='newPassword' value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
+            <input type="password" id="newPassword" name='newPassword' value={newPassword} onChange={handlePssChange} />
+            {passwordError && <p style={{ color: 'red' }}>{passwordError}</p>}
           </div>
           <button style={{ width: '100%', padding: '10px', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }} className='btnReg' onClick={handleRegister} >Registrarse</button>
           <p style={{ textAlign: 'center', marginTop: '10px', cursor: 'pointer' }} className='enlaceRegistro' onClick={toggleForm}>¿Ya tienes una cuenta? Inicia sesión aquí</p>
