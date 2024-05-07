@@ -14,3 +14,15 @@ export const comprobarRegister = async (userData) => {
   return await axios.post(`http://localhost/paso_a_paso/register.php`, userData)
 
 }
+
+export const getDatosUser = async () => {
+
+  return await axios.get('http://paso_a_paso/perfil.php');
+
+}
+
+export const postRutas = async (userData) => {
+
+  return await axios.post(`http://localhost/paso_a_paso/addRuta.php`, userData)
+
+}

@@ -8,6 +8,7 @@ const UserProfile = (user, {
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [bio, setBio] = useState('');
   const [avatar, setAvatar] = useState('');
 
@@ -127,19 +128,19 @@ const UserProfile = (user, {
   return (
     <div style={profileStyle}>
       <div style={headerStyle}>
-        <img src={user.user.avatar} alt="Avatar" style={avatarStyle} />
-        <h2 style={nameStyle}>{user.user.name}</h2>
+        <img src={user.avatar} alt="Avatar" style={avatarStyle} />
+        <h2 style={nameStyle}>{user.name}</h2>
         {/* <p style={emailStyle}>{user.user.email}</p> */}
       </div>
       <div style={sectionStyle}>
         <h3 style={{ textDecoration: 'underline 3px rgba(85, 107, 47, 0.7)', textUnderlineOffset: '7px' }}>Información Personal</h3>
-        <p><strong>Nombre:</strong> {user.user.name}</p>
-        <p><strong>Correo electrónico:</strong> {user.user.email}</p>
+        <p><strong>Nombre:</strong> {user.name}</p>
+        <p><strong>Correo electrónico:</strong> {user.email}</p>
         {/* Otras secciones de información personal */}
       </div>
       <div style={sectionStyle}>
         <h3 style={{ textDecoration: 'underline 3px rgba(85, 107, 47, 0.7)', textUnderlineOffset: '7px' }}>Biografía</h3>
-        <p>{user.user.bio}</p>
+        <p>{user.bio}</p>
       </div>
       <div style={{ display: 'flex', justifyContent: 'space-around', marginBottom: '20px' }}>
         <GiBootPrints style={{ width: '127.7px', height: '33px' }} />

@@ -16,19 +16,26 @@ const ListaRutas = () => {
   const [animacionGuardar, setAnimacionGuardar] = useState(false);
   const [animacionMostrar, setAnimacionMostrar] = useState(false);
 
-  useEffect(() => {
-    setHaExpandido(true);
-    getRutas();
-  }, []);
 
   const getRutas = async () => {
     try {
       const response = await fetch('../backend/routes/rutas.json');
-      setRutas(response.data);
+      console.log(response)
+      if (!response.ok) {
+        throw new Error('Error al obtener los datos: ' + response.statusText);
+      }
+      const data = await response.json();
+      console.log(data)
+      setRutas(data);
     } catch (error) {
       console.error('Error al traer los datos:', error);
     }
   };
+
+  useEffect(() => {
+    setHaExpandido(true);
+    getRutas();
+  }, []);
 
   useEffect(() => {
     if (rutasVisibles <= 2) {

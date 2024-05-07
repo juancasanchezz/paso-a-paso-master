@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from '../index.module.css'
+import { postRutas } from '../backend/users/users';
 
 const FormularioNuevaRuta = () => {
   const [ruta, setRuta] = useState({
@@ -7,8 +8,7 @@ const FormularioNuevaRuta = () => {
     descripcion: "",
     ubicacion: "",
     distancia: "",
-    dificultad: "",
-    fotos: [],
+    dificultad: ""
   });
 
   const handleChange = (e) => {
@@ -27,136 +27,136 @@ const FormularioNuevaRuta = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Aquí puedes enviar la información de la ruta al servidor
-    console.log(ruta);
-    // Después de enviar los datos, podrías limpiar el formulario
-    setRuta({
-      titulo: "",
-      descripcion: "",
-      ubicacion: "",
-      distancia: "",
-      dificultad: "",
-      fotos: [],
-    });
+    try {
+      // Realizar la solicitud POST al servidor
+      const response = await postRutas(ruta);
+
+      // Verificar si la solicitud fue exitosa
+      if (response.success) {
+        console.log('Ruta añadida correctamente:', response.message);
+        // Después de enviar los datos, limpiar el formulario
+        setRuta({
+          titulo: "",
+          descripcion: "",
+          ubicacion: "",
+          distancia: "",
+          dificultad: ""
+        });
+      } else {
+        console.error('Error al añadir la ruta:', response.message);
+      }
+    } catch (error) {
+      console.error('Error al añadir la ruta:', error);
+    }
   };
 
   return (
     <div className={styles.nuevaRutaComponent}>
       <div className={styles.formularioNuevaRutaCard}>
-        <form onSubmit={handleSubmit}
-          action='insertarRuta.php'
-          className={styles.form}
-        >
-          <div>
-            <p className={styles.tituloFormulario}>Añadir nueva ruta</p>
-            <div className={styles.filaFormulario}>
-              <div style={{
-                display: 'flex',
-                gap: '10px'
-              }}>
-                <label>
-                  Nombre de la Ruta:
-                </label>
-                <input
-                  id='titulo'
-                  type="text"
-                  name="titulo"
-                  value={ruta.titulo}
-                  onChange={handleChange}
-                />
-
-              </div>
-              <div style={{
-                display: 'flex',
-                gap: '10px'
-              }}>
-                <label>
-                  Descripción:
-                </label>
-                <textarea
-                  id='descripcion'
-                  name="descripcion"
-                  value={ruta.descripcion}
-                  onChange={handleChange}
-                />
-
-              </div>
-            </div >
-            <div className={styles.filaFormulario}>
-              <div style={{
-                display: 'flex',
-                gap: '10px',
-              }}>
-                <label>
-                  Ubicación:
-                </label>
-                <input
-                  id='ubicacion'
-                  type="text"
-                  name="ubicacion"
-                  value={ruta.ubicacion}
-                  onChange={handleChange}
-                />
-
-                <div style={{
-                  display: 'flex',
-                  gap: '10px'
-                }}>
-                  <label>
-                    Kilómetros:
-                  </label>
-                  <input
-                    id='distancia'
-                    type="text"
-                    name="distancia"
-                    value={ruta.distancia}
-                    onChange={handleChange}
-                  />
-
-                </div>
-              </div>
+        <div className={styles.formulario}>
+          <p className={styles.tituloFormulario}>Añadir nueva ruta</p>
+          <div className={styles.filaFormulario}>
+            <div style={{
+              display: 'flex',
+              gap: '10px'
+            }}>
+              <label>
+                Nombre de la Ruta:
+              </label>
+              <input
+                id='titulo'
+                type="text"
+                name="titulo"
+                value={ruta.titulo}
+                onChange={handleChange}
+              />
 
             </div>
-            <div className={styles.filaFormulario}>
+            <div style={{
+              display: 'flex',
+              gap: '10px'
+            }}>
+              <label>
+                Descripción:
+              </label>
+              <textarea
+                id='descripcion'
+                name="descripcion"
+                value={ruta.descripcion}
+                onChange={handleChange}
+              />
+
+            </div>
+          </div >
+          <div className={styles.filaFormulario}>
+            <div style={{
+              display: 'flex',
+              gap: '10px',
+            }}>
+              <label>
+                Ubicación:
+              </label>
+              <input
+                id='ubicacion'
+                type="text"
+                name="ubicacion"
+                value={ruta.ubicacion}
+                onChange={handleChange}
+              />
+
               <div style={{
                 display: 'flex',
                 gap: '10px'
               }}>
                 <label>
-                  Dificultad:
+                  Kilómetros:
                 </label>
                 <input
-                  id='dificultad'
+                  id='distancia'
                   type="text"
-                  name="dificultad"
-                  value={ruta.dificultad}
+                  name="distancia"
+                  value={ruta.distancia}
                   onChange={handleChange}
                 />
-
-              </div>
-              <div style={{
-                display: 'flex',
-                gap: '10px'
-              }}>
-                <label>
-                  Fotos:
-                </label>
-                <input style={{ border: ' 1px solid black' }} type="file" multiple onChange={handleFileChange} />
 
               </div>
             </div>
+
           </div>
-          <button type="submit" style={{
-            padding: '10px',
-            border: '1px solid black',
-            borderRadius: '10px',
-            fontSize: '15px',
-            cursor: 'pointer',
-            margin: '15px'
-          }}>Añadir Ruta</button>
-        </form>
+          <div className={styles.filaFormulario}>
+            <div style={{
+              display: 'flex',
+              gap: '10px'
+            }}>
+              <label>
+                Dificultad:
+              </label>
+              <input
+                id='dificultad'
+                type="text"
+                name="dificultad"
+                value={ruta.dificultad}
+                onChange={handleChange}
+              />
+
+            </div>
+
+          </div>
+        </div>
+        <button type="submit" style={{
+          padding: '10px',
+          border: '1px solid black',
+          borderRadius: '10px',
+          fontSize: '15px',
+          cursor: 'pointer',
+          margin: '15px',
+          marginRight: '15px',
+          width: '100%'
+        }}
+          onClick={handleSubmit}>Añadir Ruta</button>
+
       </div>
     </div>
   );
