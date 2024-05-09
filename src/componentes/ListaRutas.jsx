@@ -127,11 +127,28 @@ const ListaRutas = () => {
                 className={styles.rutaTarjeta}
                 onClick={() => manejarExpansion(ruta.id)}
               >
-                <p style={{ fontSize: "18px" }}>
-                  <b>{ruta.titulo}</b>
-                </p>
-                <p style={{ fontSize: "18px" }}>Dificultad: {ruta.dificultad}</p>
-                <p style={{ fontSize: "18px" }}>Localización: {ruta.ubicacion}</p>
+                <div style={{
+                  width: '50%'
+                }}>
+                  <p style={{
+                    fontSize: "18px", textDecoration: 'underline 3px rgba(85, 107, 47, 0.7)',
+                    textUnderlineOffset: '7px', color: "#5d5959"
+                  }}>
+                    <b>{ruta.titulo}</b>
+                  </p>
+                  <p style={{ fontSize: "15px", marginTop: '15px', color: "#837c7c" }}><b>Ubicación:</b> {ruta.ubicacion}</p>
+                  <p style={{ fontSize: "15px", marginTop: '15px', color: "#837c7c" }}><b>Dificutad:</b> {ruta.dificultad}</p>
+                </div>
+                <div style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'flex-start',
+                  alignItems: 'flex-end',
+                  width: '50%'
+                }}>
+                  <p style={{ fontSize: "15px", marginTop: '15px', color: "#837c7c" }}> {ruta.distancia}km.</p>
+                </div>
+
               </div>
 
               {rutaExpandida === ruta.id && modalAbierto && (
@@ -142,6 +159,12 @@ const ListaRutas = () => {
                       transition: 'all 3s ease-out'
                     }}
                   >
+                    <p style={{
+                      fontSize: "18px", textDecoration: 'underline 3px rgba(85, 107, 47, 0.7)',
+                      textUnderlineOffset: '7px', color: "#5d5959"
+                    }}>
+                      <b>{ruta.titulo}</b>
+                    </p>
                     <p
                       style={{
                         paddingTop: "2rem",
@@ -149,6 +172,22 @@ const ListaRutas = () => {
                       }}
                     >
                       {ruta.descripcion}
+                    </p>
+                    <p
+                      style={{
+                        paddingTop: "2rem",
+                        color: "#837c7c"
+                      }}
+                    >
+                      <b>Dificultad:</b> {ruta.dificultad}
+                    </p>
+                    <p
+                      style={{
+                        paddingTop: "2rem",
+                        color: "#837c7c"
+                      }}
+                    >
+                      <b>Distancia:</b> {ruta.distancia}km.
                     </p>
                     <div
                       style={{

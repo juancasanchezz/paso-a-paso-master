@@ -225,6 +225,7 @@ RGB: 255, 215, 0
   transition: 1.3s ease-out;
   display: flex;
   flex-direction: column;
+  min-width: 43%;
 }
 
 .listaRutasItem.expandida {
@@ -265,12 +266,15 @@ RGB: 255, 215, 0
 }
 
 .rutaTarjeta {
+  display: flex;
+  width: 100%;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
+  min-height: 189.2px;
 }
 
 .rutaTarjeta:hover {

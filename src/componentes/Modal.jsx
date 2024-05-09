@@ -30,7 +30,7 @@ const Modal = ({ children, cerrarModal }) => {
       <div className="modal" onClick={(e) => e.stopPropagation()} style={{
         backgroundColor: '#fff',
         width: '500px',
-        height: '300px',
+        height: '500px',
         borderRadius: '5px',
         padding: '20px',
         position: 'relative',
