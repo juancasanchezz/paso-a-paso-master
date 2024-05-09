@@ -10,6 +10,7 @@ const FormularioNuevaRuta = () => {
     distancia: "",
     dificultad: ""
   });
+  const [mensajeError, setMensajeError] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,10 +33,10 @@ const FormularioNuevaRuta = () => {
     try {
       // Realizar la solicitud POST al servidor
       const response = await postRutas(ruta);
-
+      console.log(response)
       // Verificar si la solicitud fue exitosa
-      if (response.success) {
-        console.log('Ruta añadida correctamente:', response.message);
+      if (response.statusText === 'OK') {
+        console.log('Ruta añadida correctamente:', response.data.message);
         // Después de enviar los datos, limpiar el formulario
         setRuta({
           titulo: "",
@@ -46,9 +47,10 @@ const FormularioNuevaRuta = () => {
         });
       } else {
         console.error('Error al añadir la ruta:', response.message);
+        setMensajeError('Es obligatorio completar todos los campos.');
       }
     } catch (error) {
-      console.error('Error al añadir la ruta:', error);
+      console.error('Error al añadir la ruta 2:', error);
     }
   };
 
@@ -156,8 +158,10 @@ const FormularioNuevaRuta = () => {
           width: '100%'
         }}
           onClick={handleSubmit}>Añadir Ruta</button>
-
       </div>
+      {mensajeError && (
+        <p style={{ color: 'red', textAlign: 'center', padding: '3px' }}>{mensajeError}</p>
+      )}
     </div>
   );
 };

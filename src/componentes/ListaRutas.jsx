@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Modal from "./Modal";
 import styles from '../index.module.css';
-import rutas from '../backend/routes/rutas.json'
 import { GiBootPrints } from "react-icons/gi";
 import { FiBookmark } from "react-icons/fi";
-
+import axios from 'axios';
+import { getRutas } from '../backend/users/users';
 
 const ListaRutas = () => {
   const [rutas, setRutas] = useState([]);
@@ -17,16 +17,15 @@ const ListaRutas = () => {
   const [animacionMostrar, setAnimacionMostrar] = useState(false);
 
 
-  const getRutas = async () => {
+  const getRutasF = async () => {
     try {
-      const response = await fetch('../backend/routes/rutas.json');
+      const response = await getRutas()
+      console.log(response.data);
+      const data = response.data.data;
+      Array.isArray(data)
       console.log(response)
-      if (!response.ok) {
-        throw new Error('Error al obtener los datos: ' + response.statusText);
-      }
-      const data = await response.json();
-      console.log(data)
       setRutas(data);
+      console.log(rutas)
     } catch (error) {
       console.error('Error al traer los datos:', error);
     }
@@ -34,7 +33,7 @@ const ListaRutas = () => {
 
   useEffect(() => {
     setHaExpandido(true);
-    getRutas();
+    getRutasF();
   }, []);
 
   useEffect(() => {
@@ -129,10 +128,10 @@ const ListaRutas = () => {
                 onClick={() => manejarExpansion(ruta.id)}
               >
                 <p style={{ fontSize: "18px" }}>
-                  <b>{ruta.id}</b>
+                  <b>{ruta.titulo}</b>
                 </p>
                 <p style={{ fontSize: "18px" }}>Dificultad: {ruta.dificultad}</p>
-                <p style={{ fontSize: "18px" }}>Localización: {ruta.localizacion}</p>
+                <p style={{ fontSize: "18px" }}>Localización: {ruta.ubicacion}</p>
               </div>
 
               {rutaExpandida === ruta.id && modalAbierto && (

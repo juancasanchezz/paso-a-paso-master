@@ -6,7 +6,7 @@ export const comprobarLogin = async (lazyParams) => {
   const nombre = lazyParams.nombre;
   const password = lazyParams.password
 
-  return await axios.get(`http://localhost/paso_a_paso/login.php?nombre=${nombre}&password=${password}`)
+  return await axios.post(`http://localhost/paso_a_paso/login.php?nombre=${nombre}&password=${password}`)
 }
 
 export const comprobarRegister = async (userData) => {
@@ -21,8 +21,13 @@ export const getDatosUser = async () => {
 
 }
 
-export const postRutas = async (userData) => {
+export const postRutas = async (ruta) => {
 
-  return await axios.post(`http://localhost/paso_a_paso/addRuta.php`, userData)
+  return await axios.post(`http://localhost/paso_a_paso/addRuta.php`, ruta)
 
+}
+
+export const getRutas = async () => {
+
+  return await axios.get(`http://localhost/paso_a_paso/getRutas.php?`)
 }
