@@ -3,7 +3,7 @@ import { comprobarLogin, comprobarRegister } from '../backend/users/users'
 import styles from '../index.module.css'
 import axios from 'axios';
 
-const AuthenticationPage = ({ onLogin, history }) => {
+const AuthenticationPage = ({ onLogin, history, setUsuario }) => {
   const [showRegisterForm, setShowRegisterForm] = useState(false);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -31,7 +31,7 @@ const AuthenticationPage = ({ onLogin, history }) => {
       console.log('Response:', response)
 
 
-      const data = response;
+      const data = response.data;
       console.log(data)
 
       if (response.statusText === 'OK') {
@@ -40,6 +40,12 @@ const AuthenticationPage = ({ onLogin, history }) => {
           onLogin();
           history.push('/');
         }, 100)
+
+        return {
+          IdUsuario: data.IdUsuario,
+
+        }
+
       } else {
         console.log("No debo estar aqui")
         setMensajeError('Usuario o contraseña incorrectos.')

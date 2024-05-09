@@ -10,6 +10,8 @@ import Navbar from './componentes/Navbar';
 
 const App = () => {
 
+  const [usuario, setUsuario] = useState(0);
+
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
     // Recuperar el valor de isLoggedIn de sessionStorage, si está presente
     const storedIsLoggedIn = sessionStorage.getItem('isLoggedIn');
@@ -46,7 +48,7 @@ const App = () => {
       </head>
       <Router>
         <Switch>
-          <Route path="/login" render={(props) => <AuthenticationPage onLogin={() => setIsLoggedIn(true)} history={props.history} />} />
+          <Route path="/login" render={(props) => <AuthenticationPage onLogin={() => setIsLoggedIn(true)} history={props.history} setUsuario={setUsuario} />} />
           <ProtectedRoute path="/" isLoggedIn={isLoggedIn}>
             <Navbar setIsLoggedIn={setIsLoggedIn} />
             <Switch>

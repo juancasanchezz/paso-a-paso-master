@@ -56,29 +56,7 @@ function Navbar ({ setIsLoggedIn }) {
         }
       ]
     },
-    {
-      label: 'Eventos', icon: 'pi pi-fw pi-calendar',
-      items: [
-        {
-          label: 'Editar', icon: 'pi pi-fw pi-pencil',
-          items: [
-            { label: 'Guardar', icon: 'pi pi-fw pi-calendar-plus' },
-            {
-              label: 'Borrar', icon: 'pi pi-fw pi-calendar-minus'
-            }
-          ]
-        },
-        {
-          label: 'Archivo', icon: 'pi pi-fw pi-calendar-times',
-          items: [
-            {
-              label: 'Eliminar',
-              icon: 'pi pi-fw pi-calendar-minus'
-            }
-          ]
-        }
-      ]
-    },
+
     { label: 'Abandonar', to: '/login', command: handleLogOut }
   ];
 
