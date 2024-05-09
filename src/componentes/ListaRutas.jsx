@@ -146,7 +146,7 @@ const ListaRutas = () => {
                   alignItems: 'flex-end',
                   width: '50%'
                 }}>
-                  <p style={{ fontSize: "15px", marginTop: '15px', color: "#837c7c" }}> {ruta.distancia}km.</p>
+                  <p style={{ fontSize: "15px", marginTop: '15px', color: "#837c7c" }}> {ruta.distancia}km</p>
                 </div>
 
               </div>
@@ -187,7 +187,7 @@ const ListaRutas = () => {
                         color: "#837c7c"
                       }}
                     >
-                      <b>Distancia:</b> {ruta.distancia}km.
+                      <b>Distancia:</b> {ruta.distancia}km
                     </p>
                     <div
                       style={{

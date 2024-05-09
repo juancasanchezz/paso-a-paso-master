@@ -43,7 +43,6 @@ const AuthenticationPage = ({ onLogin, history, setUsuario }) => {
 
         return {
           IdUsuario: data.IdUsuario,
-
         }
 
       } else {

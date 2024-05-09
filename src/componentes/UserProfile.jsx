@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { GiBootPrints } from "react-icons/gi";
 import { FiBookmark } from "react-icons/fi";
+import ModalEditarUsuario from './ModalEditarUsuario';
+import EditarUsuario from './EditarUsuario';
 
 const UserProfile = (user, {
   rutasGuardadas,
@@ -11,6 +13,7 @@ const UserProfile = (user, {
   const [password, setPassword] = useState('');
   const [bio, setBio] = useState('');
   const [avatar, setAvatar] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
 
 
@@ -69,55 +72,12 @@ const UserProfile = (user, {
     transition: 'background-color 0.3s',
   };
 
-  const handleEditProfile = async (event) => {
-    event.preventDefault();
+  const handleEditProfileClick = () => {
+    setIsModalOpen(true);
+  };
 
-    // Validar campos del formulario
-    if (!name || !email) {
-      console.error('Los campos nombre y correo son obligatorios');
-      return;
-    }
-
-    // Validar formato de email
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      console.error('El correo electrónico no tiene un formato válido');
-      return;
-    }
-
-    // Validar contraseña
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
-    if (!passwordRegex.test(password)) {
-      console.error('La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número');
-      return;
-    }
-
-    // Envía los datos editados al servidor
-    try {
-      const response = await fetch('/api/update-profile', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ name, email, avatar, bio }),
-      });
-
-      if (response.ok) {
-        // Actualiza los datos del usuario en el estado global o local
-        setName(name);
-        setEmail(email)
-        setAvatar(avatar)
-        setBio(bio)
-        // Mostrar un mensaje de éxito o redirigir a otra página
-        console.log("Los datos han sido actualizados correctamente")
-      } else {
-        // Maneja errores de respuesta del servidor
-        const responseData = await response.json();
-        console.error(responseData.message);
-      }
-    } catch (error) {
-      console.error("Error al actualizar los datos:", error);
-    }
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
   };
 
 
@@ -148,7 +108,13 @@ const UserProfile = (user, {
       </div>
       {/* Otras secciones del perfil */}
       <div style={{ textAlign: 'center' }}>
-        <button style={editButtonStyle} onClick={handleEditProfile}>Editar Perfil</button>
+        <button style={editButtonStyle} onClick={handleEditProfileClick}>Editar Perfil</button>
+        {/* Modal de edición */}
+        {isModalOpen && (
+          <ModalEditarUsuario isOpen={isModalOpen} onClose={handleCloseModal}>
+            <EditarUsuario />
+          </ModalEditarUsuario>
+        )}
       </div>
     </div>
   );
