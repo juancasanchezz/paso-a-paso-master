@@ -136,17 +136,26 @@ const ListaRutas = () => {
                   }}>
                     <b>{ruta.titulo}</b>
                   </p>
-                  <p style={{ fontSize: "15px", marginTop: '15px', color: "#837c7c" }}><b>Ubicación:</b> {ruta.ubicacion}</p>
-                  <p style={{ fontSize: "15px", marginTop: '15px', color: "#837c7c" }}><b>Dificutad:</b> {ruta.dificultad}</p>
+                  <p style={{ fontSize: "13px", marginTop: '15px', color: "#837c7c" }}><b>Ubicación:</b> {ruta.ubicacion}</p>
+                  <p style={{ fontSize: "13px", marginTop: '15px', color: "#837c7c" }}><b>Dificutad:</b> {ruta.dificultad}</p>
+                  <p style={{ fontSize: "17px", marginTop: '15px', color: "#837c7c" }}><b>{ruta.distancia}km</b> </p>
                 </div>
                 <div style={{
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'flex-start',
                   alignItems: 'flex-end',
-                  width: '50%'
+                  width: '50%',
+                  maxHeight: '100%',
+                  overflow: 'hidden',
+                  borderRadius: '10px'
                 }}>
-                  <p style={{ fontSize: "15px", marginTop: '15px', color: "#837c7c" }}> {ruta.distancia}km</p>
+                  <img src={ruta.portada} alt={ruta.titulo} style={{
+                    width: 'auto',
+                    height: '100%',
+                    objectFit: 'cover',
+
+                  }} />
                 </div>
 
               </div>

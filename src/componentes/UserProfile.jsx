@@ -8,15 +8,7 @@ const UserProfile = (user, {
   rutasGuardadas,
   setRutasGuardadas }) => {
 
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [bio, setBio] = useState('');
-  const [avatar, setAvatar] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-
-
 
 
   const profileStyle = {

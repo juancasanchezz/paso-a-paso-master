@@ -28,7 +28,7 @@ const ModalEditarUsuario = ({ isOpen, onClose, children }) => {
       <div onClick={(e) => e.stopPropagation()} style={{
         backgroundColor: '#fff',
         width: '500px',
-        height: '600px',
+        height: '650px',
         borderRadius: '5px',
         padding: '20px',
         position: 'relative',

@@ -9,7 +9,7 @@ const ProfilePage = ({
   rutasGuardadas,
   setRutasGuardadas }) => {
 
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
 
 

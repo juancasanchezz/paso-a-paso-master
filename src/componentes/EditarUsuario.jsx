@@ -118,7 +118,8 @@ const EditarUsuario = ({ userId }) => {
         <button className={styles.guardar} onClick={handleEditProfile}>Guardar</button>
         {mensajeError && (
           <div style={{
-            color: 'red'
+            color: 'red',
+            marginTop: '10px'
           }}>
             <p>{mensajeError}</p>
           </div>

@@ -29,7 +29,7 @@ export const postRutas = async (ruta) => {
 
 export const getRutas = async () => {
 
-  return await axios.get(`http://localhost/paso_a_paso/getRutas.php?`)
+  return await axios.get(`http://localhost/paso_a_paso/getRutas.php`)
 }
 
 export const updateUser = async (usuario) => {
