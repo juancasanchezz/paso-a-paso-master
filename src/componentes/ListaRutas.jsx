@@ -5,6 +5,7 @@ import { GiBootPrints } from "react-icons/gi";
 import { FiBookmark } from "react-icons/fi";
 import axios from 'axios';
 import { getRutas } from '../backend/users/users';
+import BarraBusquedaRuta from './BarraBusquedaRuta';
 
 const ListaRutas = () => {
   const [rutas, setRutas] = useState([]);
@@ -94,27 +95,40 @@ const ListaRutas = () => {
         className={`${styles.rutas} ${rutaExpandida !== null ? styles.listaRutasExpandida : ""
           }`}
       >
-        <div
-          style={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            textAlign: "center",
-          }}
-        >
-          <p
+        <div style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
+          width: "100%",
+          height: "100%",
+        }}>
+          <div
             style={{
-              width: "20rem",
-              textDecoration: "none",
-              fontSize: "30px",
-              marginTop: "10px",
-              color: "black",
-              textDecoration: 'underline 3px rgba(85, 107, 47, 0.7)',
-              textUnderlineOffset: '7px',
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              textAlign: "center",
+              margin: "10px",
             }}
           >
-            Lista de Rutas
-          </p>
+            <p
+              style={{
+                width: "20rem",
+                textDecoration: "none",
+                fontSize: "30px",
+                marginTop: "10px",
+                color: "black",
+                textDecoration: 'underline 3px rgba(85, 107, 47, 0.7)',
+                textUnderlineOffset: '7px',
+              }}
+            >
+              Lista de Rutas
+            </p>
+          </div>
+          <div >
+            <BarraBusquedaRuta />
+          </div>
         </div>
         <ul className={`${styles.listaRutas} ${styles.listaRutasExpandida}`}>
           {rutas.slice(0, rutasVisibles).map((ruta) => (
