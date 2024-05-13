@@ -39,6 +39,21 @@ const AuthenticationPage = ({ onLogin, history, setUsuario }) => {
           console.log("Estoy dentro")
           onLogin();
           history.push('/');
+          // Función para obtener y guardar el userID en el localStorage
+          const obtenerYGuardarUserID = () => {
+            // Aquí deberías implementar la lógica para obtener el ID del usuario
+            const userID = obtenerUserID(); // Por ejemplo, obtienes el ID del usuario desde donde sea que esté disponible en tu aplicación
+
+            // Verificar si se pudo obtener el userID
+            if (userID) {
+              // Guardar el userID en el localStorage
+              localStorage.setItem('userID', userID);
+              console.log('userID guardado en el localStorage:', userID);
+            } else {
+              console.error('No se pudo obtener el userID');
+            }
+          };
+
         }, 100)
 
         return {

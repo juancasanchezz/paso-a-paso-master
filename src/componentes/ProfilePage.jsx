@@ -12,6 +12,29 @@ const ProfilePage = ({
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
 
+  // Suponiendo que tienes el ID del usuario almacenado en una variable llamada userID
+  const userID = obtenerUserID();
+
+  // Guardar el userID en el localStorage
+  localStorage.setItem('IdUsuario', userID);
+
+
+  function obtenerIDUsuario () {
+    // Obtener el ID del usuario almacenado en localStorage
+    const userID = localStorage.getItem('IdUsuario');
+
+    console.log(userID);
+    // Verificar si se encontró un ID de usuario en localStorage
+    if (userID) {
+      // Si se encontró un ID de usuario, devolverlo
+      return userID;
+    } else {
+      // Si no se encontró un ID de usuario, devolver null o algún valor predeterminado según tu lógica
+      return null;
+    }
+  }
+
+
 
   const getDatosUsuario = async () => {
     try {
@@ -27,6 +50,7 @@ const ProfilePage = ({
   }
 
   useEffect(() => {
+    obtenerIDUsuario();
     getDatosUsuario();
   }, [])
 
