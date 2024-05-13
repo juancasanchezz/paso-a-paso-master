@@ -36,3 +36,7 @@ export const updateUser = async (usuario) => {
 
   return await axios.post(`http://localhost/paso_a_paso/updateUser.php`, usuario)
 }
+
+export const searchRutas = async (inputValue) => {
+  return await axios.get(`http://localhost/paso_a_paso/busquedaRutas.php?ubicacion=${inputValue}`);
+}

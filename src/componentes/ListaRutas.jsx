@@ -16,6 +16,7 @@ const ListaRutas = () => {
   const [rutasGuardadas, setRutasGuardadas] = useState([]);
   const [animacionGuardar, setAnimacionGuardar] = useState(false);
   const [animacionMostrar, setAnimacionMostrar] = useState(false);
+  const [rutasFiltradas, setRutasFiltradas] = useState([]);
 
 
   const getRutasF = async () => {
@@ -26,6 +27,7 @@ const ListaRutas = () => {
       Array.isArray(data)
       console.log(response)
       setRutas(data);
+      setRutasFiltradas(data);
       console.log(rutas)
     } catch (error) {
       console.error('Error al traer los datos:', error);
@@ -44,6 +46,12 @@ const ListaRutas = () => {
       setHaExpandido(true);
     }
   }, [rutasVisibles]);
+
+
+  const handleSearchByLocation = (results) => {
+
+    setRutasFiltradas(results);
+  }
 
   const manejarExpansion = (id) => {
     setRutaExpandida((prevId) => (prevId === id ? null : id));
@@ -127,11 +135,11 @@ const ListaRutas = () => {
             </p>
           </div>
           <div >
-            <BarraBusquedaRuta />
+            <BarraBusquedaRuta onSearch={handleSearchByLocation} />
           </div>
         </div>
         <ul className={`${styles.listaRutas} ${styles.listaRutasExpandida}`}>
-          {rutas.slice(0, rutasVisibles).map((ruta) => (
+          {rutasFiltradas.slice(0, rutasVisibles).map((ruta) => (
             <li
               key={ruta.id}
               className={`${styles.listaRutasItem} ${rutaExpandida === ruta.id ? styles.expandida : ""
@@ -251,7 +259,7 @@ const ListaRutas = () => {
           display: "flex",
         }}
       >
-        {rutasVisibles < rutas.length && (
+        {rutasVisibles < rutasFiltradas.length && (
           <button
             style={{
               padding: "0.4rem",
