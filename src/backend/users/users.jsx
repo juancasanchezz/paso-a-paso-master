@@ -15,9 +15,9 @@ export const comprobarRegister = async (userData) => {
 
 }
 
-export const getDatosUser = async () => {
+export const getDatosUser = async (idUser) => {
 
-  return await axios.get('http://paso_a_paso/login.php?');
+  return await axios.get(`http://localhost/paso_a_paso/perfil.php?IdUsuario=${idUser}`);
 
 }
 

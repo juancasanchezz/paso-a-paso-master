@@ -13,7 +13,7 @@ const BarraBusquedaRuta = ({ onSearch }) => {
     try {
       const results = await searchRutas(inputValue);
       const data = results.data
-      console.log(data) // Envia la ubicación al backend para buscar rutas
+      //console.log(data) // Envia la ubicación al backend para buscar rutas
       onSearch(data); // Llama a una función de devolución de llamada para manejar los resultados de la búsqueda
     } catch (error) {
       console.error('Error al buscar rutas:', error);
@@ -31,7 +31,8 @@ const BarraBusquedaRuta = ({ onSearch }) => {
       <input style={{
         width: "80%",
         background: "#dce1e4c2",
-        color: "black",
+        color: "#1c1d1d96",
+        padding: "10px",
         outline: "none",
         border: "none"
       }} type="text" value={location} onChange={handleInputChange} placeholder="Buscar por ubicación" />

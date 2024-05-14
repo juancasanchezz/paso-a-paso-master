@@ -11,6 +11,7 @@ import Navbar from './componentes/Navbar';
 const App = () => {
 
   const [usuario, setUsuario] = useState(0);
+  const [idUser, setIdUser] = useState();
 
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
     // Recuperar el valor de isLoggedIn de sessionStorage, si está presente
@@ -25,6 +26,7 @@ const App = () => {
     sessionStorage.setItem('isLoggedIn', JSON.stringify(isLoggedIn));
   }, [isLoggedIn]);
 
+  console.log(idUser)
 
   return (
     <div className='App'>
@@ -48,7 +50,7 @@ const App = () => {
       </head>
       <Router>
         <Switch>
-          <Route path="/login" render={(props) => <AuthenticationPage onLogin={() => setIsLoggedIn(true)} history={props.history} setUsuario={setUsuario} />} />
+          <Route path="/login" render={(props) => <AuthenticationPage onLogin={() => setIsLoggedIn(true)} history={props.history} setUsuario={setUsuario} setIdUser={setIdUser} idUser={idUser} />} />
           <ProtectedRoute path="/" isLoggedIn={isLoggedIn}>
             <Navbar setIsLoggedIn={setIsLoggedIn} />
             <Switch>
@@ -56,7 +58,7 @@ const App = () => {
               <Route exact path='/home' />
               <Route exact path="/rutas/nueva" component={FormularioNuevaRuta} />
               <Route exact path="/rutas/listado" component={ListaRutas} />
-              <Route exact path="/usuarios/perfil" component={ProfilePage} />
+              <Route exact path="/usuarios/perfil" component={() => <ProfilePage idUser={idUser} />} />
             </Switch>
           </ProtectedRoute>
         </Switch>

@@ -45,10 +45,10 @@ const Modal = ({ children, cerrarModal }) => {
           background: 'none',
           border: 'none',
           cursor: 'pointer',
-          fontSize: '20px',
+          fontSize: '25px',
           color: '#333',
         }}>
-          X
+          &times;
         </button>
         {children}
       </div>

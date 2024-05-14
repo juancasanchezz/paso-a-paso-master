@@ -22,13 +22,13 @@ const ListaRutas = () => {
   const getRutasF = async () => {
     try {
       const response = await getRutas()
-      console.log(response.data);
+      //console.log(response.data);
       const data = response.data.data;
       Array.isArray(data)
-      console.log(response)
+      //console.log(response)
       setRutas(data);
       setRutasFiltradas(data);
-      console.log(rutas)
+      //console.log(rutas)
     } catch (error) {
       console.error('Error al traer los datos:', error);
     }

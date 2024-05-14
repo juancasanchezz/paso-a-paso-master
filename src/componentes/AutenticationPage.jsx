@@ -3,7 +3,7 @@ import { comprobarLogin, comprobarRegister } from '../backend/users/users'
 import styles from '../index.module.css'
 import axios from 'axios';
 
-const AuthenticationPage = ({ onLogin, history, setUsuario }) => {
+const AuthenticationPage = ({ onLogin, history, setIdUser, idUser }) => {
   const [showRegisterForm, setShowRegisterForm] = useState(false);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -33,29 +33,18 @@ const AuthenticationPage = ({ onLogin, history, setUsuario }) => {
 
       const data = response.data;
       console.log(data)
+      const usuarioId = data.IdUsuario;
 
       if (response.statusText === 'OK') {
-        setTimeout(() => {
-          console.log("Estoy dentro")
-          onLogin();
-          history.push('/');
-          // Función para obtener y guardar el userID en el localStorage
-          const obtenerYGuardarUserID = () => {
-            // Aquí deberías implementar la lógica para obtener el ID del usuario
-            const userID = obtenerUserID(); // Por ejemplo, obtienes el ID del usuario desde donde sea que esté disponible en tu aplicación
 
-            // Verificar si se pudo obtener el userID
-            if (userID) {
-              // Guardar el userID en el localStorage
-              localStorage.setItem('userID', userID);
-              console.log('userID guardado en el localStorage:', userID);
-            } else {
-              console.error('No se pudo obtener el userID');
-            }
-          };
+        console.log("Estoy dentro")
+        onLogin();
 
-        }, 100)
+        history.push('/');
 
+
+        sessionStorage.setItem("idUsuario", usuarioId)
+        console.log(idUser)
         return {
           IdUsuario: data.IdUsuario,
         }
@@ -122,13 +111,15 @@ const AuthenticationPage = ({ onLogin, history, setUsuario }) => {
       if (response.statusText === 'OK') {
         console.log(response)
         const dat = response.config.data;
+        const usuarioId = dat.IdUsuario;
         console.log(dat)
         // Usuario registrado exitosamente
-        setTimeout(() => {
-          console.log("Registro exitoso")
-          onLogin();
-          history.push('/');
-        }, 100)
+
+        console.log("Registro exitoso")
+        onLogin();
+        history.push('/');
+        sessionStorage.setItem("idUsuario", usuarioId)
+
 
       } else {
         console.log("Error: ", response.data.message)

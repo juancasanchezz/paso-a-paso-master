@@ -5,64 +5,49 @@ import styles from '../index.module.css';
 import { getDatosUser } from '../backend/users/users';
 
 
-const ProfilePage = ({
-  rutasGuardadas,
-  setRutasGuardadas }) => {
+const ProfilePage = ({ rutasGuardadas, setRutasGuardadas }) => {
 
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
+  console.log(Window.sessionStorage)
+  const idUser = sessionStorage.getItem('idUsuario');
+
 
   // Suponiendo que tienes el ID del usuario almacenado en una variable llamada userID
-  const userID = obtenerUserID();
+  /*   const userID = obtenerUserID();
+  
+    // Guardar el userID en el localStorage
+    localStorage.setItem('IdUsuario', userID); */
 
-  // Guardar el userID en el localStorage
-  localStorage.setItem('IdUsuario', userID);
+  console.log('idUser: ', idUser)
 
-
-  function obtenerIDUsuario () {
-    // Obtener el ID del usuario almacenado en localStorage
-    const userID = localStorage.getItem('IdUsuario');
-
-    console.log(userID);
-    // Verificar si se encontró un ID de usuario en localStorage
-    if (userID) {
-      // Si se encontró un ID de usuario, devolverlo
-      return userID;
-    } else {
-      // Si no se encontró un ID de usuario, devolver null o algún valor predeterminado según tu lógica
-      return null;
-    }
-  }
+  // Obtener los datos del usuario
 
 
 
   const getDatosUsuario = async () => {
     try {
-      const datosUsuario = await getDatosUser();
-      console.log('datos: ', datosUsuario)
-      setUser(datosUsuario);
-
+      const datosUsuario = await getDatosUser(idUser);
+      setUser(datosUsuario.data);
+      console.log('datosUsuario: ', user);
     } catch (error) {
       console.error('Error al obtener los datos del usuario: ', error);
     } finally {
       setLoading(false);
     }
   }
-
   useEffect(() => {
-    obtenerIDUsuario();
-    getDatosUsuario();
+    getDatosUsuario()
   }, [])
+  console.log('datos: ', user);
 
   return (
     <div className={styles.profileCard}>
-      {loading ? (
-        <p>Cargando...</p>
-      ) : (
-        <UserProfile user={user} rutasGuardadas={rutasGuardadas} setRutasGuardadas={setRutasGuardadas} />
-      )}
+
+      <UserProfile user={user} rutasGuardadas={rutasGuardadas} setRutasGuardadas={setRutasGuardadas} />
+
     </div>
-  );
+  )
 };
 
 export default ProfilePage;
