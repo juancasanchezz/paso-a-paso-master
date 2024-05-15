@@ -4,17 +4,12 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 import styles from '../index.module.css'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
-
-
 function Navbar ({ setIsLoggedIn }) {
   const history = useHistory();
-  //console.log(isLoggedIn)
-
   const handleLogOut = () => {
     setIsLoggedIn(false);
     history.push("/login")
   }
-
   const menu = [
     {
       label: 'Rutas', icon: 'pi pi-fw pi-file',

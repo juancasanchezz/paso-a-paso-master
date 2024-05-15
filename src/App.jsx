@@ -6,8 +6,6 @@ import AuthenticationPage from './componentes/AutenticationPage';
 import ProfilePage from './componentes/ProfilePage';
 import Navbar from './componentes/Navbar';
 
-
-
 const App = () => {
 
   const [usuario, setUsuario] = useState(0);

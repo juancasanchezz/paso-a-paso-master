@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import UserProfile from './UserProfile';
-import Photo from '../img/dsc_6103.jpg';
 import styles from '../index.module.css';
 import { getDatosUser } from '../backend/users/users';
 
@@ -12,7 +11,6 @@ const ProfilePage = ({ rutasGuardadas, setRutasGuardadas }) => {
   console.log(Window.sessionStorage)
   const idUser = sessionStorage.getItem('idUsuario');
 
-
   // Suponiendo que tienes el ID del usuario almacenado en una variable llamada userID
   /*   const userID = obtenerUserID();
   
@@ -22,9 +20,6 @@ const ProfilePage = ({ rutasGuardadas, setRutasGuardadas }) => {
   console.log('idUser: ', idUser)
 
   // Obtener los datos del usuario
-
-
-
   const getDatosUsuario = async () => {
     try {
       const datosUsuario = await getDatosUser(idUser);

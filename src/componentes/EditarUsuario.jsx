@@ -5,6 +5,7 @@ import { updateUser } from '../backend/users/users';
 
 const EditarUsuario = ({ userId }) => {
   const [mensajeError, setMensajeError] = useState('');
+  const [mensajeExito, setMensajeExito] = useState('');
   const [usuario, setUsuario] = useState({
     nombre: "",
     apellidos: "",
@@ -13,7 +14,7 @@ const EditarUsuario = ({ userId }) => {
 
   const obtenerUsuario = async () => {
     try {
-      const response = await axios.get(`http://localhost/paso_a_paso/getUsuario.php?id=${userId}`);
+      const response = await axios.get(`http://localhost/paso_a_paso/perfil.php?id=${userId}`);
       const data = response.data;
 
       setUsuario({
@@ -26,7 +27,6 @@ const EditarUsuario = ({ userId }) => {
     }
   };
   useEffect(() => {
-
     obtenerUsuario();
   }, [userId]);
 
@@ -45,11 +45,12 @@ const EditarUsuario = ({ userId }) => {
 
       if (response.statusText === 'OK') {
         console.log('Usuario actualizado exitosamente: ', response.data.message)
+        setMensajeExito('¡Perfil actualizado correctamente!')
         //Limpiamos los datos
         setUsuario({
           nombre: '',
           apellidos: '',
-          bio: '',
+          biografia: '',
         })
       } else {
         console.error('Error al añadir la ruta:', response.message);
@@ -62,9 +63,7 @@ const EditarUsuario = ({ userId }) => {
     }
   }
 
-  useEffect(() => {
-    handleEditProfile()
-  }, [])
+
 
 
   return (
@@ -82,8 +81,7 @@ const EditarUsuario = ({ userId }) => {
           color: "black",
           textDecoration: 'underline 3px rgba(85, 107, 47, 0.7)',
           textUnderlineOffset: '7px',
-        }}
-        >Estás editando tus datos</p>
+        }} >Estás editando tus datos</p>
       </div>
       <div className={styles.campos}>
         <label htmlFor="nombre">Nombre:</label>
@@ -122,6 +120,14 @@ const EditarUsuario = ({ userId }) => {
             marginTop: '10px'
           }}>
             <p>{mensajeError}</p>
+          </div>
+        )}
+        {mensajeExito && (
+          <div style={{
+            color: 'red',
+            marginTop: '10px'
+          }}>
+            <p>{mensajeExito}</p>
           </div>
         )}
       </div>

@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-
 const ModalEditarUsuario = ({ isOpen, onClose, children }) => {
   const handleOverlayClick = (e) => {
     // Verificar si el evento de clic ocurrió dentro del modal
@@ -9,7 +8,6 @@ const ModalEditarUsuario = ({ isOpen, onClose, children }) => {
       onClose();
     }
   };
-
   return (
     <div style={{
       position: 'fixed',
@@ -46,10 +44,9 @@ const ModalEditarUsuario = ({ isOpen, onClose, children }) => {
           color: '#333',
           marginRight: '10px',
           marginTop: '10px'
-        }}>X</button>{children}
+        }}>&times;</button>{children}
       </div>
     </div>
   );
 };
-
 export default ModalEditarUsuario;

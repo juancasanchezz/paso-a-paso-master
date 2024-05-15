@@ -1,17 +1,16 @@
 import React, { useState } from "react";
 import styles from '../index.module.css'
 import { postRutas } from '../backend/users/users';
-
 const FormularioNuevaRuta = () => {
   const [ruta, setRuta] = useState({
     titulo: "",
     descripcion: "",
     ubicacion: "",
     distancia: "",
-    dificultad: ""
+    dificultad: "",
+    portada: ""
   });
   const [mensajeError, setMensajeError] = useState('');
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setRuta((prevRuta) => ({
@@ -19,15 +18,6 @@ const FormularioNuevaRuta = () => {
       [name]: value,
     }));
   };
-
-  const handleFileChange = (e) => {
-    const files = Array.from(e.target.files);
-    setRuta((prevRuta) => ({
-      ...prevRuta,
-      fotos: files,
-    }));
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -43,7 +33,8 @@ const FormularioNuevaRuta = () => {
           descripcion: "",
           ubicacion: "",
           distancia: "",
-          dificultad: ""
+          dificultad: "",
+          portada: ""
         });
       } else {
         console.error('Error al añadir la ruta:', response.message);
@@ -107,23 +98,23 @@ const FormularioNuevaRuta = () => {
                 value={ruta.ubicacion}
                 onChange={handleChange}
               />
+            </div>
+            <div style={{
+              display: 'flex',
+              gap: '10px'
+            }}>
+              <label>
+                Kilómetros:
+              </label>
+              <input
+                id='distancia'
+                type="text"
+                name="distancia"
+                value={ruta.distancia}
+                onChange={handleChange}
+              />
 
-              <div style={{
-                display: 'flex',
-                gap: '10px'
-              }}>
-                <label>
-                  Kilómetros:
-                </label>
-                <input
-                  id='distancia'
-                  type="text"
-                  name="distancia"
-                  value={ruta.distancia}
-                  onChange={handleChange}
-                />
 
-              </div>
             </div>
 
           </div>
@@ -143,6 +134,26 @@ const FormularioNuevaRuta = () => {
                 onChange={handleChange}
               />
 
+            </div>
+
+            <div style={{
+              display: 'flex',
+              gap: '10px'
+            }}>
+              <label>
+                Imagen de portada:
+              </label>
+              <input
+                style={{
+                  width: '200px',
+                }}
+                id='portada'
+                type="text"
+                name="portada"
+                value={ruta.portada}
+                onChange={handleChange}
+                placeholder='Debe ser la url de la imagen.'
+              />
             </div>
 
           </div>

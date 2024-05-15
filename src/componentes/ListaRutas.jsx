@@ -4,7 +4,7 @@ import styles from '../index.module.css';
 import { GiBootPrints } from "react-icons/gi";
 import { FiBookmark } from "react-icons/fi";
 import axios from 'axios';
-import { getRutas } from '../backend/users/users';
+import { getRutas, searchRutas } from '../backend/users/users';
 import BarraBusquedaRuta from './BarraBusquedaRuta';
 
 const ListaRutas = () => {
@@ -21,18 +21,19 @@ const ListaRutas = () => {
 
   const getRutasF = async () => {
     try {
-      const response = await getRutas()
-      //console.log(response.data);
-      const data = response.data.data;
+      const response = await searchRutas("")
+      console.log(response.data);
+      const data = response.data;
       Array.isArray(data)
       //console.log(response)
-      setRutas(data);
       setRutasFiltradas(data);
       //console.log(rutas)
     } catch (error) {
       console.error('Error al traer los datos:', error);
     }
   };
+
+
 
   useEffect(() => {
     setHaExpandido(true);
@@ -54,6 +55,7 @@ const ListaRutas = () => {
   }
 
   const manejarExpansion = (id) => {
+    console.log(id)
     setRutaExpandida((prevId) => (prevId === id ? null : id));
     setModalAbierto(true);
   };
@@ -96,7 +98,7 @@ const ListaRutas = () => {
     setModalAbierto(false);
     setRutaExpandida(null);
   };
-
+  console.log(rutasFiltradas.slice(0, rutasVisibles))
   return (
     <div className={styles.indexRutas}>
       <div
@@ -140,14 +142,15 @@ const ListaRutas = () => {
         </div>
         <ul className={`${styles.listaRutas} ${styles.listaRutasExpandida}`}>
           {rutasFiltradas.slice(0, rutasVisibles).map((ruta) => (
+
             <li
-              key={ruta.id}
+              key={ruta.IdRuta}
               className={`${styles.listaRutasItem} ${rutaExpandida === ruta.id ? styles.expandida : ""
                 }`}
             >
               <div
                 className={styles.rutaTarjeta}
-                onClick={() => manejarExpansion(ruta.id)}
+                onClick={() => manejarExpansion(ruta.IdRuta)}
               >
                 <div style={{
                   width: '50%'
@@ -182,8 +185,9 @@ const ListaRutas = () => {
 
               </div>
 
-              {rutaExpandida === ruta.id && modalAbierto && (
+              {rutaExpandida === (ruta.IdRuta || ruta.id) && modalAbierto && (
                 <>
+                  {console.log(rutaExpandida)}
                   <Modal
                     cerrarModal={cerrarModal}
                     style={{
@@ -220,6 +224,20 @@ const ListaRutas = () => {
                     >
                       <b>Distancia:</b> {ruta.distancia}km
                     </p>
+                    <div style={{
+                      width: '100%',
+                      height: '50%',
+                      marginTop: '16px'
+                    }}>
+
+                      <img src={ruta.portada} alt={ruta.titulo} style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        justifyContent: 'center'
+
+                      }} />
+                    </div>
                     <div
                       style={{
                         display: 'flex',
