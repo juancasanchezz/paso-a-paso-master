@@ -3,12 +3,15 @@ import { GiBootPrints } from "react-icons/gi";
 import { FiBookmark } from "react-icons/fi";
 import ModalEditarUsuario from './ModalEditarUsuario';
 import EditarUsuario from './EditarUsuario';
+import DeleteUserModal from './DeleteUserModal';
+import "primeicons/primeicons.css";
 
 const UserProfile = ({ user }, {
   rutasGuardadas,
   setRutasGuardadas }) => {
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalEditOpen, setIsModalEditOpen] = useState(false);
+  const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
 
   const profileStyle = {
     border: '1px solid #ccc',
@@ -57,11 +60,19 @@ const UserProfile = ({ user }, {
     transition: 'background-color 0.3s',
   };
   const handleEditProfileClick = () => {
-    setIsModalOpen(true);
+    setIsModalEditOpen(true);
   };
   const handleCloseModal = () => {
-    setIsModalOpen(false);
+    setIsModalEditOpen(false);
   };
+
+  const handleDeleteUser = () => {
+    setIsModalDeleteOpen(true);
+  }
+
+  const handleDeleteModal = () => {
+    setIsModalDeleteOpen(false);
+  }
 
   useEffect(() => {
     console.log(user)
@@ -69,6 +80,20 @@ const UserProfile = ({ user }, {
 
   return (
     <div style={profileStyle}>
+      <div style={{ textAlign: 'center', display: 'flex', justifyContent: 'space-between' }}>
+        <i class="pi pi-user-edit" style={{ fontSize: '25px' }} onClick={handleEditProfileClick}></i>
+        <i class="pi pi-user-minus" style={{ fontSize: '25px' }} onClick={handleDeleteUser}></i>
+        {/* Modal de edición */}
+        {isModalEditOpen && (
+          <ModalEditarUsuario isOpen={isModalEditOpen} onClose={handleCloseModal}>
+            <EditarUsuario userId={user.IdUsuario} />
+          </ModalEditarUsuario>
+        )}
+        {isModalDeleteOpen && (
+          <DeleteUserModal userId={user.IdUsuario} onClose={handleDeleteModal} />
+
+        )}
+      </div>
       <div style={headerStyle}>
         <img src={user.avatar} alt="Avatar" style={avatarStyle} />
         <h2 style={nameStyle}>{user.nombre} {user.apellidos}</h2>
@@ -89,15 +114,7 @@ const UserProfile = ({ user }, {
         <FiBookmark style={{ width: '127.7px', height: '33px' }} />
       </div>
       {/* Otras secciones del perfil */}
-      <div style={{ textAlign: 'center' }}>
-        <button style={editButtonStyle} onClick={handleEditProfileClick}>Editar Perfil</button>
-        {/* Modal de edición */}
-        {isModalOpen && (
-          <ModalEditarUsuario isOpen={isModalOpen} onClose={handleCloseModal}>
-            <EditarUsuario userId={user.IdUsuario} />
-          </ModalEditarUsuario>
-        )}
-      </div>
+
     </div>
   );
 };

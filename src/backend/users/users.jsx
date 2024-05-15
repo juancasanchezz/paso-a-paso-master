@@ -15,6 +15,9 @@ export const comprobarRegister = async (userData) => {
 export const getDatosUser = async (idUser) => {
   return await axios.get(`http://localhost/paso_a_paso/perfil.php?IdUsuario=${idUser}`);
 }
+export const deleteUser = async (idUser) => {
+  return await axios.get(`http://localhost/paso_a_paso/borrarUser.php?IdUsuario=${idUser}`);
+}
 
 export const postRutas = async (ruta) => {
   return await axios.post(`http://localhost/paso_a_paso/addRutas.php`, ruta)
