@@ -125,7 +125,7 @@ const ListaRutas = () => {
             <p
               style={{
                 width: "20rem",
-                textDecoration: "none",
+                textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
                 fontSize: "30px",
                 marginTop: "10px",
                 color: "black",
@@ -202,8 +202,8 @@ const ListaRutas = () => {
                     </p>
                     <p
                       style={{
-                        paddingTop: "2rem",
-                        color: "#837c7c"
+                        paddingTop: "1rem",
+                        color: "#837c7c",
                       }}
                     >
                       {ruta.descripcion}
@@ -232,7 +232,7 @@ const ListaRutas = () => {
 
                       <img src={ruta.portada} alt={ruta.titulo} style={{
                         width: '100%',
-                        height: '100%',
+                        height: '300px',
                         objectFit: 'cover',
                         justifyContent: 'center'
 

@@ -73,6 +73,7 @@ code {
   margin-top: 4px;
   color: black;
   text-decoration: underline 3px rgba(85, 107, 47, 0.7);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
   text-underline-offset: 7px
 }
 

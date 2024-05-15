@@ -166,7 +166,7 @@ const FormularioNuevaRuta = () => {
           cursor: 'pointer',
           margin: '15px',
           marginRight: '15px',
-          width: '100%'
+          width: '100%',
         }}
           onClick={handleSubmit}>Añadir Ruta</button>
       </div>

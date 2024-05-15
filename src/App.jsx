@@ -47,21 +47,24 @@ const App = () => {
           integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
           crossorigin=""></script>
       </head>
-      <Router>
-        <Switch>
-          <Route path="/login" render={(props) => <AuthenticationPage onLogin={() => setIsLoggedIn(true)} history={props.history} setUsuario={setUsuario} setIdUser={setIdUser} idUser={idUser} />} />
-          <ProtectedRoute path="/" isLoggedIn={isLoggedIn}>
-            <Navbar setIsLoggedIn={setIsLoggedIn} />
-            <Switch>
-              <Route exact path="/" component={() => <AuthenticationPage onLogin={() => setIsLoggedIn(true)} />} />
-              <Route exact path='/inicio' component={Home} />
-              <Route exact path="/rutas/nueva" component={FormularioNuevaRuta} />
-              <Route exact path="/rutas/listado" component={ListaRutas} />
-              <Route exact path="/usuarios/perfil" component={() => <ProfilePage idUser={idUser} />} />
-            </Switch>
-          </ProtectedRoute>
-        </Switch>
-      </Router>
+      <Navbar setIsLoggedIn={setIsLoggedIn} />
+      <div>
+        <Router>
+          <Switch>
+            <Route path="/login" render={(props) => <AuthenticationPage onLogin={() => setIsLoggedIn(true)} history={props.history} setUsuario={setUsuario} setIdUser={setIdUser} idUser={idUser} />} />
+            <ProtectedRoute path="/" isLoggedIn={isLoggedIn}>
+              <Switch>
+                <Route exact path="/" component={() => <AuthenticationPage onLogin={() => setIsLoggedIn(true)} />} />
+                <Route exact path='/inicio' component={Home} />
+                <Route exact path="/rutas/nueva" component={FormularioNuevaRuta} />
+                <Route exact path="/rutas/listado" component={ListaRutas} />
+                <Route exact path="/usuarios/perfil" component={() => <ProfilePage idUser={idUser} />} />
+              </Switch>
+            </ProtectedRoute>
+          </Switch>
+        </Router>
+      </div>
+
     </div>
   );
 };
