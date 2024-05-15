@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
+import { deleteUser } from '../backend/users/users';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
-const DeleteUserModal = ({ userId, onClose }) => {
+const DeleteUserModal = ({ idUser, onClose }) => {
+  const history = useHistory();
+  console.log(idUser)
 
   const handleDelete = async () => {
     try {
-      const response = await fetch();
-      const data = await response.json();
-      if (data.success) {
+      const response = await deleteUser(idUser);
+      console.log(response)
+      const data = response;
+      if (data.statusText === 'OK') {
         // Eliminación exitosa, puedes redirigir o mostrar un mensaje
         onClose();
+        history.push('/login')
       } else {
         // Error al eliminar, mostrar mensaje de error
         console.error(data.error);

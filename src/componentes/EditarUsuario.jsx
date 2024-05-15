@@ -3,7 +3,7 @@ import axios from 'axios';
 import styles from '../index.module.css'
 import { updateUser } from '../backend/users/users';
 
-const EditarUsuario = ({ userId }) => {
+const EditarUsuario = ({ idUser }) => {
   const [mensajeError, setMensajeError] = useState('');
   const [mensajeExito, setMensajeExito] = useState('');
   const [usuario, setUsuario] = useState({
@@ -12,9 +12,11 @@ const EditarUsuario = ({ userId }) => {
     biografia: ""
   });
 
+  console.log(idUser)
+
   const obtenerUsuario = async () => {
     try {
-      const response = await axios.get(`http://localhost/paso_a_paso/perfil.php?id=${userId}`);
+      const response = await axios.get(`http://localhost/paso_a_paso/perfil.php?id=${idUser}`);
       const data = response.data;
 
       setUsuario({
@@ -28,7 +30,7 @@ const EditarUsuario = ({ userId }) => {
   };
   useEffect(() => {
     obtenerUsuario();
-  }, [userId]);
+  }, [idUser]);
 
   const manejarCambio = (e) => {
     const { name, value } = e.target;

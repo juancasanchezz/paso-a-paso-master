@@ -109,15 +109,16 @@ const AuthenticationPage = ({ onLogin, history, setIdUser, idUser }) => {
 
       const response = await comprobarRegister(userData);
       if (response.statusText === 'OK') {
-        console.log(response)
+        console.log("response:", response)
         const dat = response.config.data;
-        const usuarioId = dat.IdUsuario;
-        console.log(dat)
+        console.log(dat);
+        const usuarioId = response.config.data.newUsername;
+        console.log(usuarioId)
         // Usuario registrado exitosamente
 
         console.log("Registro exitoso")
         onLogin();
-        history.push('/inicio');
+        history.push('/login');
         sessionStorage.setItem("idUsuario", usuarioId)
         return {
           IdUsuario: dat.IdUsuario,

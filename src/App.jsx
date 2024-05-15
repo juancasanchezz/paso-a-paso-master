@@ -47,12 +47,12 @@ const App = () => {
           integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
           crossorigin=""></script>
       </head>
-      <Navbar setIsLoggedIn={setIsLoggedIn} />
       <div>
         <Router>
           <Switch>
             <Route path="/login" render={(props) => <AuthenticationPage onLogin={() => setIsLoggedIn(true)} history={props.history} setUsuario={setUsuario} setIdUser={setIdUser} idUser={idUser} />} />
             <ProtectedRoute path="/" isLoggedIn={isLoggedIn}>
+              <Navbar setIsLoggedIn={setIsLoggedIn} />
               <Switch>
                 <Route exact path="/" component={() => <AuthenticationPage onLogin={() => setIsLoggedIn(true)} />} />
                 <Route exact path='/inicio' component={Home} />

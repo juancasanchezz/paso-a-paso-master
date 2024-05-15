@@ -39,7 +39,7 @@ const ProfilePage = ({ rutasGuardadas, setRutasGuardadas }) => {
   return (
     <div className={styles.profileCard}>
 
-      <UserProfile user={user} rutasGuardadas={rutasGuardadas} setRutasGuardadas={setRutasGuardadas} />
+      <UserProfile idUser={idUser} user={user} rutasGuardadas={rutasGuardadas} setRutasGuardadas={setRutasGuardadas} />
 
     </div>
   )

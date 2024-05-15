@@ -10,30 +10,28 @@ function Navbar ({ setIsLoggedIn }) {
     setIsLoggedIn(false);
     history.push("/login")
   }
+
+  const handleHome = () => {
+    history.push("/inicio")
+  }
   const menu = [
+    { label: 'Inicio', command: handleHome, },
     {
-      label: 'Inicio', icon: 'pi pi-fw pi-pencil',
-      items: [
-        { label: 'Ir a inicio', icon: 'pi pi-fw pi-pencil', to: '/inicio' }
-      ]
-    },
-    {
-      label: 'Rutas', icon: 'pi pi-fw pi-file',
+      label: 'Rutas',
       items: [
         { label: 'Nueva', icon: 'pi pi-fw pi-plus', to: '/rutas/nueva' },
-        { label: 'Listado', icon: 'pi pi-fw pi-trash', to: '/rutas/listado' }
+        { label: 'Listado', icon: 'pi pi-align-justify', to: '/rutas/listado' }
       ]
     },
 
     {
-      label: 'Usuarios', icon: 'pi pi-fw pi-user',
+      label: 'Usuarios',
       items: [
         { label: 'Perfil', icon: 'pi pi-fw pi-user-plus', to: '/usuarios/perfil' },
-        { label: 'Borrar', icon: 'pi pi-fw pi-user-minus', },
       ]
     },
 
-    { label: 'Abandonar', to: '/login', command: handleLogOut }
+    { label: 'Abandonar', command: handleLogOut }
   ];
 
 

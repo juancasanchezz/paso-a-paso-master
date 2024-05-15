@@ -6,7 +6,7 @@ import EditarUsuario from './EditarUsuario';
 import DeleteUserModal from './DeleteUserModal';
 import "primeicons/primeicons.css";
 
-const UserProfile = ({ user }, {
+const UserProfile = ({ user, idUser }, {
   rutasGuardadas,
   setRutasGuardadas }) => {
 
@@ -86,11 +86,11 @@ const UserProfile = ({ user }, {
         {/* Modal de edición */}
         {isModalEditOpen && (
           <ModalEditarUsuario isOpen={isModalEditOpen} onClose={handleCloseModal}>
-            <EditarUsuario userId={user.IdUsuario} />
+            <EditarUsuario idUser={idUser} />
           </ModalEditarUsuario>
         )}
         {isModalDeleteOpen && (
-          <DeleteUserModal userId={user.IdUsuario} onClose={handleDeleteModal} />
+          <DeleteUserModal idUser={idUser} onClose={handleDeleteModal} />
 
         )}
       </div>
