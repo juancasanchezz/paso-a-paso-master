@@ -5,6 +5,7 @@ import ListaRutas from "./componentes/ListaRutas";
 import AuthenticationPage from './componentes/AutenticationPage';
 import ProfilePage from './componentes/ProfilePage';
 import Navbar from './componentes/Navbar';
+import Home from './componentes/Home';
 
 const App = () => {
 
@@ -52,8 +53,8 @@ const App = () => {
           <ProtectedRoute path="/" isLoggedIn={isLoggedIn}>
             <Navbar setIsLoggedIn={setIsLoggedIn} />
             <Switch>
-              <Route exact path="/home" component={() => <AuthenticationPage onLogin={() => setIsLoggedIn(true)} />} />
-              <Route exact path='/home' />
+              <Route exact path="/" component={() => <AuthenticationPage onLogin={() => setIsLoggedIn(true)} />} />
+              <Route exact path='/inicio' component={Home} />
               <Route exact path="/rutas/nueva" component={FormularioNuevaRuta} />
               <Route exact path="/rutas/listado" component={ListaRutas} />
               <Route exact path="/usuarios/perfil" component={() => <ProfilePage idUser={idUser} />} />

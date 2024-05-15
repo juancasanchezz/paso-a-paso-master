@@ -12,43 +12,24 @@ function Navbar ({ setIsLoggedIn }) {
   }
   const menu = [
     {
-      label: 'Rutas', icon: 'pi pi-fw pi-file',
+      label: 'Inicio', icon: 'pi pi-fw pi-pencil',
       items: [
-        { label: 'Nueva', icon: 'pi pi-fw pi-plus', to: '/rutas/nueva' },
-        { label: 'Listado', icon: 'pi pi-fw pi-trash', to: '/rutas/listado' },
-        { separator: true },
-        { label: 'Exportar', icon: 'pi pi-fw pi-external-link' }
+        { label: 'Ir a inicio', icon: 'pi pi-fw pi-pencil', to: '/inicio' }
       ]
     },
     {
-      label: 'Editar', icon: 'pi pi-fw pi-pencil',
+      label: 'Rutas', icon: 'pi pi-fw pi-file',
       items: [
-        { label: 'Izquierda', icon: 'pi pi-fw pi-align-left' },
-        { label: 'Derecha', icon: 'pi pi-fw pi-align-right' },
-        { label: 'Centro', icon: 'pi pi-fw pi-align-center' },
-        { label: 'Justificar', icon: 'pi pi-fw pi-align-justify' },
+        { label: 'Nueva', icon: 'pi pi-fw pi-plus', to: '/rutas/nueva' },
+        { label: 'Listado', icon: 'pi pi-fw pi-trash', to: '/rutas/listado' }
       ]
     },
+
     {
       label: 'Usuarios', icon: 'pi pi-fw pi-user',
       items: [
         { label: 'Perfil', icon: 'pi pi-fw pi-user-plus', to: '/usuarios/perfil' },
         { label: 'Borrar', icon: 'pi pi-fw pi-user-minus', },
-        {
-          label: 'Buscar', icon: 'pi pi-fw pi-users',
-          items: [
-            {
-              label: 'Filtrar', icon: 'pi pi-fw pi-filter',
-              items: [
-                {
-                  label: 'Print',
-                  icon: 'pi pi-fw pi-print'
-                }
-              ]
-            },
-            { icon: 'pi pi-fw pi-bars', label: 'Lista' }
-          ]
-        }
       ]
     },
 

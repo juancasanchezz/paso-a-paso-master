@@ -40,7 +40,7 @@ const AuthenticationPage = ({ onLogin, history, setIdUser, idUser }) => {
         console.log("Estoy dentro")
         onLogin();
 
-        history.push('/');
+        history.push('/inicio');
 
 
         sessionStorage.setItem("idUsuario", usuarioId)
@@ -117,9 +117,11 @@ const AuthenticationPage = ({ onLogin, history, setIdUser, idUser }) => {
 
         console.log("Registro exitoso")
         onLogin();
-        history.push('/');
+        history.push('/inicio');
         sessionStorage.setItem("idUsuario", usuarioId)
-
+        return {
+          IdUsuario: dat.IdUsuario,
+        }
 
       } else {
         console.log("Error: ", response.data.message)
