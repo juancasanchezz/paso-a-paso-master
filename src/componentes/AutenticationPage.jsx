@@ -33,7 +33,7 @@ const AuthenticationPage = ({ onLogin, history, setIdUser, idUser }) => {
       console.log(data)
       const usuarioId = data.IdUsuario;
 
-      if (response.statusText === 'OK') {
+      if (response.status === 200) {
 
         console.log("Estoy dentro")
         onLogin();
