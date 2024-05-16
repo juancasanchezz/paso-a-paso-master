@@ -51,10 +51,7 @@ const FormularioNuevaRuta = () => {
         <div className={styles.formulario}>
           <p className={styles.tituloFormulario}>Añadir nueva ruta</p>
           <div className={styles.filaFormulario}>
-            <div style={{
-              display: 'flex',
-              gap: '10px'
-            }}>
+            <div className={styles.contenedorCampos}>
               <label>
                 Nombre de la Ruta:
               </label>
@@ -67,14 +64,14 @@ const FormularioNuevaRuta = () => {
               />
 
             </div>
-            <div style={{
-              display: 'flex',
-              gap: '10px'
-            }}>
+            <div className={styles.contenedorCampos}>
               <label>
                 Descripción:
               </label>
               <textarea
+                style={{
+
+                }}
                 id='descripcion'
                 name="descripcion"
                 value={ruta.descripcion}
@@ -82,12 +79,7 @@ const FormularioNuevaRuta = () => {
               />
 
             </div>
-          </div >
-          <div className={styles.filaFormulario}>
-            <div style={{
-              display: 'flex',
-              gap: '10px',
-            }}>
+            <div className={styles.contenedorCampos}>
               <label>
                 Ubicación:
               </label>
@@ -99,10 +91,9 @@ const FormularioNuevaRuta = () => {
                 onChange={handleChange}
               />
             </div>
-            <div style={{
-              display: 'flex',
-              gap: '10px'
-            }}>
+          </div >
+          <div className={styles.filaFormulario}>
+            <div className={styles.contenedorCampos}>
               <label>
                 Kilómetros:
               </label>
@@ -113,16 +104,8 @@ const FormularioNuevaRuta = () => {
                 value={ruta.distancia}
                 onChange={handleChange}
               />
-
-
             </div>
-
-          </div>
-          <div className={styles.filaFormulario}>
-            <div style={{
-              display: 'flex',
-              gap: '10px'
-            }}>
+            <div className={styles.contenedorCampos}>
               <label>
                 Dificultad:
               </label>
@@ -133,20 +116,12 @@ const FormularioNuevaRuta = () => {
                 value={ruta.dificultad}
                 onChange={handleChange}
               />
-
             </div>
-
-            <div style={{
-              display: 'flex',
-              gap: '10px'
-            }}>
+            <div className={styles.contenedorCampos}>
               <label>
                 Imagen de portada:
               </label>
               <input
-                style={{
-                  width: '200px',
-                }}
                 id='portada'
                 type="text"
                 name="portada"
@@ -154,6 +129,7 @@ const FormularioNuevaRuta = () => {
                 onChange={handleChange}
                 placeholder='Debe ser la url de la imagen.'
               />
+
             </div>
 
           </div>

@@ -29,8 +29,6 @@ const AuthenticationPage = ({ onLogin, history, setIdUser, idUser }) => {
         password: password, // Utiliza la contraseña ingresada en el campo de entrada
       });
       console.log('Response:', response)
-
-
       const data = response.data;
       console.log(data)
       const usuarioId = data.IdUsuario;
@@ -41,7 +39,6 @@ const AuthenticationPage = ({ onLogin, history, setIdUser, idUser }) => {
         onLogin();
 
         history.push('/inicio');
-
 
         sessionStorage.setItem("idUsuario", usuarioId)
         console.log(idUser)
@@ -110,24 +107,23 @@ const AuthenticationPage = ({ onLogin, history, setIdUser, idUser }) => {
       const response = await comprobarRegister(userData);
       if (response.statusText === 'OK') {
         console.log("response:", response)
-        const dat = response.config.data;
-        console.log(dat);
-        const usuarioId = response.config.data.newUsername;
+        const data = response;
+        console.log(data);
+        const usuarioId = data.data.userId;
         console.log(usuarioId)
         // Usuario registrado exitosamente
 
         console.log("Registro exitoso")
         onLogin();
-        history.push('/login');
+        history.push('/inicio');
         sessionStorage.setItem("idUsuario", usuarioId)
-        return {
-          IdUsuario: dat.IdUsuario,
-        }
+        return { IdUsuario: data.data.userId }
 
       } else {
         console.log("Error: ", response.data.message)
         setMensajeError(response.data.message);
       }
+
       // Resto del código para manejar la respuesta del backend
     } catch (error) {
       console.error('Error al registrar usuario:', error);

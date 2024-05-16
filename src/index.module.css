@@ -87,6 +87,14 @@ code {
   margin-top: 10px;
 }
 
+.contenedorCampos {
+
+  width: 33%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .formulario {
   width: 100%;
 }
@@ -94,13 +102,18 @@ code {
 label {
   padding: 10px;
   border-radius: 10px;
-  background-color: rgb(217, 235, 240);
 
 }
 
-
-input,
 textarea {
+  height: 28px;
+  border-radius: 10px;
+  border: 0px solid black;
+  text-decoration: none;
+}
+
+
+input {
   padding: 6px;
   border-radius: 10px;
   border: 0px solid black;
@@ -181,6 +194,7 @@ button:hover {
     flex-direction: column;
     padding: 10px;
     margin-bottom: 10px;
+    width: 50%;
   }
 
   .guardar {

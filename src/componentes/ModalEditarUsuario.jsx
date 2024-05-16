@@ -21,12 +21,13 @@ const ModalEditarUsuario = ({ isOpen, onClose, children }) => {
       borderRadius: '5px',
       border: '0px red solid',
       backdropFilter: 'blur(5px)',
+      overflow: 'auto'
     }}
       onClick={handleOverlayClick}>
       <div onClick={(e) => e.stopPropagation()} style={{
         backgroundColor: '#fff',
-        width: '500px',
-        height: '650px',
+        width: '70vw',
+        height: '500px',
         borderRadius: '5px',
         padding: '20px',
         position: 'relative',
