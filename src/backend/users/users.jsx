@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios';
 
-const apiUrl = '/paso-a-paso.atwebpages.com/paso_a_paso';
+const apiUrl = 'http:///paso-a-paso.atwebpages.com/paso_a_paso';
 
 export const comprobarLogin = async (lazyParams) => {
   const nombre = lazyParams.nombre;
