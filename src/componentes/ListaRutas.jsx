@@ -187,7 +187,6 @@ const ListaRutas = () => {
 
               {rutaExpandida === (ruta.IdRuta || ruta.id) && modalAbierto && (
                 <>
-                  {console.log(rutaExpandida)}
                   <Modal
                     cerrarModal={cerrarModal}
                     style={{
