@@ -5,6 +5,7 @@ import styles from '../index.module.css'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 function Navbar ({ setIsLoggedIn }) {
+
   const history = useHistory();
   const handleLogOut = () => {
     setIsLoggedIn(false);
@@ -14,6 +15,8 @@ function Navbar ({ setIsLoggedIn }) {
   const handleHome = () => {
     history.push("/inicio")
   }
+
+
   const menu = [
     { label: 'Inicio', command: handleHome, },
     {
@@ -44,26 +47,24 @@ function Navbar ({ setIsLoggedIn }) {
   `
 
   return (
-
-
     <div className={styles.navbarCard}>
-      <Menubar model={menu.map(item => {
-        if (item.items) {
-          return {
-            ...item, items: item.items.map(subItem => {
-              if (subItem.to) {
-                return { ...subItem, url: subItem.to };
-              }
-              return subItem;
-            })
-          };
-        }
-        return item;
-      })} />
+      <Menubar
+        model={menu.map(item => {
+          if (item.items) {
+            return {
+              ...item, items: item.items.map(subItem => {
+                if (subItem.to) {
+                  return { ...subItem, url: subItem.to };
+                }
+                return subItem;
+              })
+            };
+          }
+          return item;
+        })}
+      />
       <style>{css}</style>
     </div>
-
-
   );
 }
 

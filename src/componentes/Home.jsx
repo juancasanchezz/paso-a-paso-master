@@ -78,8 +78,9 @@ const Home = () => {
             }}>
               <img src={Photo} alt=""
                 style={{
-                  width: '250px',
-                  height: '200px',
+                  width: '100%',
+                  height: '100%',
+                  borderRadius: '10px'
                 }} />
             </div>
           </div>

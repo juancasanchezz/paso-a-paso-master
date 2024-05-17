@@ -5,6 +5,7 @@ import ModalEditarUsuario from './ModalEditarUsuario';
 import EditarUsuario from './EditarUsuario';
 import DeleteUserModal from './DeleteUserModal';
 import "primeicons/primeicons.css";
+import styles from '../index.module.css'
 
 const UserProfile = ({ user, idUser }, {
   rutasGuardadas,
@@ -81,8 +82,8 @@ const UserProfile = ({ user, idUser }, {
   return (
     <div style={profileStyle}>
       <div style={{ textAlign: 'center', display: 'flex', justifyContent: 'space-between' }}>
-        <i class="pi pi-user-edit" style={{ fontSize: '25px' }} onClick={handleEditProfileClick}></i>
-        <i class="pi pi-user-minus" style={{ fontSize: '25px' }} onClick={handleDeleteUser}></i>
+        <i class="pi pi-user-edit" style={{ fontSize: '25px' }} onClick={handleEditProfileClick} title='editar usuario'></i>
+        <i class="pi pi-user-minus" style={{ fontSize: '25px' }} onClick={handleDeleteUser} title='eliminar usuario'></i>
         {/* Modal de edición */}
         {isModalEditOpen && (
           <ModalEditarUsuario isOpen={isModalEditOpen} onClose={handleCloseModal}>
@@ -113,7 +114,6 @@ const UserProfile = ({ user, idUser }, {
         <GiBootPrints style={{ width: '127.7px', height: '33px' }} />
         <FiBookmark style={{ width: '127.7px', height: '33px' }} />
       </div>
-      {/* Otras secciones del perfil */}
 
     </div>
   );

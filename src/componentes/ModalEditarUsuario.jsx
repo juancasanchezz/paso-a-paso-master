@@ -28,7 +28,7 @@ const ModalEditarUsuario = ({ isOpen, onClose, children }) => {
         backgroundColor: '#fff',
         width: '70vw',
         height: '500px',
-        borderRadius: '5px',
+        borderRadius: '15px',
         padding: '20px',
         position: 'relative',
         backgroundColor: 'rgb(234, 234, 231)',

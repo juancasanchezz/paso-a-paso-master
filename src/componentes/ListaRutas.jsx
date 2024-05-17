@@ -18,7 +18,6 @@ const ListaRutas = () => {
   const [animacionMostrar, setAnimacionMostrar] = useState(false);
   const [rutasFiltradas, setRutasFiltradas] = useState([]);
 
-
   const getRutasF = async () => {
     try {
       const response = await searchRutas("")
@@ -27,13 +26,11 @@ const ListaRutas = () => {
       Array.isArray(data)
       //console.log(response)
       setRutasFiltradas(data);
-      //console.log(rutas)
+      console.log(rutasFiltradas)
     } catch (error) {
       console.error('Error al traer los datos:', error);
     }
   };
-
-
 
   useEffect(() => {
     setHaExpandido(true);
@@ -153,7 +150,8 @@ const ListaRutas = () => {
                 onClick={() => manejarExpansion(ruta.IdRuta)}
               >
                 <div style={{
-                  width: '50%'
+                  width: '50%',
+                  height: 'auto'
                 }}>
                   <p style={{
                     fontSize: "18px", textDecoration: 'underline 3px rgba(85, 107, 47, 0.7)',
@@ -190,7 +188,8 @@ const ListaRutas = () => {
                   <Modal
                     cerrarModal={cerrarModal}
                     style={{
-                      transition: 'all 3s ease-out'
+                      transition: 'all 3s ease-out',
+                      height: 'auto'
                     }}
                   >
                     <p style={{

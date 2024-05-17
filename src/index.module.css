@@ -163,7 +163,40 @@ button:hover {
 }
 
 .p-menubar.p-component {
-  background-color: rgba(234, 234, 231, 0.8);
+  background-color: rgba(234, 234, 231, 0);
+}
+
+/* Media queries para pantallas pequeñas */
+@media (max-width: 600px) {
+
+
+  .navbarMenu {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background-color: rgba(234, 234, 231, 0.8);
+    position: absolute;
+    top: 60px;
+    /* Ajusta esto según la altura de tu navbar */
+    left: 0;
+    z-index: 1000;
+  }
+
+  .navbarMenu.open {
+    display: flex;
+  }
+
+  .p-menubar-root-list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .p-menubar-root-list .p-menuitem {
+    width: 100%;
+    text-align: center;
+  }
 }
 
 /* Estilo para el Modal de Editar Usuarios */
@@ -202,6 +235,7 @@ button:hover {
     background-color: rgb(141, 174, 141);
     border: 0;
     border-radius: 5px;
+    color: white;
   }
 }
 
@@ -331,28 +365,12 @@ RGB: 255, 215, 0
   padding: 20px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
-  height: 30vh;
+  height: 40vh;
 }
 
 .rutaTarjeta:hover {
   background-color: #f4f4f4;
   transform: translateY(-3px);
-}
-
-/* Media queries para pantallas pequeñas */
-@media only screen and (max-width: 600px) {
-  /* Estilos para pantallas pequeñas */
-
-  .menu {
-    /* Ajusta estilos para la barra de navegación en pantallas pequeñas */
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .listaRutasItem {
-    /* Ajusta estilos para los elementos de la lista de rutas en pantallas pequeñas */
-    padding: 5px;
-  }
 }
 
 /* Estilo para cada elemento de ruta */
@@ -417,6 +435,17 @@ p {
   margin-bottom: 20px;
   margin-top: 40px;
 }
+
+/* Estilos para los iconos de editar usuario */
+
+.icono {
+  font-size: 25px;
+}
+
+.icono:hover {
+  width: 3rem;
+}
+
 
 /* Estilos para el Login y el Register */
 
