@@ -101,7 +101,6 @@ const UserProfile = ({ user, idUser }, {
         )}
         {isModalDeleteOpen && (
           <DeleteUserModal idUser={idUser} onClose={handleDeleteModal} />
-
         )}
       </div>
       <div style={headerStyle}>
@@ -118,12 +117,12 @@ const UserProfile = ({ user, idUser }, {
       <div style={sectionStyle}>
         <h3 style={{ textDecoration: 'underline 3px rgba(85, 107, 47, 0.7)', textUnderlineOffset: '7px' }}>Biografía</h3>
         <p>{user.biografia}</p>
-      </div>
-      <div style={{ display: 'flex', justifyContent: 'space-around', marginBottom: '20px' }}>
-        <GiBootPrints style={{
-          width: '127.7px', height: '33px', transform: animacionMostrar ? 'scale(1.2)' : 'scale(1)', color:
-            '#837c7c'
-        }} onClick={mostrarRutasGuardadas} />
+        <div style={{ display: 'flex', justifyContent: 'space-around', marginBottom: '20px' }}>
+          <GiBootPrints style={{
+            width: '127.7px', height: '33px', transform: animacionMostrar ? 'scale(1.2)' : 'scale(1)', color:
+              '#837c7c'
+          }} onClick={mostrarRutasGuardadas} />
+        </div>
       </div>
 
     </div>
