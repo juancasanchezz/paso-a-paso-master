@@ -67,17 +67,19 @@ const ListaRutas = () => {
   };
 
   const guardarRuta = (ruta) => {
-    const rutaIndex = rutasGuardadas.findIndex((r) => r.id === ruta.id);
+    setRutasGuardadas((prevRutas) => {
+      const rutaIndex = prevRutas.findIndex((r) => r.IdRuta === ruta.IdRuta);
 
-    let nuevasRutasGuardadas;
-    if (rutaIndex !== -1) {
-      nuevasRutasGuardadas = rutasGuardadas.filter((r) => r.id !== ruta.id);
-    } else {
-      nuevasRutasGuardadas = [...rutasGuardadas, ruta];
-    }
-
-    setRutasGuardadas(nuevasRutasGuardadas);
-    localStorage.setItem('rutasGuardadas', JSON.stringify(nuevasRutasGuardadas));
+      if (rutaIndex !== -1) {
+        const nuevasRutasGuardadas = prevRutas.filter((r) => r.IdRuta !== ruta.IdRuta);
+        localStorage.setItem('rutasGuardadas', JSON.stringify(nuevasRutasGuardadas));
+        return nuevasRutasGuardadas;
+      } else {
+        const nuevasRutasGuardadas = [...prevRutas, ruta];
+        localStorage.setItem('rutasGuardadas', JSON.stringify(nuevasRutasGuardadas));
+        return nuevasRutasGuardadas;
+      }
+    });
     setAnimacionGuardar(true);
 
     setTimeout(() => {
