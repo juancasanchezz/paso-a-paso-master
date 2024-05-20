@@ -70,7 +70,7 @@ const ListaRutas = (setRutasGuardadas, rutasGuardadas) => {
       const rutaIndex = prevRutas.findIndex((r) => r.IdRuta === ruta.IdRuta);
 
       if (rutaIndex !== -1) {
-        const nuevasRutasGuardadas = prevRutas.filter((r) => r.IdRuta !== ruta.IdRuta);
+        const nuevasRutasGuardadas = prevRutas.filter((e) => e.IdRuta !== ruta.IdRuta);
         localStorage.setItem('rutasGuardadas', JSON.stringify(nuevasRutasGuardadas));
         return nuevasRutasGuardadas;
       } else {
