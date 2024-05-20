@@ -44,6 +44,7 @@ const DeleteUserModal = ({ idUser, onClose }) => {
       borderRadius: '5px',
       border: '0px red solid',
       backdropFilter: 'blur(15px)',
+      zIndex: '2'
     }}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}
         style={{
