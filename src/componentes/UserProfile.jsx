@@ -7,7 +7,7 @@ import DeleteUserModal from './DeleteUserModal';
 import "primeicons/primeicons.css";
 import styles from '../index.module.css'
 
-const UserProfile = ({ user, idUser, rutasGuardadas }, {
+const UserProfile = ({ user, idUser }, {
   rutasGuardadas,
   setRutasGuardadas }) => {
 
