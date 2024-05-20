@@ -16,6 +16,10 @@ function Navbar ({ setIsLoggedIn }) {
     history.push("/inicio")
   }
 
+  const handleUser = () => {
+    history.push("/usuarios/perfil")
+  }
+
 
   const menu = [
     { label: 'Inicio', command: handleHome, },
@@ -27,12 +31,7 @@ function Navbar ({ setIsLoggedIn }) {
       ]
     },
 
-    {
-      label: 'Usuarios',
-      items: [
-        { label: 'Perfil', icon: 'pi pi-fw pi-user-plus', to: '/usuarios/perfil' },
-      ]
-    },
+    { label: 'Perfil', command: handleUser, },
 
     { label: 'Abandonar', command: handleLogOut }
   ];
