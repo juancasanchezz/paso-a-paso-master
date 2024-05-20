@@ -33,7 +33,7 @@ function Navbar ({ setIsLoggedIn }) {
 
     { label: 'Perfil', command: handleUser, },
 
-    { label: 'Cerrar Sesión', command: handleLogOut }
+    { label: 'Cerrar Sesion', command: handleLogOut }
   ];
 
 
