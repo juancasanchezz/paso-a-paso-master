@@ -121,7 +121,7 @@ const UserProfile = ({ user, idUser }, {
       </div>
       <div style={{ display: 'flex', justifyContent: 'space-around', marginBottom: '20px' }}>
         <GiBootPrints style={{
-          width: '127.7px', height: '33px', transform: animacionGuardar ? 'scale(1.2)' : 'scale(1)', color:
+          width: '127.7px', height: '33px', transform: animacionMostrar ? 'scale(1.2)' : 'scale(1)', color:
             '#837c7c'
         }} onClick={mostrarRutasGuardadas} />
       </div>
