@@ -11,6 +11,7 @@ const App = () => {
 
   const [usuario, setUsuario] = useState(0);
   const [idUser, setIdUser] = useState();
+  const [rutasGuardadas, setRutasGuardadas] = useState([]);
 
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
     // Recuperar el valor de isLoggedIn de sessionStorage, si está presente
@@ -57,8 +58,8 @@ const App = () => {
                 <Route exact path="/" component={() => <AuthenticationPage onLogin={() => setIsLoggedIn(true)} />} />
                 <Route exact path='/inicio' component={Home} />
                 <Route exact path="/rutas/nueva" component={FormularioNuevaRuta} />
-                <Route exact path="/rutas/listado" component={ListaRutas} />
-                <Route exact path="/usuarios/perfil" component={() => <ProfilePage idUser={idUser} />} />
+                <Route exact path="/rutas/listado" component={ListaRutas} setRutasGuardadas={setRutasGuardadas} rutasGuardadas={rutasGuardadas} />
+                <Route exact path="/usuarios/perfil" component={() => <ProfilePage idUser={idUser} rutasGuardadas={rutasGuardadas} setRutasGuardadas={setRutasGuardadas} />} />
               </Switch>
             </ProtectedRoute>
           </Switch>

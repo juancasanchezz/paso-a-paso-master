@@ -7,13 +7,12 @@ import axios from 'axios';
 import { getRutas, searchRutas } from '../backend/users/users';
 import BarraBusquedaRuta from './BarraBusquedaRuta';
 
-const ListaRutas = () => {
+const ListaRutas = (setRutasGuardadas, rutasGuardadas) => {
   const [rutas, setRutas] = useState([]);
   const [rutaExpandida, setRutaExpandida] = useState(null);
   const [modalAbierto, setModalAbierto] = useState(false);
   const [rutasVisibles, setRutasVisibles] = useState(2);
   const [haExpandido, setHaExpandido] = useState(false);
-  const [rutasGuardadas, setRutasGuardadas] = useState([]);
   const [animacionGuardar, setAnimacionGuardar] = useState(false);
   const [animacionMostrar, setAnimacionMostrar] = useState(false);
   const [rutasFiltradas, setRutasFiltradas] = useState([]);
@@ -255,7 +254,7 @@ const ListaRutas = () => {
                         transition: 'all 3s ease-out',
                         marginTop: '20px'
                       }}>
-                      <FiBookmark
+                      <GiBootPrints
                         onClick={() => guardarRuta(ruta)}
                         style={{
                           width: '127.7px',
@@ -264,14 +263,6 @@ const ListaRutas = () => {
                           transform: animacionGuardar ? 'scale(1.2)' : 'scale(1)', color:
                             '#837c7c'
                         }} />
-                      <GiBootPrints
-                        style={{
-                          width: '127.7px',
-                          height: '26px',
-                          color: '#837c7c',
-                          transform: animacionMostrar ? 'scale(1.2)' : 'scale(1)'
-                        }}
-                        onClick={mostrarRutasGuardadas} />
                     </div>
                   </Modal>
                 </>

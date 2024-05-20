@@ -7,12 +7,13 @@ import DeleteUserModal from './DeleteUserModal';
 import "primeicons/primeicons.css";
 import styles from '../index.module.css'
 
-const UserProfile = ({ user, idUser }, {
+const UserProfile = ({ user, idUser, rutasGuardadas }, {
   rutasGuardadas,
   setRutasGuardadas }) => {
 
   const [isModalEditOpen, setIsModalEditOpen] = useState(false);
   const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
+  const [animacionMostrar, setAnimacionMostrar] = useState(false);
 
   const profileStyle = {
     border: '1px solid #ccc',
@@ -75,6 +76,14 @@ const UserProfile = ({ user, idUser }, {
     setIsModalDeleteOpen(false);
   }
 
+  const mostrarRutasGuardadas = () => {
+    setAnimacionMostrar(true);
+    setTimeout(() => {
+      setAnimacionMostrar(false);
+    }, 300);
+    console.log("Rutas guardadas:", rutasGuardadas);
+  };
+
   useEffect(() => {
     console.log(user)
   }, [])
@@ -111,8 +120,10 @@ const UserProfile = ({ user, idUser }, {
         <p>{user.biografia}</p>
       </div>
       <div style={{ display: 'flex', justifyContent: 'space-around', marginBottom: '20px' }}>
-        <GiBootPrints style={{ width: '127.7px', height: '33px' }} />
-        <FiBookmark style={{ width: '127.7px', height: '33px' }} />
+        <GiBootPrints style={{
+          width: '127.7px', height: '33px', transform: animacionGuardar ? 'scale(1.2)' : 'scale(1)', color:
+            '#837c7c'
+        }} onClick={mostrarRutasGuardadas} />
       </div>
 
     </div>
