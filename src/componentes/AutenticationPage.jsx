@@ -105,6 +105,7 @@ const AuthenticationPage = ({ onLogin, history, setIdUser, idUser }) => {
       }
 
       const response = await comprobarRegister(userData);
+      console.log(response)
       if (response.statusText === 'OK') {
         console.log("response:", response)
         const data = response;
