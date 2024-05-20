@@ -35,6 +35,7 @@ const ListaRutas = () => {
   useEffect(() => {
     setHaExpandido(true);
     getRutasF();
+    cargarRutasGuardadas();
   }, []);
 
   useEffect(() => {
@@ -68,19 +69,27 @@ const ListaRutas = () => {
   const guardarRuta = (ruta) => {
     const rutaIndex = rutasGuardadas.findIndex((r) => r.id === ruta.id);
 
+    let nuevasRutasGuardadas;
     if (rutaIndex !== -1) {
-      setRutasGuardadas((prevRutas) =>
-        prevRutas.filter((r) => r.id !== ruta.id)
-      );
-      setAnimacionGuardar(true);
+      nuevasRutasGuardadas = rutasGuardadas.filter((r) => r.id !== ruta.id);
     } else {
-      setRutasGuardadas((prevRutas) => [...prevRutas, ruta]);
-      setAnimacionGuardar(true);
+      nuevasRutasGuardadas = [...rutasGuardadas, ruta];
     }
+
+    setRutasGuardadas(nuevasRutasGuardadas);
+    localStorage.setItem('rutasGuardadas', JSON.stringify(nuevasRutasGuardadas));
+    setAnimacionGuardar(true);
 
     setTimeout(() => {
       setAnimacionGuardar(false);
     }, 300);
+  };
+
+  const cargarRutasGuardadas = () => {
+    const rutasGuardadasLocal = localStorage.getItem('rutasGuardadas');
+    if (rutasGuardadasLocal) {
+      setRutasGuardadas(JSON.parse(rutasGuardadasLocal));
+    }
   };
 
   const mostrarRutasGuardadas = () => {
@@ -95,7 +104,7 @@ const ListaRutas = () => {
     setModalAbierto(false);
     setRutaExpandida(null);
   };
-  console.log(rutasFiltradas.slice(0, rutasVisibles))
+  //console.log(rutasFiltradas.slice(0, rutasVisibles))
   return (
     <div className={styles.indexRutas}>
       <div
