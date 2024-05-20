@@ -1,7 +1,7 @@
 {
   "rewrites": [
     {
-      "source": "/paso-a-paso/:path*",
+      "source": "/paso_a_paso/:path*",
       "destination": "http://paso-a-paso.atwebpages.com/paso_a_paso/:path*"
     }
   ]
