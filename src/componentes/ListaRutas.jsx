@@ -2,12 +2,11 @@ import React, { useState, useEffect } from "react";
 import Modal from "./Modal";
 import styles from '../index.module.css';
 import { GiBootPrints } from "react-icons/gi";
-import { FiBookmark } from "react-icons/fi";
 import axios from 'axios';
-import { getRutas, searchRutas, searchRutasByUbi } from '../backend/users/users';
+import { searchRutasByUbi, searchRutasByDif } from '../backend/users/users';
 import BarraBusquedaRuta from './BarraBusquedaRuta';
 
-const ListaRutas = (setRutasGuardadas, rutasGuardadas) => {
+const ListaRutas = ({ setRutasGuardadas, rutasGuardadas }) => {
   const [rutas, setRutas] = useState([]);
   const [rutaExpandida, setRutaExpandida] = useState(null);
   const [modalAbierto, setModalAbierto] = useState(false);
@@ -16,16 +15,13 @@ const ListaRutas = (setRutasGuardadas, rutasGuardadas) => {
   const [animacionGuardar, setAnimacionGuardar] = useState(false);
   const [animacionMostrar, setAnimacionMostrar] = useState(false);
   const [rutasFiltradas, setRutasFiltradas] = useState([]);
+  const [filterType, setFilterType] = useState('location');
 
   const getRutasF = async () => {
     try {
-      const response = await searchRutasByUbi("")
-      console.log(response.data);
+      const response = await searchRutasByUbi("");
       const data = response.data;
-      Array.isArray(data)
-      //console.log(response)
       setRutasFiltradas(data);
-      console.log(rutasFiltradas)
     } catch (error) {
       console.error('Error al traer los datos:', error);
     }
@@ -45,14 +41,26 @@ const ListaRutas = (setRutasGuardadas, rutasGuardadas) => {
     }
   }, [rutasVisibles]);
 
+  const handleSearch = async (term, type) => {
+    try {
+      let results;
+      if (type === 'location') {
+        results = await searchRutasByUbi(term);
+      } else if (type === 'difficulty') {
+        results = await searchRutasByDif(term);
+      }
+      const data = results.data;
+      setRutasFiltradas(data);
+    } catch (error) {
+      console.error('Error al buscar rutas:', error);
+    }
+  };
 
-  const handleSearchByLocation = (results) => {
-
-    setRutasFiltradas(results);
-  }
+  const handleFilterChange = (type) => {
+    setFilterType(type);
+  };
 
   const manejarExpansion = (id) => {
-    console.log(id)
     setRutaExpandida((prevId) => (prevId === id ? null : id));
     setModalAbierto(true);
   };
@@ -68,7 +76,6 @@ const ListaRutas = (setRutasGuardadas, rutasGuardadas) => {
   const guardarRuta = (ruta) => {
     setRutasGuardadas((prevRutas) => {
       const rutaIndex = prevRutas.findIndex((r) => r.IdRuta === ruta.IdRuta);
-
       if (rutaIndex !== -1) {
         const nuevasRutasGuardadas = prevRutas.filter((r) => r.IdRuta !== ruta.IdRuta);
         localStorage.setItem('rutasGuardadas', JSON.stringify(nuevasRutasGuardadas));
@@ -80,7 +87,6 @@ const ListaRutas = (setRutasGuardadas, rutasGuardadas) => {
       }
     });
     setAnimacionGuardar(true);
-
     setTimeout(() => {
       setAnimacionGuardar(false);
     }, 300);
@@ -105,13 +111,10 @@ const ListaRutas = (setRutasGuardadas, rutasGuardadas) => {
     setModalAbierto(false);
     setRutaExpandida(null);
   };
-  //console.log(rutasFiltradas.slice(0, rutasVisibles))
+
   return (
     <div className={styles.indexRutas}>
-      <div
-        className={`${styles.rutas} ${rutaExpandida !== null ? styles.listaRutasExpandida : ""
-          }`}
-      >
+      <div className={`${styles.rutas} ${rutaExpandida !== null ? styles.listaRutasExpandida : ""}`}>
         <div style={{
           display: "flex",
           justifyContent: "center",
@@ -120,40 +123,34 @@ const ListaRutas = (setRutasGuardadas, rutasGuardadas) => {
           width: "100%",
           height: "100%",
         }}>
-          <div
-            style={{
-              width: "100%",
-              display: "flex",
-              justifyContent: "center",
-              textAlign: "center",
-              margin: "10px",
-            }}
-          >
-            <p
-              style={{
-                width: "20rem",
-                textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
-                fontSize: "30px",
-                marginTop: "10px",
-                color: "black",
-                textDecoration: 'underline 3px rgba(85, 107, 47, 0.7)',
-                textUnderlineOffset: '7px',
-              }}
-            >
+          <div style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            textAlign: "center",
+            margin: "10px",
+          }}>
+            <p style={{
+              width: "20rem",
+              textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
+              fontSize: "30px",
+              marginTop: "10px",
+              color: "black",
+              textDecoration: 'underline 3px rgba(85, 107, 47, 0.7)',
+              textUnderlineOffset: '7px',
+            }}>
               Lista de Rutas
             </p>
           </div>
-          <div >
-            <BarraBusquedaRuta onSearch={handleSearchByLocation} />
+          <div>
+            <BarraBusquedaRuta onSearch={handleSearch} onFilterChange={handleFilterChange} />
           </div>
         </div>
         <ul className={`${styles.listaRutas} ${styles.listaRutasExpandida}`}>
           {rutasFiltradas.slice(0, rutasVisibles).map((ruta) => (
-
             <li
               key={ruta.IdRuta}
-              className={`${styles.listaRutasItem} ${rutaExpandida === ruta.id ? styles.expandida : ""
-                }`}
+              className={`${styles.listaRutasItem} ${rutaExpandida === ruta.id ? styles.expandida : ""}`}
             >
               <div
                 className={styles.rutaTarjeta}
@@ -187,10 +184,8 @@ const ListaRutas = (setRutasGuardadas, rutasGuardadas) => {
                     width: 'auto',
                     height: '100%',
                     objectFit: 'cover',
-
                   }} />
                 </div>
-
               </div>
 
               {rutaExpandida === (ruta.IdRuta || ruta.id) && modalAbierto && (
@@ -237,13 +232,11 @@ const ListaRutas = (setRutasGuardadas, rutasGuardadas) => {
                       height: '50%',
                       marginTop: '16px'
                     }}>
-
                       <img src={ruta.portada} alt={ruta.titulo} style={{
                         width: '100%',
                         height: '300px',
                         objectFit: 'cover',
                         justifyContent: 'center'
-
                       }} />
                     </div>
                     <div
@@ -314,7 +307,7 @@ const ListaRutas = (setRutasGuardadas, rutasGuardadas) => {
           </button>
         )}
       </div>
-    </div >
+    </div>
   );
 };
 

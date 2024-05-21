@@ -1,8 +1,7 @@
 import React, { useState, useCallback } from 'react';
-import { searchRutasByUbi, searchRutasByDif } from '../backend/users/users'; // Importa los dos servicios de backend
 import debounce from 'lodash.debounce';
 
-const BarraBusquedaRuta = ({ onSearch, setRutasFiltradas }) => {
+const BarraBusquedaRuta = ({ onSearch, onFilterChange }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterType, setFilterType] = useState('location'); // 'location' or 'difficulty'
 
@@ -14,23 +13,13 @@ const BarraBusquedaRuta = ({ onSearch, setRutasFiltradas }) => {
 
   const handleFilterTypeChange = (type) => {
     setFilterType(type);
+    onFilterChange(type);  // Notificar al padre sobre el cambio de filtro
     debouncedSearch(searchTerm, type);
   };
 
   const search = async (term, type) => {
-    try {
-      let results;
-      if (type === 'location') {
-        results = await searchRutasByUbi(term);
-      } else if (type === 'difficulty') {
-        results = await searchRutasByDif(term);
-      }
-      const data = results.data;
-      console.log(data); // Envia el término de búsqueda y el tipo de filtro al backend para buscar rutas
-      onSearch(data); // Llama a una función de devolución de llamada para manejar los resultados de la búsqueda
-    } catch (error) {
-      console.error('Error al buscar rutas:', error);
-    }
+    // La lógica de búsqueda se delegará al componente padre
+    onSearch(term, type);
   };
 
   const debouncedSearch = useCallback(debounce((term, type) => {
