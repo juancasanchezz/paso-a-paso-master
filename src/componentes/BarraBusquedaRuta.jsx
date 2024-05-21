@@ -1,34 +1,83 @@
-import React, { useState } from 'react';
-import { searchRutas } from '../backend/users/users';
-// import { searchRoutesByLocation } from '../backend/routes'; // Importa la función para buscar rutas desde tu backend
+import React, { useState, useCallback } from 'react';
+import { searchRutasByUbi, searchRutasByDif } from '../backend/users/users'; // Importa los dos servicios de backend
+import debounce from 'lodash.debounce';
 
 const BarraBusquedaRuta = ({ onSearch, setRutasFiltradas }) => {
-  const [location, setLocation] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filterType, setFilterType] = useState('location'); // 'location' or 'difficulty'
 
-
-
-  const handleInputChange = async (e) => {
+  const handleInputChange = (e) => {
     const inputValue = e.target.value;
-    setLocation(inputValue);
+    setSearchTerm(inputValue);
+    debouncedSearch(inputValue, filterType);
+  };
+
+  const handleFilterTypeChange = (type) => {
+    setFilterType(type);
+    debouncedSearch(searchTerm, type);
+  };
+
+  const search = async (term, type) => {
     try {
-      const results = await searchRutas(inputValue);
-      const data = results.data
-      console.log(data) // Envia la ubicación al backend para buscar rutas
+      let results;
+      if (type === 'location') {
+        results = await searchRutasByUbi(term);
+      } else if (type === 'difficulty') {
+        results = await searchRutasByDif(term);
+      }
+      const data = results.data;
+      console.log(data); // Envia el término de búsqueda y el tipo de filtro al backend para buscar rutas
       onSearch(data); // Llama a una función de devolución de llamada para manejar los resultados de la búsqueda
     } catch (error) {
       console.error('Error al buscar rutas:', error);
     }
   };
 
+  const debouncedSearch = useCallback(debounce((term, type) => {
+    search(term, type);
+  }, 300), []);
 
   return (
     <div style={{
       display: "flex",
-      justifyContent: "space-around",
+      flexDirection: "column",
+      justifyContent: "center",
       alignItems: "center",
       padding: "10px",
       width: "80vh"
     }}>
+      <div style={{
+        display: "flex",
+        justifyContent: "space-around",
+        alignItems: "center",
+        width: "100%",
+        marginBottom: "10px"
+      }}>
+        <button
+          style={{
+            padding: "10px",
+            background: filterType === 'location' ? "#007BFF" : "#dce1e4c2",
+            color: "#fff",
+            border: "none",
+            cursor: "pointer"
+          }}
+          onClick={() => handleFilterTypeChange('location')}
+        >
+          Ubicación
+        </button>
+        <button
+          style={{
+            padding: "10px",
+            background: filterType === 'difficulty' ? "#007BFF" : "#dce1e4c2",
+            color: "#fff",
+            border: "none",
+            cursor: "pointer"
+          }}
+          onClick={() => handleFilterTypeChange('difficulty')}
+        >
+          Dificultad
+        </button>
+      </div>
       <input style={{
         width: "80%",
         background: "#dce1e4c2",
@@ -36,8 +85,12 @@ const BarraBusquedaRuta = ({ onSearch, setRutasFiltradas }) => {
         padding: "10px",
         outline: "none",
         border: "none"
-      }} type="text" value={location} onChange={handleInputChange} placeholder="Buscar por ubicación" />
-    </div >
+      }}
+        type="text"
+        value={searchTerm}
+        onChange={handleInputChange}
+        placeholder={`Buscar por ${filterType === 'location' ? 'ubicación' : 'dificultad'}`} />
+    </div>
   );
 };
 

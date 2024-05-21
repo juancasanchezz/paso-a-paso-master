@@ -28,6 +28,10 @@ export const updateUser = async (usuario) => {
   return await axios.post(`${apiUrl}/updateUser.php`, usuario)
 }
 
-export const searchRutas = async (inputValue) => {
+export const searchRutasByUbi = async (inputValue) => {
   return await axios.get(`${apiUrl}/busquedaRutas.php?ubicacion=${inputValue}`);
+}
+
+export const searchRutasByDif = async (inputValue) => {
+  return await axios.get(`${apiUrl}/busquedaRutasDif.php?ubicacion=${inputValue}`);
 }
