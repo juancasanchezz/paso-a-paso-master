@@ -33,5 +33,5 @@ export const searchRutasByUbi = async (inputValue) => {
 }
 
 export const searchRutasByDif = async (inputValue) => {
-  return await axios.get(`${apiUrl}/busquedaRutasDif.php?ubicacion=${inputValue}`);
+  return await axios.get(`${apiUrl}/busquedaRutasDif.php?dificultad=${inputValue}`);
 }
