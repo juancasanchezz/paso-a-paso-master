@@ -44,11 +44,12 @@ const BarraBusquedaRuta = ({ onSearch, onFilterChange }) => {
       }}>
         <button
           style={{
-            padding: "10px",
-            background: filterType === 'location' ? "#007BFF" : "#dce1e4c2",
+            padding: "10px 15px",
+            background: filterType === 'location' ? "#007BFF" : "#515557c2",
             color: "#fff",
             border: "none",
-            cursor: "pointer"
+            cursor: "pointer",
+            borderRadius: '10px'
           }}
           onClick={() => handleFilterTypeChange('location')}
         >
@@ -56,11 +57,12 @@ const BarraBusquedaRuta = ({ onSearch, onFilterChange }) => {
         </button>
         <button
           style={{
-            padding: "10px",
-            background: filterType === 'dificultad' ? "#007BFF" : "#dce1e4c2",
+            padding: "10px 15px",
+            background: filterType === 'dificultad' ? "#007BFF" : "#515557c2",
             color: "#fff",
             border: "none",
-            cursor: "pointer"
+            cursor: "pointer",
+            borderRadius: '10px'
           }}
           onClick={() => handleFilterTypeChange('dificultad')}
         >
@@ -70,15 +72,15 @@ const BarraBusquedaRuta = ({ onSearch, onFilterChange }) => {
       <input style={{
         width: "80%",
         background: "#dce1e4c2",
-        color: "#1c1d1d96",
+        color: "#1c1d1de5",
         padding: "10px",
         outline: "none",
-        border: "none"
+        border: "none",
       }}
         type="text"
         value={searchTerm}
         onChange={handleInputChange}
-        placeholder={`Buscar por ${filterType === 'location' ? 'ubicación' : 'dificultad'}`} />
+        placeholder={`Filtrar por ${filterType === 'location' ? 'ubicación' : 'dificultad'}`} />
     </div>
   );
 };
