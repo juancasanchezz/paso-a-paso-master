@@ -41,7 +41,7 @@ const FormularioNuevaRuta = () => {
       }
     } catch (error) {
       console.error('Error al añadir la ruta 2:', error);
-      setMensajeError('Es obligatorio rellenar todos los campos')
+      setMensajeError('¡Es obligatorio rellenar todos los campos!')
     }
   };
 
@@ -170,7 +170,12 @@ const FormularioNuevaRuta = () => {
         }}
           onClick={handleSubmit}>Añadir Ruta</button>
         {mensajeError && (
-          <p style={{ color: 'red', textAlign: 'center', padding: '3px' }}>{mensajeError}</p>
+          <div style={{
+            display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', background: '#ffffffad',
+            width: '25vw', height: '8vh', borderRadius: '10px'
+          }}>
+            <p style={{ color: 'red', textAlign: 'center', padding: '3px', fontSize: '18px' }}>{mensajeError}</p>
+          </div>
         )}
       </div>
     </div>
