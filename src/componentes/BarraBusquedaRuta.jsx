@@ -3,7 +3,7 @@ import debounce from 'lodash.debounce';
 
 const BarraBusquedaRuta = ({ onSearch, onFilterChange }) => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [filterType, setFilterType] = useState('location'); // 'location' or 'difficulty'
+  const [filterType, setFilterType] = useState('dificultad'); // 'location' or 'difficulty'
 
   const handleInputChange = (e) => {
     const inputValue = e.target.value;
