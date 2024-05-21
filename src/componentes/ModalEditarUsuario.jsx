@@ -22,7 +22,8 @@ const ModalEditarUsuario = ({ isOpen, onClose, children }) => {
       border: '0px red solid',
       backdropFilter: 'blur(5px)',
       overflow: 'auto',
-      zIndex: '2'
+      zIndex: '2',
+      transition: 'opacity 0.3s ease, transform 0.3s ease'
     }}
       onClick={handleOverlayClick}>
       <div onClick={(e) => e.stopPropagation()} style={{

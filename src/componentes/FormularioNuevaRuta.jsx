@@ -11,6 +11,7 @@ const FormularioNuevaRuta = () => {
     portada: ""
   });
   const [mensajeError, setMensajeError] = useState('');
+  const [mensajeExito, setMensajeExito] = useState('');
   const handleChange = (e) => {
     const { name, value } = e.target;
     setRuta((prevRuta) => ({
@@ -27,6 +28,7 @@ const FormularioNuevaRuta = () => {
       // Verificar si la solicitud fue exitosa
       if (response.statusText === 'OK') {
         console.log('Ruta añadida correctamente:', response.data.message);
+        setMensajeExito('¡Ruta agrgada exitosamente!'); // Mostrar mensaje de éxito
         // Después de enviar los datos, limpiar el formulario
         setRuta({
           titulo: "",
@@ -38,6 +40,7 @@ const FormularioNuevaRuta = () => {
         });
       } else {
         console.error('Error al añadir la ruta:', response.message);
+        setMensajeExito('¡Ruta agrgada exitosamente!');
       }
     } catch (error) {
       console.error('Error al añadir la ruta 2:', error);
@@ -124,7 +127,6 @@ const FormularioNuevaRuta = () => {
               >
                 <option style={{
                   borderRadius: '10px',
-
                 }} value=''>Elija la dificultad</option>
                 <option style={{
                   borderRadius: '10px',
@@ -175,6 +177,14 @@ const FormularioNuevaRuta = () => {
             width: '25vw', height: '8vh', borderRadius: '10px'
           }}>
             <p style={{ color: 'red', textAlign: 'center', padding: '3px', fontSize: '18px' }}>{mensajeError}</p>
+          </div>
+        )}
+        {mensajeExito && (
+          <div style={{
+            display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', background: '#ffffffad',
+            width: '25vw', height: '8vh', borderRadius: '10px'
+          }}>
+            <p style={{ color: 'red', textAlign: 'center', padding: '3px', fontSize: '18px' }}>{mensajeExito}</p>
           </div>
         )}
       </div>
