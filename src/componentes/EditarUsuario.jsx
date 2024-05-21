@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import styles from '../index.module.css'
 import { updateUser, getDatosUser } from '../backend/users/users';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 const EditarUsuario = ({ idUser }) => {
+  const history = useHistory();
   const [mensajeError, setMensajeError] = useState('');
   const [mensajeExito, setMensajeExito] = useState('');
   const [usuario, setUsuario] = useState({
@@ -30,6 +32,7 @@ const EditarUsuario = ({ idUser }) => {
         avatar: data.avatar,
       });
       setDatosOriginales({ ...data })
+
     } catch (error) {
       console.error('Error al obtener los datos del usuario:', error);
     }
@@ -53,7 +56,7 @@ const EditarUsuario = ({ idUser }) => {
       const cambios = Object.keys(usuario).some(key => usuario[key] !== datosOriginales[key]);
       if (!cambios) {
         // Si no hay cambios, no es necesario enviar una solicitud de actualización
-        setMensajeExito('¡No se realizaron cambios!');
+        setMensajeError('¡No se realizaron cambios!');
         return;
       }
 
@@ -71,14 +74,15 @@ const EditarUsuario = ({ idUser }) => {
         })
 
         setDatosOriginales({ ...usuario })
+        history.push('/usuarios/perfil')
       } else {
         console.error('Error al añadir la ruta:', response.message);
-        setMensajeError('Es obligatorio completar todos los campos.');
+        setMensajeExito('¡Perfil actualizado correctamente!')
       }
 
     } catch (error) {
       console.error('Error al actualizar el usuario:', error);
-      setMensajeError('Algo ha fallado')
+      setMensajeError('Es obligatorio completar todos los campos.');
     }
   }
 
