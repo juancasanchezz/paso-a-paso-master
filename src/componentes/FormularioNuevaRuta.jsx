@@ -173,18 +173,18 @@ const FormularioNuevaRuta = () => {
           onClick={handleSubmit}>Añadir Ruta</button>
         {mensajeError && (
           <div style={{
-            display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', background: '#ffffffad',
-            width: '25vw', height: '8vh', borderRadius: '10px'
+            display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', background: 'rgba(255, 255, 255, 0.412)',
+            width: '30vw', height: '5vh', borderRadius: '10px', marginTop: '16px'
           }}>
-            <p style={{ color: 'red', textAlign: 'center', padding: '3px', fontSize: '18px' }}>{mensajeError}</p>
+            <p style={{ color: 'red', textAlign: 'center', padding: '3px', fontSize: '15px', fontWeight: 'bold' }}>{mensajeError}</p>
           </div>
         )}
         {mensajeExito && (
           <div style={{
-            display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', background: '#ffffffad',
-            width: '25vw', height: '8vh', borderRadius: '10px'
+            display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', background: 'rgba(255, 255, 255, 0.412)',
+            width: '30vw', height: '5vh', borderRadius: '10px', marginTop: '16px'
           }}>
-            <p style={{ color: 'red', textAlign: 'center', padding: '3px', fontSize: '18px' }}>{mensajeExito}</p>
+            <p style={{ color: 'red', textAlign: 'center', padding: '3px', fontSize: '15px', fontWeight: 'bold' }}>{mensajeExito}</p>
           </div>
         )}
       </div>
