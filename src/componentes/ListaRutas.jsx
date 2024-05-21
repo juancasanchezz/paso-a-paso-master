@@ -46,9 +46,10 @@ const ListaRutas = ({ setRutasGuardadas, rutasGuardadas }) => {
       let results;
       if (type === 'location') {
         results = await searchRutasByUbi(term);
-      } else if (type === 'difficulty') {
+      } else if (type === 'dificultad') {
         results = await searchRutasByDif(term);
       }
+      console.log(results)
       const data = results.data;
       setRutasFiltradas(data);
     } catch (error) {

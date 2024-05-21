@@ -57,12 +57,12 @@ const BarraBusquedaRuta = ({ onSearch, onFilterChange }) => {
         <button
           style={{
             padding: "10px",
-            background: filterType === 'difficulty' ? "#007BFF" : "#dce1e4c2",
+            background: filterType === 'dificultad' ? "#007BFF" : "#dce1e4c2",
             color: "#fff",
             border: "none",
             cursor: "pointer"
           }}
-          onClick={() => handleFilterTypeChange('difficulty')}
+          onClick={() => handleFilterTypeChange('dificultad')}
         >
           Dificultad
         </button>
