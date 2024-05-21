@@ -125,7 +125,7 @@ const FormularioNuevaRuta = () => {
                 <option style={{
                   borderRadius: '10px',
 
-                }} value=''></option>
+                }} value=''>Elija la dificultad</option>
                 <option style={{
                   borderRadius: '10px',
 
