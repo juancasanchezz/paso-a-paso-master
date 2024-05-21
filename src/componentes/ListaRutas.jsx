@@ -4,7 +4,7 @@ import styles from '../index.module.css';
 import { GiBootPrints } from "react-icons/gi";
 import { FiBookmark } from "react-icons/fi";
 import axios from 'axios';
-import { getRutas, searchRutas } from '../backend/users/users';
+import { getRutas, searchRutas, searchRutasByUbi } from '../backend/users/users';
 import BarraBusquedaRuta from './BarraBusquedaRuta';
 
 const ListaRutas = (setRutasGuardadas, rutasGuardadas) => {
@@ -19,7 +19,7 @@ const ListaRutas = (setRutasGuardadas, rutasGuardadas) => {
 
   const getRutasF = async () => {
     try {
-      const response = await searchRutas("")
+      const response = await searchRutasByUbi("")
       console.log(response.data);
       const data = response.data;
       Array.isArray(data)
