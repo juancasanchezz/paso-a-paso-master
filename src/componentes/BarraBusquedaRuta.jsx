@@ -3,7 +3,7 @@ import debounce from 'lodash.debounce';
 
 const BarraBusquedaRuta = ({ onSearch, onFilterChange }) => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [filterType, setFilterType] = useState('dificultad'); // 'location' or 'difficulty'
+  const [filterType, setFilterType] = useState('ubicacion'); // 'location' or 'difficulty'
 
   const handleInputChange = (e) => {
     const inputValue = e.target.value;
@@ -45,13 +45,13 @@ const BarraBusquedaRuta = ({ onSearch, onFilterChange }) => {
         <button
           style={{
             padding: "10px 15px",
-            background: filterType === 'location' ? "#007BFF" : "#515557c2",
+            background: filterType === 'ubicacion' ? "#007BFF" : "#515557c2",
             color: "#fff",
             border: "none",
             cursor: "pointer",
             borderRadius: '10px'
           }}
-          onClick={() => handleFilterTypeChange('location')}
+          onClick={() => handleFilterTypeChange('ubicacion')}
         >
           Ubicación
         </button>
@@ -80,7 +80,7 @@ const BarraBusquedaRuta = ({ onSearch, onFilterChange }) => {
         type="text"
         value={searchTerm}
         onChange={handleInputChange}
-        placeholder={`Filtrar por ${filterType === 'location' ? 'ubicación' : 'dificultad'}`} />
+        placeholder={`Filtrar por ${filterType === 'ubicacion' ? 'ubicacion' : 'dificultad'}`} />
     </div>
   );
 };

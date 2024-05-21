@@ -44,7 +44,7 @@ const ListaRutas = ({ setRutasGuardadas, rutasGuardadas }) => {
   const handleSearch = async (term, type) => {
     try {
       let results;
-      if (type === 'location') {
+      if (type === 'ubicacion') {
         results = await searchRutasByUbi(term);
       } else if (type === 'dificultad') {
         results = await searchRutasByDif(term);
@@ -158,7 +158,7 @@ const ListaRutas = ({ setRutasGuardadas, rutasGuardadas }) => {
                 onClick={() => manejarExpansion(ruta.IdRuta)}
               >
                 <div style={{
-                  width: '50%',
+                  width: '100%',
                   height: 'auto'
                 }}>
                   <p style={{
@@ -171,7 +171,7 @@ const ListaRutas = ({ setRutasGuardadas, rutasGuardadas }) => {
                   <p style={{ fontSize: "13px", marginTop: '15px', color: "#837c7c" }}><b>Dificutad:</b> {ruta.dificultad}</p>
                   <p style={{ fontSize: "17px", marginTop: '15px', color: "#837c7c" }}><b>{ruta.distancia}km</b> </p>
                 </div>
-                <div style={{
+                {/* <div style={{
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'flex-start',
@@ -186,7 +186,7 @@ const ListaRutas = ({ setRutasGuardadas, rutasGuardadas }) => {
                     height: '100%',
                     objectFit: 'cover',
                   }} />
-                </div>
+                </div> */}
               </div>
 
               {rutaExpandida === (ruta.IdRuta || ruta.id) && modalAbierto && (

@@ -38,10 +38,10 @@ const FormularioNuevaRuta = () => {
         });
       } else {
         console.error('Error al añadir la ruta:', response.message);
-        setMensajeError('Es obligatorio completar todos los campos.');
       }
     } catch (error) {
       console.error('Error al añadir la ruta 2:', error);
+      setMensajeError('Es obligatorio rellenar todos los campos')
     }
   };
 
@@ -109,13 +109,37 @@ const FormularioNuevaRuta = () => {
               <label>
                 Dificultad:
               </label>
-              <input
+              <select
                 id='dificultad'
                 type="text"
                 name="dificultad"
                 value={ruta.dificultad}
                 onChange={handleChange}
-              />
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  borderRadius: '10px',
+                  border: 'none',
+                }}
+              >
+                <option style={{
+                  borderRadius: '10px',
+
+                }} value=''></option>
+                <option style={{
+                  borderRadius: '10px',
+
+                }} value="baja">Baja</option>
+                <option style={{
+                  borderRadius: '10px',
+
+                }} value="Media">Media</option>
+                <option style={{
+                  borderRadius: '10px',
+
+                }} value="Alta">Alta</option>
+
+              </select>
             </div>
             <div className={styles.contenedorCampos}>
               <label>
@@ -145,10 +169,10 @@ const FormularioNuevaRuta = () => {
           width: '100%',
         }}
           onClick={handleSubmit}>Añadir Ruta</button>
+        {mensajeError && (
+          <p style={{ color: 'red', textAlign: 'center', padding: '3px' }}>{mensajeError}</p>
+        )}
       </div>
-      {mensajeError && (
-        <p style={{ color: 'red', textAlign: 'center', padding: '3px' }}>{mensajeError}</p>
-      )}
     </div>
   );
 };

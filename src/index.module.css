@@ -365,7 +365,7 @@ RGB: 255, 215, 0
   padding: 20px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
-  height: 40vh;
+  height: 23vh;
 }
 
 .rutaTarjeta:hover {
