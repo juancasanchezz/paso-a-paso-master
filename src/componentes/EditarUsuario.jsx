@@ -3,11 +3,12 @@ import axios from 'axios';
 import styles from '../index.module.css'
 import { updateUser, getDatosUser } from '../backend/users/users';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import Loading from './Loading';
 
-const EditarUsuario = ({ idUser }) => {
-  const history = useHistory();
+const EditarUsuario = ({ idUser, onClose }) => {
   const [mensajeError, setMensajeError] = useState('');
   const [mensajeExito, setMensajeExito] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const [usuario, setUsuario] = useState({
     nombre: "",
     apellidos: "",
@@ -18,6 +19,7 @@ const EditarUsuario = ({ idUser }) => {
   console.log(idUser)
 
   const obtenerUsuario = async () => {
+    setIsLoading(true);
     try {
       const response = await getDatosUser(idUser);
       const data = response.data;
@@ -32,9 +34,10 @@ const EditarUsuario = ({ idUser }) => {
         avatar: data.avatar,
       });
       setDatosOriginales({ ...data })
-
     } catch (error) {
       console.error('Error al obtener los datos del usuario:', error);
+    } finally {
+      setIsLoading(false);
     }
   };
   useEffect(() => {
@@ -50,8 +53,8 @@ const EditarUsuario = ({ idUser }) => {
   };
 
   const handleEditProfile = async () => {
+    setIsLoading(true)
     try {
-
       // Verificar si se realizaron cambios en los datos
       const cambios = Object.keys(usuario).some(key => usuario[key] !== datosOriginales[key]);
       if (!cambios) {
@@ -74,108 +77,117 @@ const EditarUsuario = ({ idUser }) => {
         })
 
         setDatosOriginales({ ...usuario })
-        history.push('/usuarios/perfil')
       } else {
         console.error('Error al añadir la ruta:', response.message);
         setMensajeExito('¡Perfil actualizado correctamente!')
+        setTimeout(() => {
+          onClose()
+        }, 1000);
       }
 
     } catch (error) {
       console.error('Error al actualizar el usuario:', error);
       setMensajeError('Es obligatorio completar todos los campos.');
+    } finally {
+      setIsLoading(false)
     }
   }
 
-
-
-
   return (
     <div className={styles.editarUser}>
-      <div style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}>
-        <p style={{
-          width: "20rem",
-          textDecoration: "none",
-          fontSize: "28px",
-          marginBottom: "30px",
-          color: "black",
-          textDecoration: 'underline 3px rgba(85, 107, 47, 0.7)',
-          textUnderlineOffset: '7px',
-        }} >Estás editando tus datos</p>
-      </div>
-      <div style={{
-        display: 'flex',
-        flexDirection: 'row',
-        width: '100%'
-      }}>
-        <div className={styles.campos}>
-          <label htmlFor="nombre">Nombre:</label>
-          <input
-            type="text"
-            id="nombre"
-            name="nombre"
-            value={usuario.nombre}
-            onChange={manejarCambio}
-          />
+      {isLoading ? (
+        <div className={styles.editarUser}>
+          <Loading />
         </div>
-        <div className={styles.campos}>
-          <label htmlFor="apellidos">Apellidos:</label>
-          <input
-            type="text"
-            id="apellidos"
-            name="apellidos"
-            value={usuario.apellidos}
-            onChange={manejarCambio}
-          />
-        </div>
-      </div>
-      <div style={{
-        display: 'flex',
-        flexDirection: 'row',
-        width: '100%'
-      }}>
-        <div className={styles.campos}>
-          <label htmlFor="biografia">Biografía:</label>
-          <textarea
-            id="biografia"
-            name="biografia"
-            value={usuario.biografia}
-            onChange={manejarCambio}
-          />
-        </div>
-        <div className={styles.campos}>
-          <label htmlFor="avatar">Foto de perfil:</label>
-          <input
-            id="avatar"
-            name="avatar"
-            value={usuario.avatar}
-            onChange={manejarCambio}
-            placeholder='Debe ser la url de la imagen'
-          />
-        </div>
-      </div>
-      <div>
-        <button className={styles.guardar} onClick={handleEditProfile}>Guardar</button>
-        {mensajeError && (
+      ) : (
+        <>
           <div style={{
-            color: 'red',
-            marginTop: '10px'
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
           }}>
-            <p>{mensajeError}</p>
+            <p style={{
+              width: "20rem",
+              textDecoration: "none",
+              fontSize: "28px",
+              marginBottom: "30px",
+              color: "black",
+              textDecoration: 'underline 3px rgba(85, 107, 47, 0.7)',
+              textUnderlineOffset: '7px',
+            }} >Estás editando tus datos</p>
           </div>
-        )}
-        {mensajeExito && (
           <div style={{
-            color: 'red',
-            marginTop: '10px'
+            display: 'flex',
+            flexDirection: 'row',
+            width: '100%'
           }}>
-            <p>{mensajeExito}</p>
+            <div className={styles.campos}>
+              <label htmlFor="nombre">Nombre:</label>
+              <input
+                type="text"
+                id="nombre"
+                name="nombre"
+                value={usuario.nombre}
+                onChange={manejarCambio}
+              />
+            </div>
+            <div className={styles.campos}>
+              <label htmlFor="apellidos">Apellidos:</label>
+              <input
+                type="text"
+                id="apellidos"
+                name="apellidos"
+                value={usuario.apellidos}
+                onChange={manejarCambio}
+              />
+            </div>
           </div>
-        )}
-      </div>
+          <div style={{
+            display: 'flex',
+            flexDirection: 'row',
+            width: '100%'
+          }}>
+            <div className={styles.campos}>
+              <label htmlFor="biografia">Biografía:</label>
+              <textarea
+                id="biografia"
+                name="biografia"
+                value={usuario.biografia}
+                onChange={manejarCambio}
+              />
+            </div>
+            <div className={styles.campos}>
+              <label htmlFor="avatar">Foto de perfil:</label>
+              <input
+                id="avatar"
+                name="avatar"
+                value={usuario.avatar}
+                onChange={manejarCambio}
+                placeholder='Debe ser la url de la imagen'
+              />
+            </div>
+          </div>
+          <div>
+            <button className={styles.guardar} onClick={handleEditProfile}>Guardar</button>
+            {mensajeError && (
+              <div style={{
+                color: 'red',
+                marginTop: '10px'
+              }}>
+                <p>{mensajeError}</p>
+              </div>
+            )}
+            {mensajeExito && (
+              <div style={{
+                color: 'red',
+                marginTop: '10px'
+              }}>
+                <p>{mensajeExito}</p>
+              </div>
+            )}
+          </div>
+        </>
+      )}
     </div>
   );
 };

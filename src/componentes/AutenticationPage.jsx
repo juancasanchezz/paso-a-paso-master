@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { comprobarLogin, comprobarRegister } from '../backend/users/users'
 import styles from '../index.module.css'
 import axios from 'axios';
+import Loading from './Loading';
 
 const AuthenticationPage = ({ onLogin, history, setIdUser, idUser }) => {
   const [showRegisterForm, setShowRegisterForm] = useState(false);
@@ -17,12 +18,15 @@ const AuthenticationPage = ({ onLogin, history, setIdUser, idUser }) => {
   const [correctPassword, setCorrectPassword] = useState(false);
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  const [isLoadingR, setIsLoadingR] = useState(false)
+  const [isLoadingL, setIsLoadingL] = useState(false)
 
   const toggleForm = () => {
     setShowRegisterForm(!showRegisterForm);
   };
 
   const handleLogin = async () => {
+    setIsLoadingL(true)
     try {
       const response = await comprobarLogin({
         nombre: username,  // Utiliza el nombre de usuario ingresado en el campo de entrada
@@ -32,7 +36,6 @@ const AuthenticationPage = ({ onLogin, history, setIdUser, idUser }) => {
       const data = response.data;
       console.log(data)
       const usuarioId = data.IdUsuario;
-
       if (response.status === 200) {
 
         console.log("Estoy dentro")
@@ -58,6 +61,8 @@ const AuthenticationPage = ({ onLogin, history, setIdUser, idUser }) => {
     } catch (error) {
       console.error('Error al iniciar sesión:', error);
       setMensajeError('Usuario o contraseña incorrectos.')
+    } finally {
+      setIsLoadingL(false)
     }
   };
 
@@ -95,6 +100,7 @@ const AuthenticationPage = ({ onLogin, history, setIdUser, idUser }) => {
 
 
   const handleRegister = async () => {
+    setIsLoadingR(true)
     try {
 
       const userData = {
@@ -130,6 +136,8 @@ const AuthenticationPage = ({ onLogin, history, setIdUser, idUser }) => {
       console.error('Error al registrar usuario:', error);
       setMensajeError('Error al registrar usuario. Por favor, inténtalo de nuevo más tarde.');
       // Resto del código para manejar el error
+    } finally {
+      setIsLoadingR(false)
     }
   };
 
@@ -153,58 +161,75 @@ const AuthenticationPage = ({ onLogin, history, setIdUser, idUser }) => {
 
   return (
     <div className={styles.autenticationCard}>
+
       {!showRegisterForm ? (
         <div className={styles.registerCard}>
+          {isLoadingR ? (
+            <div>
 
-          <h2 >Registrarse</h2>
-          <div className={styles.divLabel}>
-            <label htmlFor="newUsername">Nombre de usuario:</label>
-            <input type="text" id="newUsername" name='newUsername' value={newUsername} onChange={(e) => setNewUsername(e.target.value)} />
-          </div>
-          <div className={styles.divLabel}>
-            <label htmlFor="newSurname">Apellidos:</label>
-            <input type="text" id="newSurname" name='newSurname' value={newSurname} onChange={(e) => setNewSurname(e.target.value)} />
-          </div>
-          <div className={styles.divLabel}>
-            <label htmlFor="newEmail">Email:</label>
-            <input type="text" id="newEmail" name='newEmail' value={newEmail} onChange={handleEmailChange} />
-            {emailError && <p style={{ color: 'red' }}>{emailError}</p>}
-          </div>
-          <div className={styles.divLabel}>
-            <label htmlFor="newPassword">Nueva Contraseña:</label>
-            <input type="password" id="newPassword" name='newPassword' value={newPassword} onChange={handlePssChange} />
-            {passwordError && <p style={{ color: 'red' }}>{passwordError}</p>}
-          </div>
-          <button style={{ width: '100%', padding: '10px', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }} className='btnReg' onClick={handleRegister} >Registrarse</button>
-          <p style={{ textAlign: 'center', marginTop: '10px', cursor: 'pointer' }} className='enlaceRegistro' onClick={toggleForm}>¿Ya tienes una cuenta? Inicia sesión aquí</p>
-          {mensajeError && (
+              <Loading />
+            </div>
+          ) : (
 
-            <p style={{ color: 'red', textAlign: 'center', padding: '3px' }}>{mensajeError}</p>
-          )
-          }
+            <>
+              <h2 >Registrarse</h2>
+              <div className={styles.divLabel}>
+                <label htmlFor="newUsername">Nombre de usuario:</label>
+                <input type="text" id="newUsername" name='newUsername' value={newUsername} onChange={(e) => setNewUsername(e.target.value)} />
+              </div>
+              <div className={styles.divLabel}>
+                <label htmlFor="newSurname">Apellidos:</label>
+                <input type="text" id="newSurname" name='newSurname' value={newSurname} onChange={(e) => setNewSurname(e.target.value)} />
+              </div>
+              <div className={styles.divLabel}>
+                <label htmlFor="newEmail">Email:</label>
+                <input type="text" id="newEmail" name='newEmail' value={newEmail} onChange={handleEmailChange} />
+                {emailError && <p style={{ color: 'red' }}>{emailError}</p>}
+              </div>
+              <div className={styles.divLabel}>
+                <label htmlFor="newPassword">Nueva Contraseña:</label>
+                <input type="password" id="newPassword" name='newPassword' value={newPassword} onChange={handlePssChange} />
+                {passwordError && <p style={{ color: 'red' }}>{passwordError}</p>}
+              </div>
+              <button style={{ width: '100%', padding: '10px', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }} className='btnReg' onClick={handleRegister} >Registrarse</button>
+              <p style={{ textAlign: 'center', marginTop: '10px', cursor: 'pointer' }} className='enlaceRegistro' onClick={toggleForm}>¿Ya tienes una cuenta? Inicia sesión aquí</p>
+              {mensajeError && (
+
+                <p style={{ color: 'red', textAlign: 'center', padding: '3px' }}>{mensajeError}</p>
+              )
+              }
+            </>
+          )}
         </div>
 
       ) : (
+        <>
+          {isLoadingL ? (
+            <div >
+              <Loading />
+            </div>
+          ) : (
 
-        <div className={styles.loginCard}>
-          <h2 >Iniciar Sesión</h2>
-          <div className={styles.divLabel}>
-            <label htmlFor="nombre" >Usuario:</label>
-            <input type="text" id="nombre" value={username} onChange={(e) => setUsername(e.target.value)} />
-          </div>
-          <div className={styles.divLabel}>
-            <label htmlFor="password">Contraseña:</label>
-            <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-          </div>
-          <button style={{ width: '100%', padding: '10px', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }} onClick={handleLogin} className='btnIni'>Iniciar Sesión</button>
-          <p style={{ textAlign: 'center', marginTop: '10px', cursor: 'pointer' }} className='enlaceRegistro' onClick={toggleForm}>¿No tienes cuenta? Regístrate aquí</p>
-          {mensajeError && (
+            <div className={styles.loginCard}>
+              <h2 >Iniciar Sesión</h2>
+              <div className={styles.divLabel}>
+                <label htmlFor="nombre" >Usuario:</label>
+                <input type="text" id="nombre" value={username} onChange={(e) => setUsername(e.target.value)} />
+              </div>
+              <div className={styles.divLabel}>
+                <label htmlFor="password">Contraseña:</label>
+                <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+              </div>
+              <button style={{ width: '100%', padding: '10px', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }} onClick={handleLogin} className='btnIni'>Iniciar Sesión</button>
+              <p style={{ textAlign: 'center', marginTop: '10px', cursor: 'pointer' }} className='enlaceRegistro' onClick={toggleForm}>¿No tienes cuenta? Regístrate aquí</p>
+              {mensajeError && (
 
-            <p style={{ color: 'red', textAlign: 'center', padding: '3px' }}>{mensajeError}</p>
-          )
-          }
-
-        </div>
+                <p style={{ color: 'red', textAlign: 'center', padding: '3px' }}>{mensajeError}</p>
+              )
+              }
+            </div>
+          )}
+        </>
       )}
       <style>{css}</style>
     </div>

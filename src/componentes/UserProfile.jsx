@@ -96,7 +96,7 @@ const UserProfile = ({ user, idUser }, {
         {/* Modal de edición */}
         {isModalEditOpen && (
           <ModalEditarUsuario isOpen={isModalEditOpen} onClose={handleCloseModal}>
-            <EditarUsuario idUser={idUser} />
+            <EditarUsuario idUser={idUser} onClose={handleCloseModal} />
           </ModalEditarUsuario>
         )}
         {isModalDeleteOpen && (
