@@ -158,7 +158,7 @@ const ListaRutas = ({ setRutasGuardadas, rutasGuardadas }) => {
                 onClick={() => manejarExpansion(ruta.IdRuta)}
               >
                 <div style={{
-                  width: '100%',
+                  width: '50%',
                   height: 'auto'
                 }}>
                   <p style={{
@@ -170,6 +170,22 @@ const ListaRutas = ({ setRutasGuardadas, rutasGuardadas }) => {
                   <p style={{ fontSize: "13px", marginTop: '15px', color: "#837c7c" }}><b>Ubicación:</b> {ruta.ubicacion}</p>
                   <p style={{ fontSize: "13px", marginTop: '15px', color: "#837c7c" }}><b>Dificutad:</b> {ruta.dificultad}</p>
                   <p style={{ fontSize: "17px", marginTop: '15px', color: "#837c7c" }}><b>{ruta.distancia}km</b> </p>
+                </div>
+                <div style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'flex-start',
+                  alignItems: 'flex-end',
+                  width: '50%',
+                  maxHeight: '100%',
+                  overflow: 'hidden',
+                  borderRadius: '10px'
+                }}>
+                  <img src={ruta.portada} alt={ruta.titulo} style={{
+                    width: 'auto',
+                    height: '100%',
+                    objectFit: 'cover',
+                  }} />
                 </div>
                 {/* <div style={{
                   display: 'flex',
