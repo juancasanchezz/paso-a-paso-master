@@ -101,6 +101,7 @@ const AuthenticationPage = ({ onLogin, history, setIdUser, idUser }) => {
 
   const handleRegister = async () => {
     setIsLoadingR(true)
+
     try {
 
       const userData = {
@@ -165,7 +166,7 @@ const AuthenticationPage = ({ onLogin, history, setIdUser, idUser }) => {
       {!showRegisterForm ? (
         <div className={styles.registerCard}>
           {isLoadingR ? (
-            <div>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%' }}>
 
               <Loading />
             </div>
@@ -205,7 +206,13 @@ const AuthenticationPage = ({ onLogin, history, setIdUser, idUser }) => {
       ) : (
         <>
           {isLoadingL ? (
-            <div >
+            <div style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              width: '30vw',
+              height: '70vh'
+            }}>
               <Loading />
             </div>
           ) : (
