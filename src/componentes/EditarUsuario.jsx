@@ -82,7 +82,7 @@ const EditarUsuario = ({ idUser, onClose }) => {
         setMensajeExito('¡Perfil actualizado correctamente!')
         setTimeout(() => {
           onClose()
-        }, 1000);
+        }, 600);
       }
 
     } catch (error) {
