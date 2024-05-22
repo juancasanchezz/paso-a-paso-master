@@ -41,17 +41,9 @@ const ListaRutas = ({ setRutasGuardadas, rutasGuardadas }) => {
     }
   }, [rutasVisibles]);
 
-  const handleSearch = async (term, type) => {
+  const handleSearch = async () => {
     try {
-      let results;
-      if (type === 'ubicacion') {
-        results = await searchRutasByUbi(term);
-      } else if (type === 'dificultad') {
-        results = await searchRutasByDif(term);
-      }
-      console.log(results)
-      const data = results.data;
-      setRutasFiltradas(data);
+
     } catch (error) {
       console.error('Error al buscar rutas:', error);
     }
@@ -144,7 +136,7 @@ const ListaRutas = ({ setRutasGuardadas, rutasGuardadas }) => {
             </p>
           </div>
           <div>
-            <BarraBusquedaRuta onSearch={handleSearch} onFilterChange={handleFilterChange} />
+            <BarraBusquedaRuta onSearch={handleSearch} setRutasFiltradas={setRutasFiltradas} onFilterChange={handleFilterChange} />
           </div>
         </div>
         <ul className={`${styles.listaRutas} ${styles.listaRutasExpandida}`}>

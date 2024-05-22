@@ -2,10 +2,10 @@ import React, { useState, useCallback } from 'react';
 import debounce from 'lodash.debounce';
 import { searchRutasByUbi, searchRutasByDif } from '../backend/users/users';
 
-const BarraBusquedaRuta = ({ onSearch, onFilterChange }) => {
+const BarraBusquedaRuta = ({ onSearch, onFilterChange, setRutasFiltradas }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filtro, setFiltro] = useState('ubicacion');
-  const [dificultad, setDificultad] = useState('');
+  const [dificultad, setDificultad] = useState('0');
 
   const handleInputChange = (e) => {
     const inputValue = e.target.value;
@@ -15,36 +15,36 @@ const BarraBusquedaRuta = ({ onSearch, onFilterChange }) => {
 
   const handleFiltroChange = (value) => {
     setFiltro(value);
-    setSearchTerm(''); // Limpiar el término de búsqueda al cambiar el filtro
-    setDificultad(''); // Limpiar la dificultad seleccionada
+    onFilterChange(filtro)
+    setSearchTerm('');
+    setDificultad('') // Limpiar el término de búsqueda al cambiar el filtro
   };
 
   const handleSelectChange = (e) => {
     const inputValue = e.target.value
+    console.log(inputValue)
     setDificultad(inputValue);
-    console.log(dificultad)
 
   }
-  const handleSearch = async (filtro) => {
+
+  const handleSearchDif = async () => {
+    console.log(dificultad)
     try {
-      let results;
-      if (filtro === 'ubicacion') {
-        results = await searchRutasByUbi(searchTerm);
-        console.log(results)
-      } else if (filtro === 'dificultad') {
-        results = await searchRutasByDif(dificultad);
-        console.log(results)
-      }
-      const data = results.data;
-      onSearch(data);
+      let results = await searchRutasByDif(dificultad);
+      console.log(results)
+
+      const data = results.data
+      console.log(data)
+      onSearch(data)
+      setRutasFiltradas(data)
     } catch (error) {
       console.error('Error al buscar rutas:', error);
     }
-  };
+  }
 
-  const debouncedSearch = useCallback(debounce((term, type) => {
-    onSearch(term, type);
-  }, 300), []);
+  /*  const debouncedSearch = useCallback(debounce((term, type) => {
+     onSearch(term, type);
+   }, 300), []); */
 
   return (
     <div style={{
@@ -117,10 +117,10 @@ const BarraBusquedaRuta = ({ onSearch, onFilterChange }) => {
               border: "none",
               borderRadius: '10px'
             }}
-            value={searchTerm}
+            value={dificultad}
             onChange={handleSelectChange}
           >
-            <option value="">Seleccionar dificultad</option>
+            <option value="0">Seleccionar dificultad</option>
             <option value="Alta">Alta</option>
             <option value="Media">Media</option>
             <option value="Baja">Baja</option>
@@ -140,7 +140,7 @@ const BarraBusquedaRuta = ({ onSearch, onFilterChange }) => {
           }}
             onMouseOver={(e) => e.target.style.background = "#6B8E23"} // Color verde más claro al pasar el mouse
             onMouseOut={(e) => e.target.style.background = "#556B2F"} // Vuelve al color original al quitar el mouse
-            onClick={handleSearch}>Buscar</button>
+            onClick={handleSearchDif}>Buscar</button>
         </>
       )}
     </div>
