@@ -205,37 +205,32 @@ const AuthenticationPage = ({ onLogin, history, setIdUser, idUser }) => {
 
       ) : (
         <>
-          {isLoadingL ? (
-            <div style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              width: '30vw',
-              height: '70vh'
-            }}>
-              <Loading />
-            </div>
-          ) : (
-
-            <div className={styles.loginCard}>
-              <h2 >Iniciar Sesión</h2>
-              <div className={styles.divLabel}>
-                <label htmlFor="nombre" >Usuario:</label>
-                <input type="text" id="nombre" value={username} onChange={(e) => setUsername(e.target.value)} />
+          <div className={styles.loginCard}>
+            {isLoadingL ? (
+              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%' }}>
+                <Loading />
               </div>
-              <div className={styles.divLabel}>
-                <label htmlFor="password">Contraseña:</label>
-                <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-              </div>
-              <button style={{ width: '100%', padding: '10px', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }} onClick={handleLogin} className='btnIni'>Iniciar Sesión</button>
-              <p style={{ textAlign: 'center', marginTop: '10px', cursor: 'pointer' }} className='enlaceRegistro' onClick={toggleForm}>¿No tienes cuenta? Regístrate aquí</p>
-              {mensajeError && (
+            ) : (
+              <>
 
-                <p style={{ color: 'red', textAlign: 'center', padding: '3px' }}>{mensajeError}</p>
-              )
-              }
-            </div>
-          )}
+                <h2 >Iniciar Sesión</h2>
+                <div className={styles.divLabel}>
+                  <label htmlFor="nombre" >Usuario:</label>
+                  <input type="text" id="nombre" value={username} onChange={(e) => setUsername(e.target.value)} />
+                </div>
+                <div className={styles.divLabel}>
+                  <label htmlFor="password">Contraseña:</label>
+                  <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                </div>
+                <button style={{ width: '100%', padding: '10px', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }} onClick={handleLogin} className='btnIni'>Iniciar Sesión</button>
+                <p style={{ textAlign: 'center', marginTop: '10px', cursor: 'pointer' }} className='enlaceRegistro' onClick={toggleForm}>¿No tienes cuenta? Regístrate aquí</p>
+                {mensajeError && (
+
+                  <p style={{ color: 'red', textAlign: 'center', padding: '3px' }}>{mensajeError}</p>
+                )}
+              </>
+            )}
+          </div>
         </>
       )}
       <style>{css}</style>

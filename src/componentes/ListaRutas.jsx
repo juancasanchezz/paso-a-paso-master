@@ -42,8 +42,11 @@ const ListaRutas = ({ setRutasGuardadas, rutasGuardadas }) => {
   }, [rutasVisibles]);
 
   const handleSearch = async () => {
+    console.log(filterType)
     try {
-
+      const response = await searchRutasByUbi(filterType);
+      const data = response.data;
+      setRutasFiltradas(data)
     } catch (error) {
       console.error('Error al buscar rutas:', error);
     }

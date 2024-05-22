@@ -5,12 +5,12 @@ import { searchRutasByUbi, searchRutasByDif } from '../backend/users/users';
 const BarraBusquedaRuta = ({ onSearch, onFilterChange, setRutasFiltradas }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filtro, setFiltro] = useState('ubicacion');
-  const [dificultad, setDificultad] = useState('0');
+  const [dificultad, setDificultad] = useState('');
 
   const handleInputChange = (e) => {
     const inputValue = e.target.value;
     setSearchTerm(inputValue);
-    onSearch(inputValue, filtro);
+    handleSearchUbi(inputValue)
   };
 
   const handleFiltroChange = (value) => {
@@ -24,7 +24,6 @@ const BarraBusquedaRuta = ({ onSearch, onFilterChange, setRutasFiltradas }) => {
     const inputValue = e.target.value
     console.log(inputValue)
     setDificultad(inputValue);
-
   }
 
   const handleSearchDif = async () => {
@@ -32,19 +31,27 @@ const BarraBusquedaRuta = ({ onSearch, onFilterChange, setRutasFiltradas }) => {
     try {
       let results = await searchRutasByDif(dificultad);
       console.log(results)
+      const data = results.data
+      console.log(data)
+      setRutasFiltradas(data)
+
+    } catch (error) {
+      console.error('Error al buscar rutas:', error);
+    }
+  }
+  const handleSearchUbi = async (dificultad) => {
+    console.log(dificultad)
+    try {
+      let results = await searchRutasByUbi(dificultad);
+      console.log(results)
 
       const data = results.data
       console.log(data)
-      onSearch(data)
       setRutasFiltradas(data)
     } catch (error) {
       console.error('Error al buscar rutas:', error);
     }
   }
-
-  /*  const debouncedSearch = useCallback(debounce((term, type) => {
-     onSearch(term, type);
-   }, 300), []); */
 
   return (
     <div style={{
