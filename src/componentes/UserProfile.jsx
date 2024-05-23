@@ -6,14 +6,15 @@ import EditarUsuario from './EditarUsuario';
 import DeleteUserModal from './DeleteUserModal';
 import "primeicons/primeicons.css";
 import styles from '../index.module.css'
+import MostrarRutasGuardadas from './MostrarRutasGuardadas';
 
-const UserProfile = ({ user, idUser }, {
-  rutasGuardadas,
-  setRutasGuardadas }) => {
+const UserProfile = ({ user, idUser }) => {
 
   const [isModalEditOpen, setIsModalEditOpen] = useState(false);
   const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
+  const [isModalMostrarOpen, setIsModalMostrarOpen] = useState(false);
   const [animacionMostrar, setAnimacionMostrar] = useState(false);
+
 
   const profileStyle = {
     border: '1px solid #ccc',
@@ -76,13 +77,18 @@ const UserProfile = ({ user, idUser }, {
     setIsModalDeleteOpen(false);
   }
 
-  const mostrarRutasGuardadas = () => {
+  const handleMostrarRuta = () => {
     setAnimacionMostrar(true);
     setTimeout(() => {
       setAnimacionMostrar(false);
     }, 300);
-    console.log("Rutas guardadas:", rutasGuardadas);
-  };
+    setIsModalMostrarOpen(true);
+  }
+  const handleOcultarRuta = () => {
+    setIsModalMostrarOpen(false)
+  }
+
+
 
   useEffect(() => {
     console.log(user)
@@ -118,11 +124,25 @@ const UserProfile = ({ user, idUser }, {
         <h3 style={{ textDecoration: 'underline 3px rgba(85, 107, 47, 0.7)', textUnderlineOffset: '7px' }}>Biografía</h3>
         <p>{user.biografia}</p>
       </div>
-      <div style={{ display: 'flex', justifyContent: 'space-around', marginBottom: '20px' }}>
-        <GiBootPrints style={{
-          width: '127.7px', height: '33px', transform: animacionMostrar ? 'scale(1.2)' : 'scale(1)', color:
-            '#837c7c'
-        }} onClick={mostrarRutasGuardadas} />
+      <div style={{
+        display: 'flex',
+        justifyContent: 'center',
+        width: '100%',
+        padding: '5px',
+        transition: 'all 3s ease-out',
+        marginTop: '20px',
+      }}>
+
+        <div className={styles.iconoGuardarU}>
+          <GiBootPrints style={{
+            width: '127.7px', height: '33px', transform: animacionMostrar ? 'scale(1.2)' : 'scale(1)', color:
+              '#837c7c'
+          }} onClick={handleMostrarRuta}
+            title='Mostrar rutas' />
+          {isModalMostrarOpen && (
+            <MostrarRutasGuardadas isOpen={isModalMostrarOpen} onClose={handleOcultarRuta} />
+          )}
+        </div>
       </div>
 
     </div>

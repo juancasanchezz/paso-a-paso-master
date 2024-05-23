@@ -13,6 +13,10 @@ const App = () => {
   const [idUser, setIdUser] = useState();
   const [rutasGuardadas, setRutasGuardadas] = useState([]);
 
+
+  console.log('App: setRutasGuardadas', setRutasGuardadas);
+
+
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
     // Recuperar el valor de isLoggedIn de sessionStorage, si está presente
     const storedIsLoggedIn = sessionStorage.getItem('isLoggedIn');

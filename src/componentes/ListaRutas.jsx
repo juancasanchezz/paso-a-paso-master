@@ -6,7 +6,7 @@ import axios from 'axios';
 import { searchRutasByUbi, searchRutasByDif } from '../backend/users/users';
 import BarraBusquedaRuta from './BarraBusquedaRuta';
 
-const ListaRutas = ({ setRutasGuardadas, rutasGuardadas }) => {
+const ListaRutas = ({ }) => {
   const [rutas, setRutas] = useState([]);
   const [rutaExpandida, setRutaExpandida] = useState(null);
   const [modalAbierto, setModalAbierto] = useState(false);
@@ -16,6 +16,7 @@ const ListaRutas = ({ setRutasGuardadas, rutasGuardadas }) => {
   const [animacionMostrar, setAnimacionMostrar] = useState(false);
   const [rutasFiltradas, setRutasFiltradas] = useState([]);
   const [filterType, setFilterType] = useState('location');
+  const [rutasGaqui, setRutasGaqui] = useState([])
 
   const getRutasF = async () => {
     try {
@@ -69,30 +70,31 @@ const ListaRutas = ({ setRutasGuardadas, rutasGuardadas }) => {
     setRutasVisibles((prev) => prev - 2);
   };
 
-  const guardarRuta = (ruta) => {
-    setRutasGuardadas((prevRutas) => {
-      const rutaIndex = prevRutas.findIndex((r) => r.IdRuta === ruta.IdRuta);
-      if (rutaIndex !== -1) {
-        const nuevasRutasGuardadas = prevRutas.filter((r) => r.IdRuta !== ruta.IdRuta);
-        localStorage.setItem('rutasGuardadas', JSON.stringify(nuevasRutasGuardadas));
-        return nuevasRutasGuardadas;
-      } else {
-        const nuevasRutasGuardadas = [...prevRutas, ruta];
-        localStorage.setItem('rutasGuardadas', JSON.stringify(nuevasRutasGuardadas));
-        return nuevasRutasGuardadas;
-      }
-    });
-    setAnimacionGuardar(true);
-    setTimeout(() => {
-      setAnimacionGuardar(false);
-    }, 300);
-  };
+
 
   const cargarRutasGuardadas = () => {
     const rutasGuardadasLocal = localStorage.getItem('rutasGuardadas');
     if (rutasGuardadasLocal) {
-      setRutasGuardadas(JSON.parse(rutasGuardadasLocal));
+      setRutasGaqui(JSON.parse(rutasGuardadasLocal));
     }
+
+  };
+
+  const guardarRuta = (ruta) => {
+    const rutasGuardadasLocal = localStorage.getItem('rutasGuardadas');
+    let rutasGuardadas = rutasGuardadasLocal ? JSON.parse(rutasGuardadasLocal) : [];
+    const rutaIndex = rutasGuardadas.findIndex(r => r.IdRuta === ruta.IdRuta);
+    if (rutaIndex > -1) {
+      rutasGuardadas.splice(rutaIndex, 1);
+    } else {
+      rutasGuardadas.push(ruta);
+    }
+    localStorage.setItem('rutasGuardadas', JSON.stringify(rutasGuardadas));
+    setAnimacionGuardar(true);
+    setTimeout(() => {
+      setAnimacionGuardar(false);
+    }, 300);
+    setRutasGaqui(rutasGuardadas);
   };
 
   const mostrarRutasGuardadas = () => {
@@ -100,7 +102,7 @@ const ListaRutas = ({ setRutasGuardadas, rutasGuardadas }) => {
     setTimeout(() => {
       setAnimacionMostrar(false);
     }, 300);
-    console.log("Rutas guardadas:", rutasGuardadas);
+    console.log("Rutas guardadas:", rutasGaqui);
   };
 
   const cerrarModal = () => {
@@ -254,20 +256,23 @@ const ListaRutas = ({ setRutasGuardadas, rutasGuardadas }) => {
                     <div
                       style={{
                         display: 'flex',
-                        justifyContent: 'space-around',
+                        justifyContent: 'center',
+                        width: '100%',
                         padding: '5px',
                         transition: 'all 3s ease-out',
-                        marginTop: '20px'
+                        marginTop: '20px',
                       }}>
-                      <GiBootPrints
-                        onClick={() => guardarRuta(ruta)}
-                        style={{
-                          width: '127.7px',
-                          height: '26px',
-                          cursor: 'pointer',
-                          transform: animacionGuardar ? 'scale(1.2)' : 'scale(1)', color:
-                            '#837c7c'
-                        }} />
+                      <div className={styles.iconoGuardar} onClick={() => guardarRuta(ruta)}>
+                        <GiBootPrints
+                          title='Guardar ruta'
+                          style={{
+                            width: '127.7px',
+                            height: '26px',
+                            cursor: 'pointer',
+                            transform: animacionGuardar ? 'scale(1.2)' : 'scale(1)', color:
+                              '#837c7c'
+                          }} />
+                      </div>
                     </div>
                   </Modal>
                 </>

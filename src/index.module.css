@@ -446,6 +446,36 @@ p {
   width: 3rem;
 }
 
+.iconoGuardar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  width: 70px;
+  height: 70px;
+  padding: 5px;
+  background: #d3cbcb
+}
+
+.iconoGuardar:hover {
+  background-color: #aba7a7;
+}
+
+.iconoGuardarU {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  width: 70px;
+  height: 70px;
+  padding: 5px;
+  background: #ffffff7c
+}
+
+.iconoGuardarU:hover {
+  background-color: #aba7a7;
+}
+
 
 /* Estilos para el Login y el Register */
 
