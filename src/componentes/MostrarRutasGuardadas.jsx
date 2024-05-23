@@ -5,7 +5,8 @@ import { useEffect } from 'react';
 
 const MostrarRutasGuardadas = ({ onClose }) => {
 
-  const [rutasGuardadasU, setRutasGuardadasU] = useState([])
+  const [rutasGuardadasU, setRutasGuardadasU] = useState([]);
+  const [mensajeError, setMensajeError] = useState('')
 
   const handleOverlayClick = (e) => {
     // Verificar si el evento de clic ocurrió dentro del modal
@@ -18,8 +19,11 @@ const MostrarRutasGuardadas = ({ onClose }) => {
   const mostrarRutasGuardadas = () => {
     const rutasGuardadasLocal = localStorage.getItem('rutasGuardadas');
     //console.log(rutasGuardadasLocal)
-    if (rutasGuardadasLocal) {
+    if (rutasGuardadasLocal === 0) {
+      setMensajeError('No hay rutas guardadas')
+    } else {
       setRutasGuardadasU(JSON.parse(rutasGuardadasLocal));
+
     }
     //console.log("Rutas guardadas:", rutasGuardadasU);
 
@@ -27,7 +31,7 @@ const MostrarRutasGuardadas = ({ onClose }) => {
 
   useEffect(() => {
     mostrarRutasGuardadas();
-  })
+  }, [])
 
 
 
@@ -58,6 +62,11 @@ const MostrarRutasGuardadas = ({ onClose }) => {
       }}>
 
         <ul className={`${styles.listaRutas}`}>
+          {mensajeError && (
+            <div>
+              <p>{mensajeError}</p>
+            </div>
+          )}
           {rutasGuardadasU.map((ruta) => (
             <li key={ruta.IdRuta}
               className={`${styles.listaRutasItem}`}>
