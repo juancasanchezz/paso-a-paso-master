@@ -183,6 +183,10 @@ button:hover {
     z-index: 1000;
   }
 
+  .p-menubar.p-component.p-menubar-mobile-active {
+    width: 100%;
+  }
+
   .navbarMenu.open {
     display: flex;
   }
@@ -354,6 +358,7 @@ RGB: 255, 215, 0
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 75vw;
   background-color: rgb(234, 234, 231, 0.8);
+  overflow: auto;
 }
 
 .rutaTarjeta {
@@ -458,6 +463,21 @@ p {
 }
 
 .iconoGuardar:hover {
+  background-color: #aba7a7;
+}
+
+.iconoGuardarSaved {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  width: 70px;
+  height: 70px;
+  padding: 5px;
+  background: #a30f0f82
+}
+
+.iconoGuardarSaved:hover {
   background-color: #aba7a7;
 }
 

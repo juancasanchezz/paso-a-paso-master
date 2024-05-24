@@ -16,7 +16,8 @@ const ListaRutas = ({ }) => {
   const [animacionMostrar, setAnimacionMostrar] = useState(false);
   const [rutasFiltradas, setRutasFiltradas] = useState([]);
   const [filterType, setFilterType] = useState('location');
-  const [rutasGaqui, setRutasGaqui] = useState([])
+  const [rutasGaqui, setRutasGaqui] = useState([]);
+  const [isSaved, setIsSaved] = useState(false)
 
   const getRutasF = async () => {
     try {
@@ -109,6 +110,25 @@ const ListaRutas = ({ }) => {
     setModalAbierto(false);
     setRutaExpandida(null);
   };
+
+  const mostrarRutasSaved = (ruta) => {
+    const rutasGuardadasLocal = localStorage.getItem('rutasGuardadas');
+    let rutasGuardadas = rutasGuardadasLocal ? JSON.parse(rutasGuardadasLocal) : [];
+    const rutaIndex = rutasGuardadas.findIndex(r => r.IdRuta === ruta.IdRuta);
+    console.log(rutaIndex)
+
+    if (rutaIndex) {
+      setIsSaved(true)
+    }
+
+  };
+
+  useEffect(() => {
+    if (rutaExpandida) {
+      mostrarRutasSaved(rutaExpandida)
+
+    }
+  }, [rutaExpandida])
 
   return (
     <div className={styles.indexRutas}>
@@ -262,7 +282,7 @@ const ListaRutas = ({ }) => {
                         transition: 'all 3s ease-out',
                         marginTop: '20px',
                       }}>
-                      <div className={styles.iconoGuardar} onClick={() => guardarRuta(ruta)}>
+                      <div className={`${isSaved} ? ${styles.iconoGuardarSaved} : ${styles.iconoGuardar} `} onClick={() => guardarRuta(ruta)}>
                         <GiBootPrints
                           title='Guardar ruta'
                           style={{

@@ -144,6 +144,9 @@ const UserProfile = ({ user, idUser }) => {
           )}
         </div>
       </div>
+      <p style={{
+        textAlign: 'center'
+      }}>Ver tus rutas</p>
 
     </div>
   );

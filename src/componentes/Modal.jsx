@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const Modal = ({ children, cerrarModal }) => {
+
+
 
   const handleOverlayClick = (e) => {
     // Verificar si el evento de clic ocurrió dentro del modal
@@ -9,6 +11,10 @@ const Modal = ({ children, cerrarModal }) => {
       cerrarModal();
     }
   };
+
+
+
+
   return (
     <div className="modalOverlay" style={{
       position: 'fixed',

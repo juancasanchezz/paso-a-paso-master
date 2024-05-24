@@ -43,6 +43,40 @@ function Navbar ({ setIsLoggedIn }) {
   .p-menubar.p-component {
     background-color: rgba(234, 234, 231, 0);
   }
+
+  @media (max-width: 600px) {
+
+
+  .navbarMenu {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background-color: rgba(234, 234, 231, 0.8);
+    top: 60px;
+    /* Ajusta esto según la altura de tu navbar */
+    left: 0;
+    z-index: 1000;
+  }
+
+  .p-menubar.p-component.p-menubar-mobile-active {
+    width: 100%;
+  }
+
+  .navbarMenu.open {
+    display: flex;
+  }
+
+  .p-menubar-root-list {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .p-menubar-root-list .p-menuitem {
+    width: 100%;
+    text-align: center;
+  }
+}
   `
 
   return (
