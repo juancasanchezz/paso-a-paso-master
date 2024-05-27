@@ -1,4 +1,5 @@
 import React from "react";
+import styles from '../index.module.css';
 import ReactDOM from "react-dom";
 const ModalEditarUsuario = ({ isOpen, onClose, children }) => {
   const handleOverlayClick = (e) => {
@@ -9,45 +10,10 @@ const ModalEditarUsuario = ({ isOpen, onClose, children }) => {
     }
   };
   return (
-    <div style={{
-      position: 'fixed',
-      top: '0',
-      left: '0',
-      width: '100%',
-      height: '100%',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      borderRadius: '5px',
-      border: '0px red solid',
-      backdropFilter: 'blur(5px)',
-      overflow: 'auto',
-      zIndex: '2',
-      transition: 'opacity 0.3s ease, transform 0.3s ease'
-    }}
+    <div className={styles.modal1}
       onClick={handleOverlayClick}>
-      <div onClick={(e) => e.stopPropagation()} style={{
-        backgroundColor: '#fff',
-        width: '70vw',
-        height: '500px',
-        borderRadius: '15px',
-        padding: '20px',
-        position: 'relative',
-        backgroundColor: 'rgb(234, 234, 231)',
-        transition: 'opacity 0.3s ease, transform 0.3s ease'
-      }}>
-        <button className="closeButton" onClick={onClose} style={{
-          position: 'absolute',
-          top: '10px',
-          right: '10px',
-          background: 'none',
-          border: 'none',
-          cursor: 'pointer',
-          fontSize: '20px',
-          color: '#333',
-          marginRight: '10px',
-          marginTop: '10px'
-        }}>&times;</button>{children}
+      <div onClick={(e) => e.stopPropagation()} className={styles.modal2}>
+        <button onClick={onClose} className={styles.btnEditarUser}>&times;</button>{children}
       </div>
     </div>
   );
