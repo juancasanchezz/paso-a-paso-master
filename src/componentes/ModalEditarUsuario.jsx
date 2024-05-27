@@ -12,7 +12,7 @@ const ModalEditarUsuario = ({ isOpen, onClose, children }) => {
   return (
     <div className={styles.modal1}
       onClick={handleOverlayClick}>
-      <div onClick={(e) => e.stopPropagation()} className={styles.modal2}>
+      <div onClick={(e) => e.stopPropagation()} className={styles.modal2E}>
         <button onClick={onClose} className={styles.btnEditarUser}>&times;</button>{children}
       </div>
     </div>

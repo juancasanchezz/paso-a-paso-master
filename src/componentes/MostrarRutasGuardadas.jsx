@@ -106,31 +106,15 @@ const MostrarRutasGuardadas = ({ onClose }) => {
                         }}>{mensajeError}</p>
                       </>
                     )}
-                    <p style={{
-                      fontSize: "18px", textDecoration: 'underline 3px rgba(85, 107, 47, 0.7)',
-                      textUnderlineOffset: '7px', color: "#5d5959"
-                    }}>
+                    <p className={styles.tituloPortada}>
                       <b>{ruta.titulo}</b>
                     </p>
-                    <p style={{ fontSize: "13px", marginTop: '15px', color: "#837c7c" }}><b>Ubicación:</b> {ruta.ubicacion}</p>
-                    <p style={{ fontSize: "13px", marginTop: '15px', color: "#837c7c" }}><b>Dificutad:</b> {ruta.dificultad}</p>
+                    <p className={styles.infoPortada}><b>Ubicación:</b> {ruta.ubicacion}</p>
+                    <p className={styles.infoPortada}><b>Dificutad:</b> {ruta.dificultad}</p>
                     <p style={{ fontSize: "17px", marginTop: '15px', color: "#837c7c" }}><b>{ruta.distancia}km</b></p>
                   </div>
-                  <div style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'flex-start',
-                    alignItems: 'flex-end',
-                    width: '50%',
-                    maxHeight: '100%',
-                    overflow: 'hidden',
-                    borderRadius: '10px'
-                  }}>
-                    <img src={ruta.portada} alt={ruta.titulo} style={{
-                      width: 'auto',
-                      height: '100%',
-                      objectFit: 'cover',
-                    }} />
+                  <div className={styles.divImgPortada}>
+                    <img src={ruta.portada} alt={ruta.titulo} className={styles.imgPortada} />
                   </div>
                   {/* <div style={{
                   display: 'flex',

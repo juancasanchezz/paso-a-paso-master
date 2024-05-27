@@ -221,46 +221,8 @@ button:hover {
   }
 }
 
-/* Estilo para el Modal de Editar Usuarios */
 
-.editarUser {
-  height: 100%;
-  display: block;
-  padding: 20px;
-  background-color: rgb(234, 234, 231, 0.8);
-  border-radius: 10px;
-  backdrop-filter: blur(5px);
 
-  label {
-    font-size: 15px;
-    width: 30%;
-    margin-bottom: 10px;
-  }
-
-  input,
-  textarea {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    margin-top: 20px;
-  }
-
-  .campos {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    margin-bottom: 10px;
-    width: 50%;
-  }
-
-  .guardar {
-    padding: 10px;
-    background-color: rgb(141, 174, 141);
-    border: 0;
-    border-radius: 5px;
-    color: white;
-  }
-}
 
 /* Estilo para el Modal de Rutas */
 
@@ -608,14 +570,6 @@ p {
   .infoPortada {
     font-size: 10px;
   }
-
-  .divImgRuta {
-    max-height: 200px;
-  }
-
-  .imgRuta {
-    max-height: 200px;
-  }
 }
 
 /* Estilos para el Modal de ListaRutas */
@@ -682,9 +636,10 @@ p {
 
 .imgRuta {
   width: 100%;
-  height: 300px;
+  height: 200px;
   object-fit: cover;
   justify-content: center;
+  border-radius: 10px;
 }
 
 
@@ -714,7 +669,7 @@ p {
 }
 
 
-@media (max-width: 700px) {
+@media (max-width: 800px) {
 
   .modalOverlay {
     width: 100%;
@@ -722,7 +677,7 @@ p {
 
   .modal2 {
     width: 80%;
-    height: 85%;
+    height: auto !important;
     margin-top: 13rem;
     margin-bottom: 13rem;
   }
@@ -743,6 +698,14 @@ p {
   .divBotonGuardarRuta {
     margin-top: 10px;
     height: 100px;
+  }
+
+  .divImgRuta {
+    max-height: 200px;
+  }
+
+  .imgRuta {
+    max-height: 200px;
   }
 }
 
@@ -1005,6 +968,45 @@ p {
 
 /* Modal Editar Usuario */
 
+.editarUser {
+  height: 100%;
+  display: block;
+  padding: 20px;
+  background-color: rgb(234, 234, 231, 0.8);
+  border-radius: 10px;
+  backdrop-filter: blur(5px);
+
+  label {
+    font-size: 15px;
+    width: 30%;
+    margin-bottom: 10px;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+  }
+
+  .campos {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 50%;
+  }
+
+  .guardar {
+    padding: 10px;
+    background-color: rgb(141, 174, 141);
+    border: 0;
+    border-radius: 5px;
+    color: white;
+  }
+}
+
 .modal1 {
   position: fixed;
   top: 0;
@@ -1022,7 +1024,7 @@ p {
   transform: 0.3s ease;
 }
 
-.modal2 {
+.modal2E {
   background-color: #fff;
   width: 70vw;
   height: 500px;
@@ -1045,4 +1047,199 @@ p {
   color: #333;
   margin-right: 10px;
   margin-top: 10px;
+}
+
+.contEditar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tituloEditar {
+  width: 20rem;
+  text-decoration: none;
+  font-size: 28px;
+  margin-bottom: 30px;
+  color: black;
+  text-decoration: underline 3px rgba(85, 107, 47, 0.7);
+  text-underline-offset: 7px;
+}
+
+.divCampos {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .divCampos {
+    flex-direction: column;
+  }
+
+  .editarUser {
+
+    .campos {
+      width: 100%;
+      padding: 2px;
+    }
+
+    label {
+      width: 100%;
+      margin-bottom: 2px;
+      font-weight: bold;
+    }
+
+    input,
+    textarea {
+      padding: 5px;
+      margin-bottom: 5px;
+      margin-top: 8px;
+    }
+  }
+
+  .modal2E {
+    width: 70vw;
+    height: auto;
+    padding: 20px;
+  }
+}
+
+/* Estilos para la interfaz del Perfil */
+
+.profileStyle {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top: 20px;
+  background-color: rgba(234, 234, 231, 0.8);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.divIconos {
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.headerStyle {
+  text-align: center;
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.nameStyle {
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+  color: #666;
+  text-decoration: underline 3px rgba(85, 107, 47, 0.7);
+  text-underline-offset: 7px;
+}
+
+.emailStyle {
+  margin: 5px 0;
+  color: #666;
+}
+
+.sectionStyle {
+  margin-bottom: 20px;
+  padding: 10px;
+  text-align: center;
+}
+
+.infPersonal {
+  text-decoration: underline 3px rgba(85, 107, 47, 0.7);
+  text-underline-offset: 7px;
+  color: #666;
+}
+
+.divBtnMostrarRuta {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 5px;
+  transition: all 3s ease-out;
+  margin-top: 20px;
+}
+
+.btnMostrarRuta {
+  width: 127.7px;
+  height: 33px;
+  color: #837c7c;
+}
+
+.btnMostrarRutaAnim {
+  width: 127.7px;
+  height: 33px;
+  color: #837c7c;
+  transform: scale(1.2);
+}
+
+@media (max-width: 600px) {
+
+  .profileStyle {
+    padding: 20px;
+    max-width: 300px;
+    margin: 0 auto;
+    margin-top: 20px;
+    background-color: rgba(234, 234, 231, 0.8);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  }
+}
+
+/* Estilos Borrar Usuario */
+
+.modalDelete {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  backdrop-filter: blur(15px);
+  z-index: 2;
+  transition: opacity 0.3s ease;
+  transform: 0.3s ease;
+}
+
+.modalContent {
+  padding: 16px;
+}
+
+.close {
+  font-size: 30px;
+}
+
+.divBotonesDeleteUser {
+  display: flex;
+  justify-content: space-around;
+  padding: 16px;
+}
+
+.btnConfirm {
+  background-color: red;
+  color: white;
+  padding: 6px;
+  border: none;
+  border-radius: 10px;
+}
+
+.btnCancel {
+  background-color: #ddd;
+  color: black;
+  padding: 6px;
+  border: none;
+  border-radius: 10px;
 }

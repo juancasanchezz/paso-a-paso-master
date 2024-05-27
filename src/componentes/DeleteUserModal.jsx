@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { deleteUser } from '../backend/users/users';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import Loading from './Loading';
+import styles from '../index.module.css'
 
 const DeleteUserModal = ({ idUser, onClose }) => {
   const [isLoading, setIsLoading] = useState(false)
@@ -38,56 +39,21 @@ const DeleteUserModal = ({ idUser, onClose }) => {
   };
 
   return (
-    <div className="modal" onClick={handleOverlayClick} style={{
-      position: 'fixed',
-      top: '0',
-      left: '0',
-      width: '100%',
-      height: '100%',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      borderRadius: '5px',
-      border: '0px red solid',
-      backdropFilter: 'blur(15px)',
-      zIndex: '2',
-      transition: 'opacity 0.3s ease, transform 0.3s ease'
-    }}>
+    <div className={styles.modalDelete} onClick={handleOverlayClick} >
       {isLoading ? (
         <Loading />
       ) : (
-        <div className="modal-content" onClick={(e) => e.stopPropagation()}
-          style={{
-            padding: '16px'
-          }}>
-          <span className="close" onClick={onClose}
-            style={{
-              fontSize: '30px'
-            }}>&times;</span>
+        <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}
+        >
+          <span className={styles.close} onClick={onClose}
+          >&times;</span>
           <h2>Confirmar eliminación de usuario</h2>
           <p>¿Estás seguro de que deseas eliminar tu cuenta?</p>
-          <div style={{
-            display: 'flex', justifyContent: 'space-around', padding: '16px'
-
-          }}>
+          <div className={styles.divBotonesDeleteUser}>
             <button onClick={handleDelete}
-              style={{
-                backgroundColor: 'red',
-                color: 'white',
-                padding: '6px',
-                border: 'none',
-                borderRadius: '10px'
-
-              }}>Confirmar</button>
+              className={styles.btnConfirm}>Confirmar</button>
             <button onClick={onClose}
-              style={{
-                backgroundColor: '#ddd',
-                color: 'black',
-                padding: '6px',
-                border: 'none',
-                borderRadius: '10px'
-
-              }}>Cancelar</button>
+              className={styles.btnCancel}>Cancelar</button>
           </div>
         </div>
       )}

@@ -101,26 +101,10 @@ const EditarUsuario = ({ idUser, onClose }) => {
         </div>
       ) : (
         <>
-          <div style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}>
-            <p style={{
-              width: "20rem",
-              textDecoration: "none",
-              fontSize: "28px",
-              marginBottom: "30px",
-              color: "black",
-              textDecoration: 'underline 3px rgba(85, 107, 47, 0.7)',
-              textUnderlineOffset: '7px',
-            }} >Estás editando tus datos</p>
+          <div className={styles.contEditar}>
+            <p className={styles.tituloEditar} >Estás editando tus datos</p>
           </div>
-          <div style={{
-            display: 'flex',
-            flexDirection: 'row',
-            width: '100%'
-          }}>
+          <div className={styles.divCampos}>
             <div className={styles.campos}>
               <label htmlFor="nombre">Nombre:</label>
               <input
@@ -142,11 +126,7 @@ const EditarUsuario = ({ idUser, onClose }) => {
               />
             </div>
           </div>
-          <div style={{
-            display: 'flex',
-            flexDirection: 'row',
-            width: '100%'
-          }}>
+          <div className={styles.divCampos}>
             <div className={styles.campos}>
               <label htmlFor="biografia">Biografía:</label>
               <textarea
