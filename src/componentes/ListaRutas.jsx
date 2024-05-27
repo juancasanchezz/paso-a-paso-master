@@ -178,31 +178,15 @@ const ListaRutas = ({ }) => {
                   width: '50%',
                   height: 'auto'
                 }}>
-                  <p style={{
-                    fontSize: "18px", textDecoration: 'underline 3px rgba(85, 107, 47, 0.7)',
-                    textUnderlineOffset: '7px', color: "#5d5959"
-                  }}>
+                  <p className={styles.tituloPortada}>
                     <b>{ruta.titulo}</b>
                   </p>
-                  <p style={{ fontSize: "13px", marginTop: '15px', color: "#837c7c" }}><b>Ubicación:</b> {ruta.ubicacion}</p>
-                  <p style={{ fontSize: "13px", marginTop: '15px', color: "#837c7c" }}><b>Dificutad:</b> {ruta.dificultad}</p>
+                  <p className={styles.infoPortada}><b>Ubicación:</b> {ruta.ubicacion}</p>
+                  <p className={styles.infoPortada}><b>Dificutad:</b> {ruta.dificultad}</p>
                   <p style={{ fontSize: "17px", marginTop: '15px', color: "#837c7c" }}><b>{ruta.distancia}km</b> </p>
                 </div>
-                <div style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'flex-start',
-                  alignItems: 'flex-end',
-                  width: '50%',
-                  maxHeight: '100%',
-                  overflow: 'hidden',
-                  borderRadius: '10px'
-                }}>
-                  <img src={ruta.portada} alt={ruta.titulo} style={{
-                    width: 'auto',
-                    height: '100%',
-                    objectFit: 'cover',
-                  }} />
+                <div className={styles.divImgPortada}>
+                  <img src={ruta.portada} alt={ruta.titulo} className={styles.imgPortada} />
                 </div>
                 {/* <div style={{
                   display: 'flex',
@@ -231,67 +215,33 @@ const ListaRutas = ({ }) => {
                       height: 'auto'
                     }}
                   >
-                    <p style={{
-                      fontSize: "18px", textDecoration: 'underline 3px rgba(85, 107, 47, 0.7)',
-                      textUnderlineOffset: '7px', color: "#5d5959"
-                    }}>
+                    <p className={styles.tituloRuta}>
                       <b>{ruta.titulo}</b>
                     </p>
                     <p
-                      style={{
-                        paddingTop: "1rem",
-                        color: "#837c7c",
-                      }}
+                      className={styles.descripcionRuta}
                     >
                       {ruta.descripcion}
                     </p>
                     <p
-                      style={{
-                        paddingTop: "2rem",
-                        color: "#837c7c"
-                      }}
+                      className={styles.infoRuta}
                     >
                       <b>Dificultad:</b> {ruta.dificultad}
                     </p>
                     <p
-                      style={{
-                        paddingTop: "2rem",
-                        color: "#837c7c"
-                      }}
+                      className={styles.infoRuta}
                     >
                       <b>Distancia:</b> {ruta.distancia}km
                     </p>
-                    <div style={{
-                      width: '100%',
-                      height: '50%',
-                      marginTop: '16px'
-                    }}>
-                      <img src={ruta.portada} alt={ruta.titulo} style={{
-                        width: '100%',
-                        height: '300px',
-                        objectFit: 'cover',
-                        justifyContent: 'center'
-                      }} />
+                    <div className={styles.divImgRuta}>
+                      <img src={ruta.portada} alt={ruta.titulo} className={styles.imgRuta} />
                     </div>
                     <div
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        width: '100%',
-                        padding: '5px',
-                        transition: 'all 3s ease-out',
-                        marginTop: '20px',
-                      }}>
+                      className={styles.divBotonGuardarRuta}>
                       <div className={`${isSaved} ? ${styles.iconoGuardarSaved} : ${styles.iconoGuardar} `} onClick={() => guardarRuta(ruta)}>
                         <GiBootPrints
                           title='Guardar ruta'
-                          style={{
-                            width: '127.7px',
-                            height: '26px',
-                            cursor: 'pointer',
-                            transform: animacionGuardar ? 'scale(1.2)' : 'scale(1)', color:
-                              '#837c7c'
-                          }} />
+                          className={`${styles.botonGuardarRuta} ${animacionGuardar === true ? styles.botonGuardarRutaAnimado : ""}`} />
                       </div>
                     </div>
                   </Modal>

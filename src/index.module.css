@@ -123,6 +123,25 @@ button:hover {
   background-color: rgb(217, 235, 240);
 }
 
+@media (max-width: 980px) {
+
+  .formularioNuevaRutaCard {
+    width: 90%;
+    height: 100%;
+    flex-direction: column;
+  }
+
+  .filaFormulario {
+    flex-direction: column;
+  }
+
+  .contenedorCampos {
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+  }
+}
+
 /* Estilos para el Navbar */
 
 .navbarCard {
@@ -167,8 +186,7 @@ button:hover {
 }
 
 /* Media queries para pantallas pequeñas */
-@media (max-width: 600px) {
-
+@media (max-width: 1000px) {
 
   .navbarMenu {
     display: none;
@@ -462,6 +480,8 @@ p {
   background: #d3cbcb
 }
 
+
+
 .iconoGuardar:hover {
   background-color: #aba7a7;
 }
@@ -496,6 +516,314 @@ p {
   background-color: #aba7a7;
 }
 
+@media (max-width: 800px) {
+
+  .iconoGuardar {
+    margin-top: 10px;
+    height: 50px;
+    width: 50px;
+  }
+}
+
+.tituloPortada {
+  font-size: 18px;
+  text-decoration: underline 3px rgba(85, 107, 47, 0.7);
+  text-underline-offset: 7px;
+  color: #5d5959;
+}
+
+.infoPortada {
+  font-size: 13px;
+  margin-top: 15px;
+  color: #837c7c;
+}
+
+.distPortada {
+  font-size: 17px;
+  margin-top: 15px;
+  color: #837c7c;
+}
+
+.divImgPortada {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-end;
+  width: 50%;
+  max-height: 100%;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.imgPortada {
+  width: auto;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 1100px) {
+
+  .listaRutas {
+    width: 90vw;
+  }
+
+  .listaRutasItem {
+    width: 100%;
+  }
+
+  .listaRutas {
+    width: 98vw;
+  }
+
+  .tituloPortada {
+    font-size: 20px;
+    text-underline-offset: 4px;
+  }
+
+  .infoPortada {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 700px) {
+
+  .listaRutas {
+    width: 90vw;
+  }
+
+  .listaRutasItem {
+    width: 100%;
+  }
+
+  .listaRutas {
+    width: 98vw;
+  }
+
+  .tituloPortada {
+    font-size: 14px;
+    text-underline-offset: 4px;
+  }
+
+  .infoPortada {
+    font-size: 10px;
+  }
+
+  .divImgRuta {
+    max-height: 200px;
+  }
+
+  .imgRuta {
+    max-height: 200px;
+  }
+}
+
+/* Estilos para el Modal de ListaRutas */
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+}
+
+.modal2 {
+  background-color: #fff;
+  margin: 56px 0;
+  width: 50%;
+  height: auto;
+  border-radius: 5px;
+  padding: 20px;
+  position: relative;
+  box-shadow: 0px 0px 300px 0px rgba(0, 0, 0, 0.5);
+  transition: opacity 0.3s ease;
+  transform: 0.3s ease;
+}
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 25px;
+  color: #333;
+}
+
+.tituloRuta {
+  font-size: 18px;
+  text-decoration: underline 3px rgba(85, 107, 47, 0.7);
+  text-underline-offset: 7px;
+  color: #5d5959;
+}
+
+.descripcionRuta {
+  padding-top: 1rem;
+  color: #837c7c;
+}
+
+.infoRuta {
+  padding-top: 2rem;
+  color: #837c7c;
+}
+
+.divImgRuta {
+  width: 100%;
+  height: 50%;
+  margin-top: 16px;
+}
+
+.imgRuta {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  justify-content: center;
+}
+
+
+.divBotonGuardarRuta {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 5px;
+  transition: all 3s ease-out;
+  margin-top: 20px;
+}
+
+.botonGuardarRuta {
+  width: 127.7px;
+  height: 26px;
+  cursor: pointer;
+  color: #837c7c;
+  transform: scale(1);
+}
+
+.botonGuardarRutaAnimado {
+  width: 127.7px;
+  height: 26px;
+  cursor: pointer;
+  color: #837c7c;
+  transform: scale(1.2);
+}
+
+
+@media (max-width: 700px) {
+
+  .modalOverlay {
+    width: 100%;
+  }
+
+  .modal2 {
+    width: 80%;
+    height: 85%;
+    margin-top: 13rem;
+    margin-bottom: 13rem;
+  }
+
+  .descripcionRuta {
+    font-size: 13px;
+  }
+
+  .infoRuta {
+    padding-top: 0.5rem;
+  }
+
+  .botonGuardarRuta {
+    width: 97.7px;
+    height: 16px;
+  }
+
+  .divBotonGuardarRuta {
+    margin-top: 10px;
+    height: 100px;
+  }
+}
+
+/* Estilos para la barra de búsqueda */
+
+.contBarraBusqueda {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  width: 80vh;
+}
+
+.divBotones {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.btnFiltros {
+  padding: 10px 15px;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  background-color: #515557c2;
+}
+
+.btnUbicacion {
+  background-color: #007BFF;
+}
+
+.inputUbi {
+  width: 80%;
+  background: #dce1e4c2;
+  color: #1c1d1d96;
+  padding: 10px;
+  outline: none;
+  border: none;
+}
+
+.inputDif {
+  width: 80%;
+  background: #dce1e4c2;
+  color: #1c1d1d96;
+  padding: 10px;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+}
+
+.btnGuardarDif {
+  padding: 8px 10px;
+  background: #91948c;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  margin-top: 10px;
+  font-size: 12px;
+  font-family: Poppins;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  transition: background 0.3s ease;
+}
+
+.btnGuardarDif:hover {
+  background-color: #6B8E23;
+}
+
+@media (max-width: 600px) {
+  .contBarraBusqueda {
+    width: 80vw;
+  }
+
+  .btnGuardarDif:hover {
+    background-color: #6B8E23;
+  }
+}
+
 
 /* Estilos para el Login y el Register */
 
@@ -517,6 +845,7 @@ p {
   border-radius: 5px;
   padding: 20px;
   min-width: 30vw;
+  max-width: 90vw;
   min-height: 50vh;
   height: auto;
   background-color: rgb(234, 234, 231, 0.8);
@@ -526,7 +855,8 @@ p {
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 20px;
-  width: 30vw;
+  min-width: 30vw;
+  min-height: 50vh;
   height: auto;
   background-color: rgb(234, 234, 231, 0.8);
 }
@@ -545,4 +875,129 @@ p {
     margin-bottom: 10px;
     margin-top: 20px;
   }
+}
+
+/* Estilos para el home */
+
+.home {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  padding: 2rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.contTituloHome {
+  width: 50%;
+  text-align: center;
+  transition: background-color 1.3s ease-out;
+}
+
+.tituloHome {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-size: 40px;
+  text-decoration: underline 3px rgba(85, 107, 47, 0.7);
+  text-underline-offset: 7px;
+}
+
+.contArticulos {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  list-style-type: none;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.quienesSomos {
+  width: 50%;
+  height: 100%;
+  padding: 2rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.quienesSomosCont {
+  height: 100%;
+  width: 100%;
+  padding: 16px;
+  transition: background-color 1.3s ease-out;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: rgba(234, 234, 231, 0.9);
+}
+
+.quienesSomosTitulo {
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  text-decoration: underline 3px rgba(85, 104, 47, 0.7);
+  text-underline-offset: 7px;
+  font-size: 30px;
+  padding: 2rem;
+}
+
+.contTexto {
+  color: #1c1d1d96;
+}
+
+.quienesSomosDivImg {
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.quienesSomosImg {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.queSomos {
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.queSomosCont {
+  padding: 2rem;
+  transition: background-color 1.3s ease-out;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: rgba(234, 234, 231, 0.9);
+}
+
+.queSomosTitulo {
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  text-decoration: underline 3px rgba(85, 104, 47, 0.7);
+  text-underline-offset: 7px;
+  font-size: 30px;
+  padding: 2rem;
+}
+
+.queSomosDivImg {
+  margin-top: 2rem;
+}
+
+.queSomosImg {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+@media (max-width: 600px) {
+
+  .quienesSomos {
+    width: 100%;
+  }
+
+  .contArticulos {
+    flex-direction: column;
+  }
+
 }

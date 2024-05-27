@@ -28,7 +28,7 @@ const FormularioNuevaRuta = () => {
       // Verificar si la solicitud fue exitosa
       if (response.statusText === 'OK') {
         console.log('Ruta añadida correctamente:', response.data.message);
-        setMensajeExito('¡Ruta agrgada exitosamente!'); // Mostrar mensaje de éxito
+        setMensajeExito('¡Ruta agregada exitosamente!'); // Mostrar mensaje de éxito
         // Después de enviar los datos, limpiar el formulario
         setRuta({
           titulo: "",
@@ -40,7 +40,7 @@ const FormularioNuevaRuta = () => {
         });
       } else {
         console.error('Error al añadir la ruta:', response.message);
-        setMensajeExito('¡Ruta agrgada exitosamente!');
+        setMensajeExito('¡Ruta agregada exitosamente!');
       }
     } catch (error) {
       console.error('Error al añadir la ruta 2:', error);
@@ -121,6 +121,7 @@ const FormularioNuevaRuta = () => {
                 style={{
                   width: '100%',
                   height: '100%',
+                  padding: '8px',
                   borderRadius: '10px',
                   border: 'none',
                 }}
