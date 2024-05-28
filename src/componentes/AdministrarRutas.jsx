@@ -46,8 +46,8 @@ function AdministrarRutas () {
         <Column field="titulo" header="Nombre" />
         <Column field="descripcion" header="Descripción" />
         <Column field="ubicacion" header="Ubicacion" />
-        <Column field='portada' header="Portada" />
         <Column field='dificultad' header="Dificultad" />
+        <Column field='portada' header="Portada" />
       </DataTable>
     </div>
   );
