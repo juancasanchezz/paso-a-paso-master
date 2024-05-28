@@ -1254,6 +1254,7 @@ p {
   flex-direction: column;
   justify-content: center;
   text-align: center;
+  backdrop-filter: blur(15px);
 
 }
 

@@ -18,8 +18,8 @@ const MostrarRutasGuardadas = ({ onClose }) => {
 
   const mostrarRutasGuardadas = () => {
     const rutasGuardadasLocal = localStorage.getItem('rutasGuardadas');
-    console.log(rutasGuardadasLocal.length)
-    if (rutasGuardadasLocal.length === 0) {
+    console.log(rutasGuardadasLocal)
+    if (rutasGuardadasLocal === null) {
       setMensajeError('No hay rutas guardadas')
     } else {
       setRutasGuardadasU(JSON.parse(rutasGuardadasLocal));
