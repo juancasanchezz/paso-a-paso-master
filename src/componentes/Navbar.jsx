@@ -20,6 +20,9 @@ function Navbar ({ setIsLoggedIn }) {
     history.push("/usuarios/perfil")
   }
 
+  const role = sessionStorage.getItem('userRole')
+  console.log(role)
+
 
   const menu = [
     { label: 'Inicio', command: handleHome, },
@@ -33,8 +36,9 @@ function Navbar ({ setIsLoggedIn }) {
 
     { label: 'Perfil', command: handleUser, },
 
-    { label: 'Cerrar Sesión', command: handleLogOut }
-  ];
+    role === 'admin' && { label: 'Administración', icon: 'pi pi-fw pi-cog', to: '/admin' },
+    { label: 'Cerrar Sesión', command: handleLogOut },
+  ].filter(Boolean);
 
 
 
@@ -92,6 +96,9 @@ function Navbar ({ setIsLoggedIn }) {
                 return subItem;
               })
             };
+          }
+          if (item.to) {
+            return { ...item, url: item.to }
           }
           return item;
         })}

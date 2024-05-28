@@ -6,29 +6,34 @@ import AuthenticationPage from './componentes/AutenticationPage';
 import ProfilePage from './componentes/ProfilePage';
 import Navbar from './componentes/Navbar';
 import Home from './componentes/Home';
+import { rest } from 'lodash';
+import AdminPanel from './componentes/AdminPanel';
 
 const App = () => {
 
   const [usuario, setUsuario] = useState(0);
   const [idUser, setIdUser] = useState();
   const [rutasGuardadas, setRutasGuardadas] = useState([]);
-
-
-  console.log('App: setRutasGuardadas', setRutasGuardadas);
-
-
+  const [role, setRole] = useState('')
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
     // Recuperar el valor de isLoggedIn de sessionStorage, si está presente
     const storedIsLoggedIn = sessionStorage.getItem('isLoggedIn');
     return storedIsLoggedIn ? JSON.parse(storedIsLoggedIn) : false;
   });
 
-
-
   useEffect(() => {
     // Guardar el valor de isLoggedIn en sessionStorage cuando cambie
     sessionStorage.setItem('isLoggedIn', JSON.stringify(isLoggedIn));
   }, [isLoggedIn]);
+
+  useEffect(() => {
+    const storedRole = sessionStorage.getItem('userRole');
+    setRole(storedRole)
+  }, [])
+
+
+
+
 
   console.log(idUser)
 
@@ -55,7 +60,7 @@ const App = () => {
       <div>
         <Router>
           <Switch>
-            <Route path="/login" render={(props) => <AuthenticationPage onLogin={() => setIsLoggedIn(true)} history={props.history} setUsuario={setUsuario} setIdUser={setIdUser} idUser={idUser} />} />
+            <Route path="/login" render={(props) => <AuthenticationPage onLogin={() => setIsLoggedIn(true)} history={props.history} setUsuario={setUsuario} setIdUser={setIdUser} idUser={idUser} setRole={setRole} />} />
             <ProtectedRoute path="/" isLoggedIn={isLoggedIn}>
               <Navbar setIsLoggedIn={setIsLoggedIn} />
               <Switch>
@@ -64,6 +69,7 @@ const App = () => {
                 <Route exact path="/rutas/nueva" component={FormularioNuevaRuta} />
                 <Route exact path="/rutas/listado" component={ListaRutas} setRutasGuardadas={setRutasGuardadas} rutasGuardadas={rutasGuardadas} />
                 <Route exact path="/usuarios/perfil" component={() => <ProfilePage idUser={idUser} rutasGuardadas={rutasGuardadas} setRutasGuardadas={setRutasGuardadas} />} />
+                {role === 'admin' && <Route exact path='/admin' component={AdminPanel} />}
               </Switch>
             </ProtectedRoute>
           </Switch>

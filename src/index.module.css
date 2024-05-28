@@ -183,26 +183,18 @@ button:hover {
 
 .p-menubar.p-component {
   background-color: rgba(234, 234, 231, 0);
+  width: 100vh;
 }
 
 /* Media queries para pantallas pequeñas */
-@media (max-width: 1000px) {
-
-  .navbarMenu {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    background-color: rgba(234, 234, 231, 0.8);
-    position: absolute;
-    top: 60px;
-    /* Ajusta esto según la altura de tu navbar */
-    left: 0;
-    z-index: 1000;
-  }
+@media (max-width: 900px) {
 
   .p-menubar.p-component.p-menubar-mobile-active {
     width: 100%;
+  }
+
+  .p-menubar.p-component {
+    width: 100vh;
   }
 
   .navbarMenu.open {
@@ -212,11 +204,11 @@ button:hover {
   .p-menubar-root-list {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 100vh;
   }
 
   .p-menubar-root-list .p-menuitem {
-    width: 100%;
+    width: 100vh;
     text-align: center;
   }
 }
@@ -1242,4 +1234,34 @@ p {
   padding: 6px;
   border: none;
   border-radius: 10px;
+}
+
+/* Estilos para los componentes de la Administración */
+
+.contAdmin {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.contAdminRutas {
+  width: 70vw;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+
+}
+
+.p-datatable-table {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.data-p-highlight.data-p-highlight-contextmenu.data-pc-section {
+  font-size: 15px;
 }

@@ -4,7 +4,7 @@ import styles from '../index.module.css'
 import axios from 'axios';
 import Loading from './Loading';
 
-const AuthenticationPage = ({ onLogin, history, setIdUser, idUser }) => {
+const AuthenticationPage = ({ onLogin, history, setIdUser, idUser, setRole }) => {
   const [showRegisterForm, setShowRegisterForm] = useState(false);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -36,18 +36,22 @@ const AuthenticationPage = ({ onLogin, history, setIdUser, idUser }) => {
       const data = response.data;
       console.log(data)
       const usuarioId = data.IdUsuario;
+      const role = data.role;
       if (response.status === 200) {
 
         console.log("Estoy dentro")
         onLogin();
 
+        sessionStorage.setItem("idUsuario", usuarioId)
+        sessionStorage.setItem("userRole", role)
         history.push('/inicio');
 
-        sessionStorage.setItem("idUsuario", usuarioId)
         console.log(idUser)
         return {
           IdUsuario: data.IdUsuario,
+          role: data.role,
         }
+
 
       } else {
         console.log("No debo estar aqui")
@@ -118,14 +122,22 @@ const AuthenticationPage = ({ onLogin, history, setIdUser, idUser }) => {
         const data = response;
         console.log(data);
         const usuarioId = data.data.userId;
+        const role = data.data.role
         console.log(usuarioId)
         // Usuario registrado exitosamente
 
         console.log("Registro exitoso")
         onLogin();
+
         history.push('/inicio');
         sessionStorage.setItem("idUsuario", usuarioId)
-        return { IdUsuario: data.data.userId }
+        sessionStorage.setItem("role", role)
+
+
+        return {
+          IdUsuario: data.data.IdUsuario,
+          role: data.data.role,
+        }
 
       } else {
         console.log("Error: ", response.data.message)

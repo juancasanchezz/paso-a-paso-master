@@ -20,6 +20,10 @@ export const deleteUser = async (idUser) => {
   return await axios.get(`${apiUrl}/borrarUser.php?IdUsuario=${idUser}`);
 }
 
+export const deleteRuta = async (idRuta) => {
+  return await axios.get(`${apiUrl}/borrarRuta.php?IdRuta=${idRuta}`);
+}
+
 export const postRutas = async (ruta) => {
   return await axios.post(`${apiUrl}/addRutas.php`, ruta)
 }
@@ -34,4 +38,11 @@ export const searchRutasByUbi = async (inputValue) => {
 
 export const searchRutasByDif = async (inputValue) => {
   return await axios.get(`${apiUrl}/busquedaRutasDif.php?dificultad=${inputValue}`);
+}
+
+export const obtenerRutas = async () => {
+  return await axios.get(`${apiUrl}/getRutas.php`);
+}
+export const obtenerUsuarios = async () => {
+  return await axios.get(`${apiUrl}/getUsers.php`);
 }
