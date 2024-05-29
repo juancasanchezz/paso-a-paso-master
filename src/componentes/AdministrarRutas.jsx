@@ -31,14 +31,14 @@ function AdministrarRutas () {
 
   return (
     <div className={styles.contAdminRutas}>
-      <h1>Administrar Rutas</h1>
-      <DataTable value={routes}>
+      <p className={styles.tituloAdminRuta}>Administrar Rutas</p>
+      <DataTable className={styles.dataTabla} value={routes}>
         <Column
           header="Acciones"
           body={(rowData) => (
             <div>
               {/* <Button label="Editar" icon="pi pi-pencil" onClick={() => handleEdit(rowData)} /> */}
-              <Button label="Eliminar" icon="pi pi-trash" onClick={() => handleDelete(rowData.id)} />
+              <Button className={styles.btnEliminarAdmin} label="Eliminar" icon="pi pi-trash" onClick={() => handleDelete(rowData.id)} />
             </div>
           )}
         />

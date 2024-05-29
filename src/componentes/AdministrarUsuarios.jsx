@@ -31,7 +31,7 @@ function AdminUsers () {
         <Column
           header="Acciones"
           body={(rowData) => (
-            <Button label="Eliminar" icon="pi pi-trash" onClick={() => handleDelete(rowData.id)} />
+            <Button className={styles.btnEliminarAdmin} label="Eliminar" icon="pi pi-trash" onClick={() => handleDelete(rowData.id)} />
           )}
         />
         <Column field="id" header="ID" />

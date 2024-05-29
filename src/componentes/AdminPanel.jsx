@@ -18,10 +18,10 @@ const AdminPanel = () => {
 
   return (
     <div className={styles.contAdmin}>
-      <h1>Panel de Administración</h1>
-      <div style={{ marginBottom: '20px' }}>
-        <Button label="Administrar Rutas" onClick={() => setActiveComponent('routes')} />
-        <Button label="Administrar Usuarios" onClick={() => setActiveComponent('users')} style={{ marginLeft: '10px' }} />
+      <p className={styles.tituloAdminRuta}>Panel de Administración</p>
+      <div className={styles.divBotonesAdmin}>
+        <Button className={styles.btnAdmin} label="Administrar Rutas" onClick={() => setActiveComponent('routes')} />
+        <Button className={styles.btnAdmin} label="Administrar Usuarios" onClick={() => setActiveComponent('users')} style={{ marginLeft: '10px' }} />
       </div>
       {activeComponent && (
         renderComponent()
