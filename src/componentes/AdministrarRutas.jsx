@@ -11,7 +11,7 @@ function AdministrarRutas () {
   const [totalRecords, setTotalRecords] = useState(0);
   const [first, setFirst] = useState(0);
   const [loading, setLoading] = useState(true);
-  let rows = 5;
+  let rows = 4;
 
 
   const getRutas = async (first, rows) => {
@@ -69,6 +69,9 @@ function AdministrarRutas () {
         <Column field='dificultad' header="Dificultad" />
         <Column field='portada' header="Portada" />
       </DataTable>
+      <div style={{
+        minHeight: '20px'
+      }}></div>
     </div>
   );
 }
