@@ -8,26 +8,45 @@ import styles from '../index.module.css'
 
 function AdminUsers () {
   const [users, setUsers] = useState([]);
+  const [totalRecords, setTotalRecords] = useState(0);
+  const [first, setFirst] = useState(0);
+  const [loading, setLoading] = useState(true);
+  let rows = 5;
 
-  const getUsuarios = async () => {
+  const getUsuarios = async (first, rows) => {
     const response = await obtenerUsuarios();
     const res = response.data.data;
     console.log(res)
-    setUsers(res)
+    setUsers(res.slice(first, first + rows))
+    setTotalRecords(res.length);
+    setLoading(false);
   }
   useEffect(() => {
-    getUsuarios();
-  }, []);
+    getUsuarios(first, rows);
+  }, [first]);
 
   const handleDelete = async (userId) => {
     const response = await deleteUser(userId)
     console.log(response);
   };
 
+  const onPage = (event) => {
+    setFirst(event.first)
+  };
+
   return (
     <div className={styles.contAdminRutas}>
-      <h1>Administrar Usuarios</h1>
-      <DataTable value={users}>
+      <p className={styles.tituloAdminRuta}>Administrar Usuarios</p>
+      <DataTable className={styles.dataTabla}
+        value={users}
+        paginator
+        rows={rows}
+        totalRecords={totalRecords}
+        first={first}
+        onPage={onPage}
+        lazy
+        loading={loading}
+      >
         <Column
           header="Acciones"
           body={(rowData) => (

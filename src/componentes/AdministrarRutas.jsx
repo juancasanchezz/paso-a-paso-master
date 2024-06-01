@@ -8,17 +8,23 @@ import styles from '../index.module.css'
 
 function AdministrarRutas () {
   const [routes, setRoutes] = useState([]);
+  const [totalRecords, setTotalRecords] = useState(0);
+  const [first, setFirst] = useState(0);
+  const [loading, setLoading] = useState(true);
+  let rows = 5;
 
 
-  const getRutas = async () => {
+  const getRutas = async (first, rows) => {
+    setLoading(true)
     const response = await obtenerRutas();
     const res = response.data.data;
-    setRoutes(res)
-    console.log(res)
+    setRoutes(res.slice(first, first + rows));
+    setTotalRecords(res.length);
+    setLoading(false);
   }
   useEffect(() => {
-    getRutas();
-  }, []);
+    getRutas(first, rows);
+  }, [first]);
 
   const handleEdit = (route) => {
     // Lógica para editar la ruta
@@ -27,12 +33,26 @@ function AdministrarRutas () {
   const handleDelete = async (routeId) => {
     const response = await deleteRuta(routeId);
     console.log(response)
+    getRutas(first, rows);
+  };
+
+  const onPage = (event) => {
+    setFirst(event.first)
   };
 
   return (
     <div className={styles.contAdminRutas}>
       <p className={styles.tituloAdminRuta}>Administrar Rutas</p>
-      <DataTable className={styles.dataTabla} value={routes}>
+      <DataTable className={styles.dataTabla}
+        value={routes}
+        paginator
+        rows={rows}
+        totalRecords={totalRecords}
+        first={first}
+        onPage={onPage}
+        lazy
+        loading={loading}
+      >
         <Column
           header="Acciones"
           body={(rowData) => (

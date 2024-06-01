@@ -1246,6 +1246,7 @@ p {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
 }
 
 .divBotonesAdmin {
@@ -1257,6 +1258,7 @@ p {
 .btnAdmin {
   background-color: #506951;
   border-radius: 10px;
+  border: none;
 }
 
 .btnAdmin:hover {
@@ -1271,7 +1273,6 @@ p {
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  backdrop-filter: blur(15px);
 
 }
 
@@ -1299,4 +1300,10 @@ p {
 
 .btnEliminarAdmin {
   background-color: rgb(102, 38, 38);
+  border: none;
+  border-radius: 10px;
+}
+
+.btnEliminarAdmin:hover {
+  background-color: rgb(185, 76, 76);
 }
