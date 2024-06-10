@@ -584,6 +584,7 @@ p {
   margin: 56px 0;
   width: 50%;
   height: auto;
+  max-height: 800px;
   border-radius: 5px;
   padding: 20px;
   position: relative;
@@ -628,10 +629,16 @@ p {
 
 .imgRuta {
   width: 100%;
-  max-height: 500px;
+  max-height: 300px;
   object-fit: cover;
   justify-content: center;
   border-radius: 10px;
+}
+
+@media (max-width: 1200px) {
+  .imgRuta {
+    height: auto;
+  }
 }
 
 

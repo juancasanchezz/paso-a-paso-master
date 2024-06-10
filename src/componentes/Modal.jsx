@@ -3,8 +3,6 @@ import styles from '../index.module.css'
 
 const Modal = ({ children, cerrarModal }) => {
 
-
-
   const handleOverlayClick = (e) => {
     // Verificar si el evento de clic ocurrió dentro del modal
     if (e.target === e.currentTarget) {
@@ -12,9 +10,6 @@ const Modal = ({ children, cerrarModal }) => {
       cerrarModal();
     }
   };
-
-
-
 
   return (
     <div className={styles.modalOverlay}
