@@ -62,6 +62,9 @@ function AdminUsers () {
         <Column field="biografia" header="Bio" />
         <Column field="avatar" header="Foto" />
       </DataTable>
+      <div style={{
+        minHeight: '20px'
+      }}></div>
     </div>
   );
 }
